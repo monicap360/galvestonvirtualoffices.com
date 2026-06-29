@@ -64,6 +64,21 @@ export async function getMailboxPlans(): Promise<MailboxPlan[]> {
 
 export type ServiceCategory = Service["category"];
 
+// Fetch specific services by slug, preserving the requested order.
+export async function getServicesBySlugs(slugs: string[]): Promise<Service[]> {
+  const tenant = await getTenant();
+  if (!tenant || slugs.length === 0) return [];
+  const supabase = await createClient();
+  const { data } = await supabase
+    .from("services")
+    .select("*")
+    .eq("tenant_id", tenant.id)
+    .eq("active", true)
+    .in("slug", slugs);
+  const bySlug = new Map((data as Service[] | null ?? []).map((s) => [s.slug, s]));
+  return slugs.map((s) => bySlug.get(s)).filter(Boolean) as Service[];
+}
+
 export async function getServices(category?: Service["category"]): Promise<Service[]> {
   const tenant = await getTenant();
   if (!tenant) return [];
