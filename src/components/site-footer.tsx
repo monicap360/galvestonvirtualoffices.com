@@ -8,11 +8,11 @@ export default async function SiteFooter() {
     <footer className="mt-20 border-t border-white/10 bg-slate-950/60 backdrop-blur-xl">
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:grid-cols-2 lg:grid-cols-5">
         <div>
-          <div className="flex items-center gap-2 font-bold text-white">
-            <span className="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-indigo-400 to-violet-500 text-slate-950 shadow-[0_0_18px_-4px_rgba(167,139,250,0.7)]">GV</span>
-            {tenant?.name ?? "Galveston Virtual Offices"}
+          <div className="flex items-center gap-2.5">
+            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-indigo-500 via-violet-500 to-purple-500 text-sm font-extrabold tracking-tight text-white ring-1 ring-inset ring-white/25 shadow-[0_0_18px_-4px_rgba(167,139,250,0.8)]">GV</span>
+            <span className="text-lg font-bold tracking-tight text-white">{tenant?.name ?? "Galveston Virtual Offices"}</span>
           </div>
-          <p className="mt-2 text-sm font-semibold text-violet-300/90">Virtual Offices · Mailboxes · AI Business Support</p>
+          <p className="mt-3 text-xs font-semibold uppercase tracking-[0.16em] text-violet-300/80">Virtual Offices · Mailboxes · AI Support</p>
           <p className="mt-2 text-sm text-slate-400">
             The AI-powered business hub — assistants, business address, mailbox & packages, offices, and AI agents across the Houston–Galveston Gulf Coast.
           </p>

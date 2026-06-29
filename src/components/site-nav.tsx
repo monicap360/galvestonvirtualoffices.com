@@ -19,13 +19,13 @@ export default async function SiteNav() {
   return (
     <header className="sticky top-0 z-40 border-b border-white/10 bg-slate-950/70 backdrop-blur-xl">
       <nav className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
-        <Link href="/" className="flex items-center gap-2.5 text-white">
-          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-indigo-400 to-violet-500 font-bold text-slate-950 shadow-[0_0_20px_-4px_rgba(167,139,250,0.7)]">
+        <Link href="/" className="group flex items-center gap-2.5 text-white">
+          <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-indigo-500 via-violet-500 to-purple-500 text-sm font-extrabold tracking-tight text-white ring-1 ring-inset ring-white/25 shadow-[0_0_22px_-4px_rgba(167,139,250,0.85)] transition-transform group-hover:scale-105">
             GV
           </span>
           <span className="hidden leading-tight sm:block">
-            <span className="block font-bold">Galveston Virtual Offices</span>
-            <span className="block text-[11px] font-medium text-violet-300/90">Virtual Offices · Mailboxes · AI Business Support</span>
+            <span className="block text-[15px] font-bold tracking-tight">Galveston Virtual Offices</span>
+            <span className="block text-[10px] font-semibold uppercase tracking-[0.16em] text-violet-300/80">Virtual Offices · Mailboxes · AI Support</span>
           </span>
         </Link>
 
