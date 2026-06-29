@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getTenant } from "@/lib/tenant";
+import { LOCATIONS } from "@/lib/locations";
 
 export default async function SiteFooter() {
   const tenant = await getTenant();
@@ -52,6 +53,14 @@ export default async function SiteFooter() {
               {tenant.support_email}
             </a>
           )}
+        </div>
+      </div>
+      <div className="mx-auto max-w-6xl border-t border-white/5 px-4 py-5">
+        <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Serving the Houston–Galveston Gulf Coast</p>
+        <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-sm text-slate-400">
+          {LOCATIONS.map((l) => (
+            <Link key={l.slug} href={`/locations/${l.slug}`} className="hover:text-fuchsia-300">{l.city}</Link>
+          ))}
         </div>
       </div>
       <div className="border-t border-white/5 py-5 text-center text-xs text-slate-500">
