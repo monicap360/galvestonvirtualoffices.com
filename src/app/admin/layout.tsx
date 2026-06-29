@@ -4,6 +4,7 @@ import { signOutAction } from "@/app/auth/actions";
 
 const nav = [
   { href: "/admin", label: "Overview" },
+  { href: "/admin/checklist", label: "Launch Checklist" },
   { href: "/admin/requests", label: "Client Requests" },
   { href: "/admin/assistants", label: "Assistants" },
   { href: "/admin/mail", label: "Log Mail" },
