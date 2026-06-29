@@ -1,6 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import { requireStaff } from "@/lib/session";
-import { markInvoicePaid } from "@/app/admin/actions";
+import { markInvoicePaid, generateDueInvoices } from "@/app/admin/actions";
 import StatusBadge from "@/components/status-badge";
 import { dateLabel, money, titleCase } from "@/lib/format";
 
@@ -18,8 +18,16 @@ export default async function AdminInvoicesPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-white">Invoices & check payments</h1>
-      <p className="mt-1 text-slate-400">When a check arrives, mark its invoice paid — that activates the order automatically.</p>
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <h1 className="text-2xl font-bold text-white">Invoices & check payments</h1>
+        <form action={generateDueInvoices}>
+          <button className="btn-outline">Generate this month&apos;s invoices</button>
+        </form>
+      </div>
+      <p className="mt-1 text-slate-400">
+        When a check arrives, mark its invoice paid — that activates the order automatically. Use
+        &ldquo;Generate this month&apos;s invoices&rdquo; to bill every active subscription that&apos;s due.
+      </p>
 
       <div className="card mt-6 divide-y divide-white/10">
         {(invoices ?? []).length === 0 && <p className="p-6 text-sm text-slate-400">No invoices yet.</p>}

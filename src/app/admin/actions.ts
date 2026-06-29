@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import { requireStaff } from "@/lib/session";
+import { makeReference } from "@/lib/format";
 
 // ---- Log a new piece of mail for a customer (with optional photo) ----
 export async function logMail(formData: FormData) {
@@ -196,4 +197,60 @@ export async function updateClientRequest(formData: FormData) {
 
   await supabase.from("client_requests").update(patch).eq("id", id);
   revalidatePath("/admin/requests");
+}
+
+// ---- Recurring billing: generate this period's check-invoices for active subscriptions ----
+// Business-check model (no payment processor): creates a fresh awaiting_payment invoice
+// for each active subscription/recurring service that hasn't been invoiced in the last ~28 days.
+export async function generateDueInvoices() {
+  const staff = await requireStaff();
+  const supabase = await createClient();
+  const cutoff = new Date(Date.now() - 28 * 86_400_000).toISOString();
+
+  const hasRecentInvoice = async (relType: string, relId: string) => {
+    const { count } = await supabase
+      .from("invoices")
+      .select("id", { count: "exact", head: true })
+      .eq("related_type", relType)
+      .eq("related_id", relId)
+      .gt("created_at", cutoff);
+    return (count ?? 0) > 0;
+  };
+
+  // Active virtual-mailbox subscriptions
+  const { data: subs } = await supabase
+    .from("mailbox_subscriptions")
+    .select("id, user_id, tenant_id, mailbox_plans(name, price_cents)")
+    .eq("tenant_id", staff.tenant_id)
+    .eq("status", "active");
+  for (const s of subs ?? []) {
+    if (await hasRecentInvoice("subscription", s.id)) continue;
+    const plan = s.mailbox_plans as unknown as { name: string; price_cents: number } | null;
+    await supabase.from("invoices").insert({
+      tenant_id: s.tenant_id, user_id: s.user_id, reference: makeReference(),
+      description: `Virtual mailbox — ${plan?.name ?? "plan"} (monthly)`,
+      amount_cents: plan?.price_cents ?? 0, payment_method: "check", status: "awaiting_payment",
+      related_type: "subscription", related_id: s.id,
+    });
+  }
+
+  // Active recurring service orders (skip one-time builds with no interval)
+  const { data: orders } = await supabase
+    .from("service_orders")
+    .select("id, user_id, tenant_id, services(name, base_price_cents, interval)")
+    .eq("tenant_id", staff.tenant_id)
+    .eq("status", "active");
+  for (const o of orders ?? []) {
+    const svc = o.services as unknown as { name: string; base_price_cents: number; interval: string | null } | null;
+    if (!svc?.interval) continue;                       // one-time service → no recurring invoice
+    if (await hasRecentInvoice("service_order", o.id)) continue;
+    await supabase.from("invoices").insert({
+      tenant_id: o.tenant_id, user_id: o.user_id, reference: makeReference(),
+      description: `Service — ${svc.name} (recurring)`,
+      amount_cents: svc.base_price_cents, payment_method: "check", status: "awaiting_payment",
+      related_type: "service_order", related_id: o.id,
+    });
+  }
+
+  revalidatePath("/admin/invoices");
 }
