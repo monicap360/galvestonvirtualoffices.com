@@ -64,13 +64,13 @@ const jsonLd = {
   foundingDate: "2019",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "2200 Market St",
+    streetAddress: "3501 Winnie St",
     addressLocality: "Galveston",
     addressRegion: "TX",
     postalCode: "77550",
     addressCountry: "US",
   },
-  geo: { "@type": "GeoCoordinates", latitude: 29.3013, longitude: -94.7977 },
+  geo: { "@type": "GeoCoordinates", latitude: 29.2992, longitude: -94.8068 },
   areaServed: [
     "Galveston, TX", "Houston, TX", "League City, TX", "Texas City, TX",
     "Friendswood, TX", "Pearland, TX", "Dickinson, TX", "La Marque, TX",

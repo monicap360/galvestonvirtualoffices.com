@@ -316,7 +316,7 @@ create policy requests_staff_update on public.client_requests for update using (
 -- ============================================================================
 insert into public.tenants (id, slug, name, support_email, mailing_address, brand_color)
 values ('00000000-0000-0000-0000-000000000001','galveston','Galveston Virtual Offices',
-  'hello@galvestonvirtualoffices.com','Galveston Virtual Offices, 2200 Market St, Galveston, TX 77550','#0e7490')
+  'hello@galvestonvirtualoffices.com','Galveston Virtual Offices, 3501 Winnie St, Galveston, TX 77550','#0e7490')
 on conflict (id) do update set name = excluded.name, mailing_address = excluded.mailing_address;
 
 insert into public.offices (tenant_id, name, slug, description, type, capacity, size_sqft, price_per_day_cents, price_per_month_cents)

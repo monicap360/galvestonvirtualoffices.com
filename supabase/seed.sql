@@ -8,7 +8,7 @@ values (
   'galveston',
   'Galveston Virtual Offices',
   'hello@galvestonvirtualoffices.com',
-  'Galveston Virtual Offices, 2200 Market St, Galveston, TX 77550',
+  'Galveston Virtual Offices, 3501 Winnie St, Galveston, TX 77550',
   '#0e7490'
 )
 on conflict (id) do update set
