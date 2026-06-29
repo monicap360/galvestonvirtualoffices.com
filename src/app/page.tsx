@@ -119,7 +119,7 @@ export default async function HomePage() {
             <span className="text-gradient">powered by AI</span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-slate-300">
-            {tenant?.name ?? "Galveston Virtual Offices"} gives Gulf Coast businesses everything to launch, run, and
+            {tenant?.name ?? "Galveston Virtual Offices"}{" "}gives Gulf Coast businesses everything to launch, run, and
             grow — a dedicated assistant, a real Texas address, AI-powered mailbox &amp; package handling, offices,
             AI agents, and marketing. Sign up online; pay by business check so every account is verified.
           </p>
