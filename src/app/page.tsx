@@ -98,7 +98,16 @@ export default async function HomePage() {
     <div>
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <div className="mx-auto max-w-6xl px-4 py-24 text-center">
+        <div className="absolute inset-0 -z-10">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/galveston-hero.jpg"
+            alt="Galveston Pleasure Pier at sunset over the Gulf of Mexico"
+            className="h-full w-full object-cover object-center opacity-45"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/75 via-slate-950/85 to-slate-950" />
+        </div>
+        <div className="mx-auto max-w-6xl px-4 py-28 text-center">
           <span className="badge border border-cyan-400/30 bg-cyan-400/10 text-cyan-200">
             ◇ Galveston · Texas Gulf Coast
           </span>
@@ -155,27 +164,6 @@ export default async function HomePage() {
               <span className="mt-4 inline-block text-sm font-semibold text-cyan-300">Learn more →</span>
             </Link>
           ))}
-        </div>
-      </section>
-
-      {/* Galveston photo */}
-      <section className="mx-auto max-w-6xl px-4 py-12">
-        <div className="card relative overflow-hidden p-0">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/galveston-hero.jpg"
-            alt="Galveston Pleasure Pier at sunset over the Gulf of Mexico"
-            className="h-[300px] w-full object-cover sm:h-[420px]"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent" />
-          <div className="absolute bottom-0 left-0 p-6 sm:p-10">
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-cyan-300">Headquartered on the Gulf Coast</p>
-            <h2 className="mt-2 text-3xl font-bold text-white sm:text-4xl">A real Galveston home for your business</h2>
-            <p className="mt-2 max-w-xl text-slate-300">
-              Your address, mailbox, and team — based right here on Galveston Island, Texas. Local people,
-              a real street address, and Gulf Coast hospitality.
-            </p>
-          </div>
         </div>
       </section>
 
