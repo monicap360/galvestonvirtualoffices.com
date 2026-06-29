@@ -10,9 +10,9 @@ export default async function OfficesPage() {
   return (
     <div className="mx-auto max-w-6xl px-4 py-14">
       <header className="max-w-2xl">
-        <h1 className="text-3xl font-bold text-white">Offices & meeting rooms</h1>
+        <h1 className="text-3xl font-bold text-white">Private office & desks</h1>
         <p className="mt-3 text-slate-400">
-          Book a private office, day office, desk, or meeting room online. Pay by business check —
+          Book a private office or coworking desk at our Galveston location, online. Pay by business check —
           your reservation is confirmed once we receive and record it.
         </p>
       </header>

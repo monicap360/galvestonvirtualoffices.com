@@ -19,10 +19,10 @@ export async function generateMetadata({ params }: { params: Promise<{ city: str
 }
 
 const services = [
-  { href: "/mailboxes", t: "Virtual mailbox & business address", d: "A real street address with AI mail sorting and pickup." },
+  { href: "/mailboxes", t: "Virtual mailbox & packages", d: "A real street address with mail + package acceptance (Amazon, UPS, FedEx), AI sorting, and local pickup." },
   { href: "/virtual-assistants", t: "Managed virtual assistants", d: "Dedicated, vetted assistants we recruit and manage for you." },
   { href: "/ai-studio", t: "AI agents", d: "24/7 AI receptionist, lead follow-up, reviews, and more." },
-  { href: "/offices", t: "Offices & meeting rooms", d: "Private offices, desks, and meeting rooms by the day or month." },
+  { href: "/offices", t: "Private office & desks", d: "A private office and coworking desks by the day or month." },
   { href: "/services/marketing", t: "AI marketing", d: "Google profile, reviews, local SEO, social, and a website chatbot." },
 ];
 

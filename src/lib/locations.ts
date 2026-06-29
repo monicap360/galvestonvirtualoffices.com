@@ -69,6 +69,76 @@ export const LOCATIONS: Location[] = [
     metaDescription:
       "Virtual office, mailbox, AI receptionist, and virtual assistants for Pearland, TX. Sign up online.",
   },
+  {
+    slug: "sugar-land",
+    city: "Sugar Land",
+    headline: "Virtual office & business support in Sugar Land, TX",
+    intro:
+      "Sugar Land businesses get a credible address, virtual mailbox, AI agents, and managed virtual assistants — a polished presence without Fort Bend office rent.",
+    nearby: "Missouri City, Stafford, Richmond, and southwest Houston",
+    metaDescription:
+      "Virtual office, mailbox, AI receptionist, and virtual assistants for Sugar Land, TX. Online signup.",
+  },
+  {
+    slug: "katy",
+    city: "Katy",
+    headline: "Virtual office & business support in Katy, TX",
+    intro:
+      "Katy entrepreneurs get a professional business address, virtual mailbox, 24/7 AI receptionist, and virtual assistants — run your business from home with a front office that never sleeps.",
+    nearby: "Cinco Ranch, Fulshear, Cypress, and west Houston",
+    metaDescription:
+      "Virtual office, mailbox, AI receptionist, and virtual assistants for Katy, TX. Sign up online.",
+  },
+  {
+    slug: "the-woodlands",
+    city: "The Woodlands",
+    headline: "Virtual office & business support in The Woodlands, TX",
+    intro:
+      "The Woodlands businesses get a professional address, virtual mailbox, AI agents, and managed virtual assistants — premium presence, fully online, no long-term lease.",
+    nearby: "Spring, Conroe, Shenandoah, and north Houston",
+    metaDescription:
+      "Virtual office, mailbox, AI receptionist, and virtual assistants for The Woodlands, TX. Online signup.",
+  },
+  {
+    slug: "webster",
+    city: "Webster",
+    headline: "Virtual office & business support in Webster, TX",
+    intro:
+      "Webster and Clear Lake businesses get a real address, virtual mailbox, AI receptionist, and virtual assistants — perfect for the NASA/Bay Area corridor.",
+    nearby: "Clear Lake, Nassau Bay, El Lago, and Seabrook",
+    metaDescription:
+      "Virtual office, mailbox, AI receptionist, and virtual assistants for Webster & Clear Lake, TX.",
+  },
+  {
+    slug: "kemah",
+    city: "Kemah",
+    headline: "Virtual office & business support in Kemah, TX",
+    intro:
+      "Kemah business owners get a professional address, virtual mailbox, AI agents, and virtual assistants — keep your waterfront business lean and covered year-round.",
+    nearby: "Seabrook, League City, Clear Lake Shores, and the Bay Area",
+    metaDescription:
+      "Virtual office, mailbox, AI receptionist, and virtual assistants for Kemah, TX. Online signup.",
+  },
+  {
+    slug: "dickinson",
+    city: "Dickinson",
+    headline: "Virtual office & business support in Dickinson, TX",
+    intro:
+      "Dickinson businesses get a credible address, virtual mailbox, 24/7 AI receptionist, and virtual assistants — mainland Gulf Coast support, all online.",
+    nearby: "League City, Santa Fe, Bacliff, and Texas City",
+    metaDescription:
+      "Virtual office, mailbox, AI receptionist, and virtual assistants for Dickinson, TX. Sign up online.",
+  },
+  {
+    slug: "alvin",
+    city: "Alvin",
+    headline: "Virtual office & business support in Alvin, TX",
+    intro:
+      "Alvin entrepreneurs get a professional business address, virtual mailbox, AI agents, and managed virtual assistants — everything to look bigger and run leaner.",
+    nearby: "Pearland, Manvel, Santa Fe, and Brazoria County",
+    metaDescription:
+      "Virtual office, mailbox, AI receptionist, and virtual assistants for Alvin, TX. Online signup.",
+  },
 ];
 
 export function getLocation(slug: string): Location | undefined {

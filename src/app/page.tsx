@@ -38,16 +38,16 @@ const offerings = [
   },
   {
     href: "/mailboxes",
-    title: "AI Virtual Mailbox",
+    title: "AI Virtual Mailbox & Packages",
     blurb:
-      "A real Galveston street address. We receive, photograph, and AI-sort your mail — bills, checks, legal, junk — and you manage it all from your dashboard.",
+      "A real Galveston street address for mail and packages. We accept and photograph everything — Amazon, UPS, FedEx, checks, legal — hold it for pickup, and you manage it all from your dashboard.",
     icon: "mail",
   },
   {
     href: "/offices",
-    title: "Offices & Meeting Rooms",
+    title: "Private Office & Desks",
     blurb:
-      "Private offices, day offices, desks, and meeting rooms. Book online by the day or month — perfect for travelers, remote teams, and growing businesses.",
+      "A private office and coworking desks in Galveston — book by the day or month. Perfect for focused work, client visits, and growing businesses.",
     icon: "office",
   },
   {

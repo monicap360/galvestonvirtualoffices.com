@@ -18,9 +18,7 @@ on conflict (id) do update set
 -- ---- Offices ----
 insert into public.offices (tenant_id, name, slug, description, type, capacity, size_sqft, price_per_day_cents, price_per_month_cents)
 values
-  ('00000000-0000-0000-0000-000000000001','Harborview Private Office','harborview','Quiet private office with natural light, fiber internet, and 24/7 access.','Private Office',2,120,7500,89000),
-  ('00000000-0000-0000-0000-000000000001','Strand Day Office','strand-day','Book by the day. Perfect for client meetings or a focused work session.','Day Office',2,90,4500,null),
-  ('00000000-0000-0000-0000-000000000001','Seawall Meeting Room','seawall-meeting','Conference room for up to 8 with display, whiteboard, and coffee.','Meeting Room',8,200,9500,null),
+  ('00000000-0000-0000-0000-000000000001','Private Office','private-office','A quiet private office with natural light, fiber internet, and 24/7 access.','Private Office',2,120,7500,89000),
   ('00000000-0000-0000-0000-000000000001','Coworking Desk','coworking-desk','Hot desk in the shared lounge with all amenities included.','Desk',1,40,2500,29900)
 on conflict (tenant_id, slug) do nothing;
 

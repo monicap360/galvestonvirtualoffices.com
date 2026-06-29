@@ -8,6 +8,7 @@ export const metadata = { title: "Virtual Mailboxes" };
 const compare = [
   { feature: "Real street address", them: "Shared national network", us: "A real Galveston address" },
   { feature: "Mail handling", them: "Manual scan only", us: "AI sorts bills, checks, legal & junk" },
+  { feature: "Packages (Amazon, UPS, FedEx)", them: "Often extra fees or limits", us: "Accepted & held for local pickup" },
   { feature: "In-person pickup", them: "Not available", us: "Pick up locally during business hours" },
   { feature: "Support", them: "Call-center", us: "Real Galveston people who answer" },
   { feature: "Beyond the mailbox", them: "Mailbox only", us: "Assistant, office, address & marketing too" },
@@ -21,8 +22,9 @@ export default async function MailboxesPage() {
       <header className="max-w-2xl">
         <h1 className="text-3xl font-bold text-white">AI-powered virtual mailboxes</h1>
         <p className="mt-3 text-slate-400">
-          Get a real Galveston street address. We receive and photograph every piece of mail, sort it with AI,
-          and notify you instantly. Pick up in person, or have us scan, forward, or shred.
+          Get a real Galveston street address for your mail <em>and</em> packages. We accept letters and parcels —
+          including Amazon, UPS, and FedEx — photograph them, sort with AI, and notify you instantly. Pick up in
+          person at our Galveston location, or have us scan, forward, or shred.
         </p>
         <p className="mt-2 text-sm text-slate-400">
           Note: a notarized USPS Form 1583 is required to receive mail on your behalf — we&apos;ll walk you through it after signup.
