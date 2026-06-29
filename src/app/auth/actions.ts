@@ -4,6 +4,7 @@ import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { getTenant } from "@/lib/tenant";
+import { sendWelcomeEmail } from "@/lib/email";
 
 export type AuthState = { error?: string; message?: string };
 
@@ -33,7 +34,11 @@ export async function signUpAction(_prev: AuthState, formData: FormData): Promis
   });
 
   if (error) return { error: error.message };
-  if (!data.session) return { message: "Almost there — check your email to confirm your account." };
+
+  // Fire the branded welcome/onboarding email (no-op if RESEND_API_KEY isn't set yet).
+  await sendWelcomeEmail(email, fullName);
+
+  if (!data.session) return { message: "Almost there — check your email to confirm your account, then look for your welcome email." };
 
   redirect("/dashboard");
 }

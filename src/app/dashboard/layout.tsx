@@ -4,6 +4,7 @@ import { signOutAction } from "@/app/auth/actions";
 
 const nav = [
   { href: "/dashboard", label: "Overview" },
+  { href: "/dashboard/start", label: "Get Started" },
   { href: "/dashboard/mail", label: "Mail" },
   { href: "/dashboard/bookings", label: "Bookings" },
   { href: "/dashboard/mailbox", label: "Mailbox" },
