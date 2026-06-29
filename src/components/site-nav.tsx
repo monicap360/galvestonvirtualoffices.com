@@ -37,6 +37,7 @@ export default async function SiteNav() {
         </div>
 
         <div className="flex items-center gap-2">
+          <Link href="/contact" className="btn-outline hidden md:inline-flex">Book a call</Link>
           {profile ? (
             <>
               {isStaff && (

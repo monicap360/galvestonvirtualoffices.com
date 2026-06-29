@@ -10,6 +10,13 @@ const how = [
   { t: "We manage it", d: "We handle onboarding, oversight, and backup coverage — you just delegate the work." },
 ];
 
+const compare = [
+  { feature: "Matching & management", them: "Often DIY — you manage the VA", us: "We recruit, vet, match & manage" },
+  { feature: "Backup coverage", them: "Usually none", us: "Backup if your VA is out" },
+  { feature: "Pricing", them: "Hidden / quote-only", us: "Flat, published pricing" },
+  { feature: "More than a VA", them: "Standalone service", us: "Plus address, mailbox, office & marketing" },
+];
+
 export default async function VirtualAssistantsPage() {
   const [plans, assistants] = await Promise.all([getServices("virtual_assistant"), getAssistants()]);
 
@@ -27,6 +34,25 @@ export default async function VirtualAssistantsPage() {
             <Link href="/virtual-assistants/request" className="btn-primary px-6 py-3 text-base">Request an assistant</Link>
             <Link href="/virtual-assistants/apply" className="btn-outline px-6 py-3 text-base">Apply as an assistant</Link>
           </div>
+        </div>
+      </section>
+
+      {/* vs other VA firms */}
+      <section className="mx-auto max-w-5xl px-4 pb-2">
+        <h2 className="text-center text-2xl font-bold text-white">Why our managed model wins</h2>
+        <div className="card mt-8 overflow-hidden p-0">
+          <div className="grid grid-cols-3 border-b border-white/10 bg-white/5 text-sm font-semibold">
+            <div className="p-4"></div>
+            <div className="p-4 text-slate-300">Other VA firms</div>
+            <div className="p-4 text-cyan-300">Galveston Managed VAs</div>
+          </div>
+          {compare.map((row) => (
+            <div key={row.feature} className="grid grid-cols-3 border-b border-white/5 text-sm last:border-0">
+              <div className="p-4 font-medium text-white">{row.feature}</div>
+              <div className="p-4 text-slate-400">{row.them}</div>
+              <div className="p-4 text-slate-200">✓ {row.us}</div>
+            </div>
+          ))}
         </div>
       </section>
 
