@@ -14,7 +14,7 @@ export type MailboxPlan = {
 
 export type Service = {
   id: string; name: string; slug: string;
-  category: "marketing_assistant" | "web_platform" | "bundle" | "virtual_assistant" | "ai_assistant";
+  category: "marketing_assistant" | "web_platform" | "bundle" | "virtual_assistant" | "ai_assistant" | "ai_product";
   tagline: string; description: string; base_price_cents: number; interval: string | null; features: string[];
 };
 

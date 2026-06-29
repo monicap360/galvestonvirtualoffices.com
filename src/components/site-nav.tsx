@@ -3,11 +3,11 @@ import { getProfile } from "@/lib/session";
 
 const links = [
   { href: "/virtual-assistants", label: "Virtual Assistants" },
-  { href: "/ai-assistant", label: "AI Assistant" },
+  { href: "/ai-studio", label: "AI Studio" },
   { href: "/mailboxes", label: "Mailboxes" },
   { href: "/offices", label: "Offices" },
   { href: "/services/marketing", label: "AI Marketing" },
-  { href: "/services/platforms", label: "Websites & Platforms" },
+  { href: "/services/platforms", label: "Platforms" },
   { href: "/pricing", label: "Pricing" },
   { href: "/contact", label: "Contact" },
 ];
