@@ -84,11 +84,11 @@ const PHONE_HREF = "tel:+14095550123";
 
 // Honest, factual trust signals (true for a new business — no fabricated social proof).
 const trustSignals = [
+  "6+ years on the Gulf Coast",
   "Real Galveston street address",
-  "USPS Form 1583 compliant",
-  "Business-check verified accounts",
+  "Packages accepted (Amazon, UPS, FedEx)",
+  "Steps from the cruise terminal",
   "No long-term contracts",
-  "Local Gulf Coast team",
 ];
 
 export default async function HomePage() {
@@ -173,8 +173,9 @@ export default async function HomePage() {
           <div className="pointer-events-none absolute -top-24 left-1/2 h-48 w-96 -translate-x-1/2 rounded-full bg-violet-400/20 blur-3xl" />
           <h2 className="relative text-3xl font-bold text-white">Cruising or traveling out of Galveston?</h2>
           <p className="relative mx-auto mt-4 max-w-2xl text-slate-300">
-            Never miss important mail or a package while you&apos;re away. We receive and hold everything,
-            photograph it to your dashboard, and forward on request — so you can sail with peace of mind.
+            Our commercial location is right portside — about <strong className="text-white">two blocks from where the
+            Carnival Breeze docks</strong>. Drop off or pick up on your way to the ship while we receive, photograph,
+            and hold your mail and packages — so you can sail with peace of mind.
           </p>
           <Link href="/mailboxes" className="btn-primary relative mt-7 px-6 py-3 text-base">
             Set up your travel mailbox

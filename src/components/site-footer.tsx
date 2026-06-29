@@ -40,6 +40,7 @@ export default async function SiteFooter() {
         <div>
           <h4 className="text-sm font-semibold text-white">Company</h4>
           <ul className="mt-3 space-y-2 text-sm text-slate-400">
+            <li><Link href="/blog" className="hover:text-violet-300">Blog</Link></li>
             <li><Link href="/pricing" className="hover:text-violet-300">Pricing</Link></li>
             <li><Link href="/contact" className="hover:text-violet-300">Contact</Link></li>
             <li><Link href="/login" className="hover:text-violet-300">Customer Login</Link></li>

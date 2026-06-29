@@ -61,6 +61,7 @@ const jsonLd = {
   image: `${SITE_URL}/galveston-hero.jpg`,
   telephone: "+1-409-555-0123",
   priceRange: "$$",
+  foundingDate: "2019",
   address: {
     "@type": "PostalAddress",
     streetAddress: "2200 Market St",
