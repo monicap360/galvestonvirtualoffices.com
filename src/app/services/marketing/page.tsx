@@ -3,7 +3,12 @@ import { getServices } from "@/lib/catalog";
 import { orderService } from "@/app/orders/actions";
 import { price } from "@/lib/format";
 
-export const metadata = { title: "AI Marketing Assistants" };
+export const metadata = {
+  title: "AI Marketing Agency in Galveston & Houston, TX",
+  description:
+    "An AI-powered marketing agency for Galveston & Houston: Google Business Profile, reviews, local SEO, social, and a website chatbot — flat pricing, no retainers, no long-term contracts.",
+  alternates: { canonical: "/services/marketing" },
+};
 
 const compare = [
   { feature: "Time to launch", them: "Weeks of onboarding & meetings", us: "Configured for you in days" },

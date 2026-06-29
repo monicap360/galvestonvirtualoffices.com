@@ -3,7 +3,12 @@ import { getServices } from "@/lib/catalog";
 import { money } from "@/lib/format";
 import { orderService } from "@/app/orders/actions";
 
-export const metadata = { title: "Websites & Business Platforms" };
+export const metadata = {
+  title: "Website Design & Business Platforms in Galveston & Houston, TX",
+  description:
+    "Custom website design and business platforms for Galveston & Houston, TX: customer-facing sites plus the admin back office to run them — bookings, payments, accounts, and invoicing.",
+  alternates: { canonical: "/services/platforms" },
+};
 
 const compare = [
   { feature: "What you get", them: "A brochure website", us: "A website + an admin back office to run it" },
