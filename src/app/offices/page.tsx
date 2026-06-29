@@ -10,10 +10,15 @@ export default async function OfficesPage() {
   return (
     <div className="mx-auto max-w-6xl px-4 py-14">
       <header className="max-w-2xl">
-        <h1 className="text-3xl font-bold text-white">Private office & desks</h1>
+        <span className="badge border border-pink-400/30 bg-pink-400/15 text-pink-200">♀ Women-only workspace</span>
+        <h1 className="mt-3 text-3xl font-bold text-white">Private office &amp; desks for women</h1>
         <p className="mt-3 text-slate-400">
-          Book a private office or coworking desk at our Galveston location, online. Pay by business check —
-          your reservation is confirmed once we receive and record it.
+          Our Galveston office space is a <strong className="text-pink-200">women-only workspace</strong> — a private
+          office and coworking desks reserved for women entrepreneurs and professionals. Book by the day or month
+          online; pay by business check, confirmed once we receive it.
+        </p>
+        <p className="mt-2 text-sm text-slate-500">
+          (Our virtual mailbox, assistants, AI agents, and marketing services are open to everyone.)
         </p>
       </header>
 
@@ -27,7 +32,7 @@ export default async function OfficesPage() {
             <div key={o.id} className="card p-6">
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <span className="badge bg-fuchsia-400/10 text-fuchsia-200 border border-fuchsia-400/30">{o.type}</span>
+                  <span className="badge bg-violet-400/10 text-violet-200 border border-violet-400/30">{o.type}</span>
                   <h2 className="mt-2 text-xl font-semibold text-white">{o.name}</h2>
                 </div>
                 <div className="text-right">

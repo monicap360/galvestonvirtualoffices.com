@@ -71,7 +71,7 @@ export default async function RequestPage({
         <button className="btn-primary w-full">Submit request</button>
         <p className="text-center text-xs text-slate-400">
           Want to join our team instead?{" "}
-          <Link href="/virtual-assistants/apply" className="font-semibold text-fuchsia-300 hover:underline">Apply as an assistant</Link>
+          <Link href="/virtual-assistants/apply" className="font-semibold text-violet-300 hover:underline">Apply as an assistant</Link>
         </p>
       </form>
     </div>

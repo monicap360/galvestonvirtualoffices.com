@@ -20,18 +20,18 @@ export default async function SiteNav() {
     <header className="sticky top-0 z-40 border-b border-white/10 bg-slate-950/70 backdrop-blur-xl">
       <nav className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
         <Link href="/" className="flex items-center gap-2.5 text-white">
-          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-fuchsia-400 to-violet-500 font-bold text-slate-950 shadow-[0_0_20px_-4px_rgba(232,121,249,0.7)]">
+          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-indigo-400 to-violet-500 font-bold text-slate-950 shadow-[0_0_20px_-4px_rgba(167,139,250,0.7)]">
             GV
           </span>
           <span className="hidden leading-tight sm:block">
             <span className="block font-bold">Galveston Virtual Offices</span>
-            <span className="block text-[11px] font-medium text-fuchsia-300/90">Business Support Built for Women</span>
+            <span className="block text-[11px] font-medium text-violet-300/90">Virtual Offices · Mailboxes · AI Business Support</span>
           </span>
         </Link>
 
         <div className="hidden items-center gap-5 lg:flex">
           {links.map((l) => (
-            <Link key={l.href} href={l.href} className="text-sm font-medium text-slate-300 transition-colors hover:text-fuchsia-300">
+            <Link key={l.href} href={l.href} className="text-sm font-medium text-slate-300 transition-colors hover:text-violet-300">
               {l.label}
             </Link>
           ))}

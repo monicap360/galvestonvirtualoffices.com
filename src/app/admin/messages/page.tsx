@@ -24,7 +24,7 @@ export default async function AdminMessagesPage() {
               <div>
                 <p className="font-medium text-white">{m.name} {m.subject ? `· ${m.subject}` : ""}</p>
                 <p className="text-sm text-slate-400">
-                  <a href={`mailto:${m.email}`} className="text-fuchsia-300 hover:underline">{m.email}</a>
+                  <a href={`mailto:${m.email}`} className="text-violet-300 hover:underline">{m.email}</a>
                   {m.phone ? ` · ${m.phone}` : ""} · {dateLabel(m.created_at)}
                 </p>
               </div>

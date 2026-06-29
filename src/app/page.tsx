@@ -13,7 +13,7 @@ const ICONS: Record<string, string> = {
 
 function Icon({ name }: { name: string }) {
   return (
-    <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-fuchsia-400/20 bg-fuchsia-400/10 text-fuchsia-300 shadow-[0_0_24px_-8px_rgba(232,121,249,0.5)]">
+    <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-violet-400/20 bg-violet-400/10 text-violet-300 shadow-[0_0_24px_-8px_rgba(167,139,250,0.5)]">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
         <path d={ICONS[name]} />
       </svg>
@@ -108,20 +108,20 @@ export default async function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-b from-slate-950/75 via-slate-950/85 to-slate-950" />
         </div>
         <div className="mx-auto max-w-6xl px-4 py-28 text-center">
-          <span className="badge border border-fuchsia-400/30 bg-fuchsia-400/10 text-fuchsia-200">
+          <span className="badge border border-violet-400/30 bg-violet-400/10 text-violet-200">
             ◇ Galveston · Texas Gulf Coast
           </span>
-          <p className="mt-5 text-sm font-semibold uppercase tracking-[0.25em] text-fuchsia-300/80">
-            Built for Women Entrepreneurs · Galveston, TX
+          <p className="mt-5 text-sm font-semibold uppercase tracking-[0.25em] text-violet-300/80">
+            AI-Powered Business Support · Galveston &amp; Houston, TX
           </p>
           <h1 className="mx-auto mt-3 max-w-4xl text-4xl font-extrabold tracking-tight text-white sm:text-6xl">
-            The AI-powered business hub{" "}
-            <span className="text-gradient">built for women</span>
+            Everything to run your business —{" "}
+            <span className="text-gradient">powered by AI</span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-slate-300">
-            {tenant?.name ?? "Galveston Virtual Offices"} gives women entrepreneurs everything to launch, run, and
-            grow — a dedicated assistant, a real Texas address, AI-powered mailbox, offices, AI agents, and marketing.
-            Sign up online; pay by business check so every account is verified and legitimate.
+            {tenant?.name ?? "Galveston Virtual Offices"} gives Gulf Coast businesses everything to launch, run, and
+            grow — a dedicated assistant, a real Texas address, AI-powered mailbox &amp; package handling, offices,
+            AI agents, and marketing. Sign up online; pay by business check so every account is verified.
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-3">
             <Link href="/virtual-assistants/request" className="btn-primary px-6 py-3 text-base">Request an assistant</Link>
@@ -136,7 +136,7 @@ export default async function HomePage() {
         <div className="card flex flex-wrap items-center justify-center gap-x-8 gap-y-3 px-6 py-4 text-sm text-slate-300">
           {trustSignals.map((t) => (
             <span key={t} className="inline-flex items-center gap-2">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 text-fuchsia-400">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 text-violet-400">
                 <path d="m4.5 12.75 6 6 9-13.5" />
               </svg>
               {t}
@@ -156,12 +156,12 @@ export default async function HomePage() {
             <Link
               key={o.href}
               href={o.href}
-              className="card group p-6 transition-all hover:-translate-y-0.5 hover:border-fuchsia-400/30 hover:shadow-[0_0_40px_-10px_rgba(232,121,249,0.35)]"
+              className="card group p-6 transition-all hover:-translate-y-0.5 hover:border-violet-400/30 hover:shadow-[0_0_40px_-10px_rgba(167,139,250,0.35)]"
             >
               <Icon name={o.icon} />
-              <h3 className="mt-4 text-xl font-semibold text-white group-hover:text-fuchsia-300">{o.title}</h3>
+              <h3 className="mt-4 text-xl font-semibold text-white group-hover:text-violet-300">{o.title}</h3>
               <p className="mt-2 text-slate-400">{o.blurb}</p>
-              <span className="mt-4 inline-block text-sm font-semibold text-fuchsia-300">Learn more →</span>
+              <span className="mt-4 inline-block text-sm font-semibold text-violet-300">Learn more →</span>
             </Link>
           ))}
         </div>
@@ -169,8 +169,8 @@ export default async function HomePage() {
 
       {/* Cruise / traveler niche */}
       <section className="mx-auto max-w-6xl px-4 py-10">
-        <div className="card relative overflow-hidden bg-gradient-to-br from-fuchsia-500/15 to-violet-500/15 p-12 text-center">
-          <div className="pointer-events-none absolute -top-24 left-1/2 h-48 w-96 -translate-x-1/2 rounded-full bg-fuchsia-400/20 blur-3xl" />
+        <div className="card relative overflow-hidden bg-gradient-to-br from-violet-500/15 to-violet-500/15 p-12 text-center">
+          <div className="pointer-events-none absolute -top-24 left-1/2 h-48 w-96 -translate-x-1/2 rounded-full bg-violet-400/20 blur-3xl" />
           <h2 className="relative text-3xl font-bold text-white">Cruising or traveling out of Galveston?</h2>
           <p className="relative mx-auto mt-4 max-w-2xl text-slate-300">
             Never miss important mail or a package while you&apos;re away. We receive and hold everything,
@@ -188,7 +188,7 @@ export default async function HomePage() {
         <div className="mt-10 grid gap-6 sm:grid-cols-3">
           {steps.map((s) => (
             <div key={s.n} className="card p-6 text-center">
-              <div className="mx-auto grid h-12 w-12 place-items-center rounded-full bg-gradient-to-br from-fuchsia-400 to-violet-500 text-lg font-bold text-slate-950 shadow-[0_0_24px_-6px_rgba(232,121,249,0.7)]">
+              <div className="mx-auto grid h-12 w-12 place-items-center rounded-full bg-gradient-to-br from-indigo-400 to-violet-500 text-lg font-bold text-slate-950 shadow-[0_0_24px_-6px_rgba(167,139,250,0.7)]">
                 {s.n}
               </div>
               <h3 className="mt-4 text-lg font-semibold text-white">{s.t}</h3>
@@ -205,7 +205,7 @@ export default async function HomePage() {
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           {testimonials.map((t) => (
             <figure key={t.quote} className="card flex flex-col p-6">
-              <div className="text-fuchsia-300" aria-hidden>★★★★★</div>
+              <div className="text-violet-300" aria-hidden>★★★★★</div>
               <blockquote className="mt-3 flex-1 text-slate-300">&ldquo;{t.quote}&rdquo;</blockquote>
               <figcaption className="mt-4 border-t border-white/10 pt-4">
                 <span className="block font-semibold text-white">{t.name}</span>
@@ -218,7 +218,7 @@ export default async function HomePage() {
 
       {/* CTA */}
       <section className="mx-auto max-w-4xl px-4 pb-8">
-        <div className="card relative flex flex-col items-center gap-4 overflow-hidden border-fuchsia-400/20 p-12 text-center">
+        <div className="card relative flex flex-col items-center gap-4 overflow-hidden border-violet-400/20 p-12 text-center">
           <div className="pointer-events-none absolute -bottom-24 left-1/2 h-48 w-96 -translate-x-1/2 rounded-full bg-violet-500/20 blur-3xl" />
           <h2 className="relative text-2xl font-bold text-white">Ready to set up your Galveston presence?</h2>
           <p className="relative max-w-xl text-slate-300">Create your account today, or talk it through with our local team first — your call.</p>
@@ -226,7 +226,7 @@ export default async function HomePage() {
             <Link href="/signup" className="btn-primary px-6 py-3 text-base">Create your account</Link>
             <Link href="/contact" className="btn-outline px-6 py-3 text-base">Book a free consultation</Link>
           </div>
-          <a href={PHONE_HREF} className="relative mt-1 text-sm font-medium text-slate-300 hover:text-fuchsia-300">
+          <a href={PHONE_HREF} className="relative mt-1 text-sm font-medium text-slate-300 hover:text-violet-300">
             Or call us: <span className="font-semibold text-white">{PHONE_DISPLAY}</span>
           </a>
         </div>

@@ -21,7 +21,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     <div className="mx-auto max-w-6xl gap-8 px-4 py-8 lg:flex">
       <aside className="lg:w-56 lg:shrink-0">
         <div className="card p-4">
-          <span className="badge bg-gradient-to-br from-fuchsia-400 to-violet-500 text-slate-950">Admin</span>
+          <span className="badge bg-gradient-to-br from-indigo-400 to-violet-500 text-slate-950">Admin</span>
           <p className="mt-2 truncate text-sm font-semibold text-white">{staff.full_name || staff.email}</p>
           <nav className="mt-4 flex flex-row flex-wrap gap-1 lg:flex-col">
             {nav.map((n) => (
@@ -29,7 +29,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
                 {n.label}
               </Link>
             ))}
-            <Link href="/dashboard" className="rounded-lg px-3 py-2 text-sm font-semibold text-fuchsia-300 hover:bg-fuchsia-400/10">
+            <Link href="/dashboard" className="rounded-lg px-3 py-2 text-sm font-semibold text-violet-300 hover:bg-violet-400/10">
               ← Customer view
             </Link>
           </nav>

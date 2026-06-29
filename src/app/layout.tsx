@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     template: "%s · Galveston Virtual Offices",
   },
   description:
-    "The AI-powered business hub built for women entrepreneurs in Galveston & Houston, TX: virtual office address, virtual mailbox, managed virtual assistants, AI agents, offices, and marketing. Sign up online; pay by business check.",
+    "The AI-powered business hub for Galveston & Houston, TX: virtual office address, virtual mailbox with package pickup, managed virtual assistants, AI agents, offices, and marketing. Sign up online; pay by business check.",
   keywords: [
     "virtual office Galveston",
     "virtual office Houston",

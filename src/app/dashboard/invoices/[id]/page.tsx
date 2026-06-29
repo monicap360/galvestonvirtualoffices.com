@@ -24,7 +24,7 @@ export default async function InvoiceDetail({ params }: { params: Promise<{ id: 
 
   return (
     <div className="mx-auto max-w-xl">
-      <Link href="/dashboard/invoices" className="text-sm text-fuchsia-300 hover:underline">← All invoices</Link>
+      <Link href="/dashboard/invoices" className="text-sm text-violet-300 hover:underline">← All invoices</Link>
 
       <div className="card mt-4 p-6">
         <div className="flex items-start justify-between">
@@ -43,7 +43,7 @@ export default async function InvoiceDetail({ params }: { params: Promise<{ id: 
         </div>
 
         {inv.status === "paid" ? (
-          <p className="mt-6 rounded-lg bg-fuchsia-400/10 px-4 py-3 text-fuchsia-300">
+          <p className="mt-6 rounded-lg bg-violet-400/10 px-4 py-3 text-violet-300">
             Paid{inv.paid_at ? ` on ${dateLabel(inv.paid_at)}` : ""}. Thank you!
           </p>
         ) : (

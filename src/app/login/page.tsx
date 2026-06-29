@@ -42,7 +42,7 @@ export default function LoginPage() {
 
       <p className="mt-4 text-center text-sm text-slate-400">
         New here?{" "}
-        <Link href="/signup" className="font-semibold text-fuchsia-300 hover:underline">Create an account</Link>
+        <Link href="/signup" className="font-semibold text-violet-300 hover:underline">Create an account</Link>
       </p>
     </div>
   );

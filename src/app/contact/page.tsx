@@ -23,7 +23,7 @@ export default async function ContactPage({
 
       {sent ? (
         <div className="card mt-8 p-6">
-          <p className="text-fuchsia-300">Thanks! Your message has been received — we&apos;ll be in touch shortly.</p>
+          <p className="text-violet-300">Thanks! Your message has been received — we&apos;ll be in touch shortly.</p>
         </div>
       ) : (
         <form action={submitContact} className="card mt-8 space-y-4 p-6">

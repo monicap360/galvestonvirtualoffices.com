@@ -24,7 +24,7 @@ export default async function VirtualAssistantsPage() {
     <div>
       <section>
         <div className="mx-auto max-w-5xl px-4 py-16 text-center">
-          <p className="text-sm font-semibold uppercase tracking-wide text-fuchsia-300">Managed Virtual Assistants & Business Support</p>
+          <p className="text-sm font-semibold uppercase tracking-wide text-violet-300">Managed Virtual Assistants & Business Support</p>
           <h1 className="mt-2 text-4xl font-extrabold tracking-tight text-white">A dedicated assistant, fully managed for you</h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-400">
             Stop drowning in admin. We recruit, vet, match, and manage a virtual assistant tailored to your
@@ -44,7 +44,7 @@ export default async function VirtualAssistantsPage() {
           <div className="grid grid-cols-3 border-b border-white/10 bg-white/5 text-sm font-semibold">
             <div className="p-4"></div>
             <div className="p-4 text-slate-300">Other VA firms</div>
-            <div className="p-4 text-fuchsia-300">Galveston Managed VAs</div>
+            <div className="p-4 text-violet-300">Galveston Managed VAs</div>
           </div>
           {compare.map((row) => (
             <div key={row.feature} className="grid grid-cols-3 border-b border-white/5 text-sm last:border-0">
@@ -62,7 +62,7 @@ export default async function VirtualAssistantsPage() {
         <div className="mt-8 grid gap-6 sm:grid-cols-3">
           {how.map((s, i) => (
             <div key={s.t} className="card p-6 text-center">
-              <div className="mx-auto grid h-11 w-11 place-items-center rounded-full bg-gradient-to-br from-fuchsia-400 to-violet-500 text-lg font-bold text-slate-950">{i + 1}</div>
+              <div className="mx-auto grid h-11 w-11 place-items-center rounded-full bg-gradient-to-br from-indigo-400 to-violet-500 text-lg font-bold text-slate-950">{i + 1}</div>
               <h3 className="mt-4 text-lg font-semibold text-white">{s.t}</h3>
               <p className="mt-2 text-sm text-slate-400">{s.d}</p>
             </div>
@@ -75,13 +75,13 @@ export default async function VirtualAssistantsPage() {
         <h2 className="text-center text-3xl font-bold text-white">Plans</h2>
         <div className="mt-8 grid gap-6 lg:grid-cols-3">
           {plans.map((p, i) => (
-            <div key={p.id} className={`card flex flex-col p-6 ${i === 0 ? "ring-1 ring-fuchsia-400/50" : ""}`}>
-              {i === 0 && <span className="badge mb-2 w-fit bg-fuchsia-400/10 text-fuchsia-200 border border-fuchsia-400/30">Most popular</span>}
+            <div key={p.id} className={`card flex flex-col p-6 ${i === 0 ? "ring-1 ring-violet-400/50" : ""}`}>
+              {i === 0 && <span className="badge mb-2 w-fit bg-violet-400/10 text-violet-200 border border-violet-400/30">Most popular</span>}
               <h3 className="text-lg font-semibold text-white">{p.name}</h3>
               <p className="mt-1 text-sm text-slate-400">{p.tagline}</p>
               <div className="mt-4 text-3xl font-bold text-white">{price(p.base_price_cents, p.interval)}</div>
               <ul className="mt-5 flex-1 space-y-2 text-sm text-slate-300">
-                {p.features.map((f) => <li key={f} className="flex gap-2"><span className="text-fuchsia-600">✓</span>{f}</li>)}
+                {p.features.map((f) => <li key={f} className="flex gap-2"><span className="text-violet-600">✓</span>{f}</li>)}
               </ul>
               <Link href="/virtual-assistants/request" className={`${i === 0 ? "btn-primary" : "btn-outline"} mt-6`}>Request this plan</Link>
             </div>
@@ -97,12 +97,12 @@ export default async function VirtualAssistantsPage() {
             {assistants.map((a) => (
               <div key={a.id} className="card p-6">
                 <div className="flex items-center gap-3">
-                  <span className="grid h-12 w-12 place-items-center rounded-full bg-fuchsia-400/15 text-xl font-bold text-fuchsia-200">
+                  <span className="grid h-12 w-12 place-items-center rounded-full bg-violet-400/15 text-xl font-bold text-violet-200">
                     {a.name.charAt(0)}
                   </span>
                   <div>
                     <p className="font-semibold text-white">{a.name}</p>
-                    <p className="text-sm text-fuchsia-300">{a.headline}</p>
+                    <p className="text-sm text-violet-300">{a.headline}</p>
                   </div>
                 </div>
                 <p className="mt-3 text-sm text-slate-400">{a.bio}</p>
@@ -121,10 +121,10 @@ export default async function VirtualAssistantsPage() {
       )}
 
       <section className="mx-auto max-w-4xl px-4 pb-16">
-        <div className="card flex flex-col items-center gap-4 bg-slate-900 border-fuchsia-400/20 p-10 text-center text-white">
+        <div className="card flex flex-col items-center gap-4 bg-slate-900 border-violet-400/20 p-10 text-center text-white">
           <h2 className="text-2xl font-bold">Ready to delegate?</h2>
           <p className="max-w-xl text-slate-300">Tell us what you need and we&apos;ll match you with the right assistant.</p>
-          <Link href="/virtual-assistants/request" className="btn bg-fuchsia-500 px-6 py-3 text-base font-semibold text-white hover:bg-fuchsia-400">
+          <Link href="/virtual-assistants/request" className="btn bg-violet-500 px-6 py-3 text-base font-semibold text-white hover:bg-violet-400">
             Request an assistant
           </Link>
         </div>

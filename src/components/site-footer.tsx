@@ -9,47 +9,47 @@ export default async function SiteFooter() {
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:grid-cols-2 lg:grid-cols-5">
         <div>
           <div className="flex items-center gap-2 font-bold text-white">
-            <span className="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-fuchsia-400 to-violet-500 text-slate-950 shadow-[0_0_18px_-4px_rgba(232,121,249,0.7)]">GV</span>
+            <span className="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-indigo-400 to-violet-500 text-slate-950 shadow-[0_0_18px_-4px_rgba(167,139,250,0.7)]">GV</span>
             {tenant?.name ?? "Galveston Virtual Offices"}
           </div>
-          <p className="mt-2 text-sm font-semibold text-fuchsia-300/90">Business Support Built for Women</p>
+          <p className="mt-2 text-sm font-semibold text-violet-300/90">Virtual Offices · Mailboxes · AI Business Support</p>
           <p className="mt-2 text-sm text-slate-400">
-            The AI-powered business hub for women entrepreneurs — assistants, address, mailbox, offices, and AI agents on the Gulf Coast.
+            The AI-powered business hub — assistants, business address, mailbox & packages, offices, and AI agents across the Houston–Galveston Gulf Coast.
           </p>
         </div>
         <div>
           <h4 className="text-sm font-semibold text-white">Services</h4>
           <ul className="mt-3 space-y-2 text-sm text-slate-400">
-            <li><Link href="/virtual-assistants" className="hover:text-fuchsia-300">Managed Virtual Assistants</Link></li>
-            <li><Link href="/ai-studio" className="hover:text-fuchsia-300">AI Studio</Link></li>
-            <li><Link href="/mailboxes" className="hover:text-fuchsia-300">Virtual Mailboxes</Link></li>
-            <li><Link href="/offices" className="hover:text-fuchsia-300">Office Space</Link></li>
-            <li><Link href="/services/platforms" className="hover:text-fuchsia-300">Websites & Platforms</Link></li>
+            <li><Link href="/virtual-assistants" className="hover:text-violet-300">Managed Virtual Assistants</Link></li>
+            <li><Link href="/ai-studio" className="hover:text-violet-300">AI Studio</Link></li>
+            <li><Link href="/mailboxes" className="hover:text-violet-300">Virtual Mailboxes</Link></li>
+            <li><Link href="/offices" className="hover:text-violet-300">Office Space</Link></li>
+            <li><Link href="/services/platforms" className="hover:text-violet-300">Websites & Platforms</Link></li>
           </ul>
         </div>
         <div>
           <h4 className="text-sm font-semibold text-white">Industries</h4>
           <ul className="mt-3 space-y-2 text-sm text-slate-400">
-            <li><Link href="/industries/dental" className="hover:text-fuchsia-300">Dental Practices</Link></li>
-            <li><Link href="/industries/hair-salons" className="hover:text-fuchsia-300">Hair Salons</Link></li>
-            <li><Link href="/industries/home-services" className="hover:text-fuchsia-300">Home Services</Link></li>
-            <li><Link href="/industries/med-spas" className="hover:text-fuchsia-300">Med Spas</Link></li>
-            <li><Link href="/industries" className="hover:text-fuchsia-300">All industries →</Link></li>
+            <li><Link href="/industries/dental" className="hover:text-violet-300">Dental Practices</Link></li>
+            <li><Link href="/industries/hair-salons" className="hover:text-violet-300">Hair Salons</Link></li>
+            <li><Link href="/industries/home-services" className="hover:text-violet-300">Home Services</Link></li>
+            <li><Link href="/industries/med-spas" className="hover:text-violet-300">Med Spas</Link></li>
+            <li><Link href="/industries" className="hover:text-violet-300">All industries →</Link></li>
           </ul>
         </div>
         <div>
           <h4 className="text-sm font-semibold text-white">Company</h4>
           <ul className="mt-3 space-y-2 text-sm text-slate-400">
-            <li><Link href="/pricing" className="hover:text-fuchsia-300">Pricing</Link></li>
-            <li><Link href="/contact" className="hover:text-fuchsia-300">Contact</Link></li>
-            <li><Link href="/login" className="hover:text-fuchsia-300">Customer Login</Link></li>
+            <li><Link href="/pricing" className="hover:text-violet-300">Pricing</Link></li>
+            <li><Link href="/contact" className="hover:text-violet-300">Contact</Link></li>
+            <li><Link href="/login" className="hover:text-violet-300">Customer Login</Link></li>
           </ul>
         </div>
         <div>
           <h4 className="text-sm font-semibold text-white">Visit / Mail</h4>
           <p className="mt-3 text-sm text-slate-400">{tenant?.mailing_address ?? "Galveston, TX"}</p>
           {tenant?.support_email && (
-            <a href={`mailto:${tenant.support_email}`} className="mt-2 inline-block text-sm text-fuchsia-300 hover:underline">
+            <a href={`mailto:${tenant.support_email}`} className="mt-2 inline-block text-sm text-violet-300 hover:underline">
               {tenant.support_email}
             </a>
           )}
@@ -59,7 +59,7 @@ export default async function SiteFooter() {
         <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Serving the Houston–Galveston Gulf Coast</p>
         <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-sm text-slate-400">
           {LOCATIONS.map((l) => (
-            <Link key={l.slug} href={`/locations/${l.slug}`} className="hover:text-fuchsia-300">{l.city}</Link>
+            <Link key={l.slug} href={`/locations/${l.slug}`} className="hover:text-violet-300">{l.city}</Link>
           ))}
         </div>
       </div>

@@ -34,7 +34,7 @@ export default async function LocationPage({ params }: { params: Promise<{ city:
   return (
     <div>
       <section className="mx-auto max-w-5xl px-4 py-16 text-center">
-        <p className="text-sm font-semibold uppercase tracking-[0.25em] text-fuchsia-300/80">{loc.city}, Texas</p>
+        <p className="text-sm font-semibold uppercase tracking-[0.25em] text-violet-300/80">{loc.city}, Texas</p>
         <h1 className="mx-auto mt-3 max-w-3xl text-4xl font-extrabold tracking-tight text-white sm:text-5xl">{loc.headline}</h1>
         <p className="mx-auto mt-5 max-w-2xl text-lg text-slate-300">{loc.intro}</p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
@@ -47,8 +47,8 @@ export default async function LocationPage({ params }: { params: Promise<{ city:
         <h2 className="text-center text-2xl font-bold text-white">What {loc.city} businesses get</h2>
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s) => (
-            <Link key={s.href} href={s.href} className="card group p-6 transition-all hover:border-fuchsia-400/30">
-              <h3 className="font-semibold text-white group-hover:text-fuchsia-300">{s.t}</h3>
+            <Link key={s.href} href={s.href} className="card group p-6 transition-all hover:border-violet-400/30">
+              <h3 className="font-semibold text-white group-hover:text-violet-300">{s.t}</h3>
               <p className="mt-2 text-sm text-slate-400">{s.d}</p>
             </Link>
           ))}
@@ -56,7 +56,7 @@ export default async function LocationPage({ params }: { params: Promise<{ city:
       </section>
 
       <section className="mx-auto max-w-4xl px-4 py-12">
-        <div className="card border-fuchsia-400/20 p-8 text-center">
+        <div className="card border-violet-400/20 p-8 text-center">
           <h2 className="text-2xl font-bold text-white">Proudly serving {loc.city} &amp; the Gulf Coast</h2>
           <p className="mx-auto mt-3 max-w-2xl text-slate-300">
             We support businesses across {loc.city} and {loc.nearby}. Local team, real Galveston address, and

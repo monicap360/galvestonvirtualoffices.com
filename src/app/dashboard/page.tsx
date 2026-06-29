@@ -40,7 +40,7 @@ export default async function DashboardHome() {
       <div className="card mt-6 p-6">
         <div className="flex items-center justify-between">
           <h2 className="font-semibold text-white">Recent mail</h2>
-          <Link href="/dashboard/mail" className="text-sm font-semibold text-fuchsia-300 hover:underline">View all →</Link>
+          <Link href="/dashboard/mail" className="text-sm font-semibold text-violet-300 hover:underline">View all →</Link>
         </div>
         {recentMail.data && recentMail.data.length > 0 ? (
           <ul className="mt-4 divide-y divide-white/10">

@@ -38,7 +38,7 @@ export default async function MailboxesPage() {
           <div className="grid grid-cols-3 border-b border-white/10 bg-white/5 text-sm font-semibold">
             <div className="p-4"></div>
             <div className="p-4 text-slate-300">Typical digital mailbox</div>
-            <div className="p-4 text-fuchsia-300">Galveston Virtual Mailbox</div>
+            <div className="p-4 text-violet-300">Galveston Virtual Mailbox</div>
           </div>
           {compare.map((row) => (
             <div key={row.feature} className="grid grid-cols-3 border-b border-white/5 text-sm last:border-0">
@@ -58,8 +58,8 @@ export default async function MailboxesPage() {
       ) : (
         <div className="mt-6 grid gap-6 lg:grid-cols-3">
           {plans.map((p, i) => (
-            <div key={p.id} className={`card flex flex-col p-6 ${i === 1 ? "ring-1 ring-fuchsia-400/50" : ""}`}>
-              {i === 1 && <span className="badge mb-2 w-fit bg-gradient-to-br from-fuchsia-400 to-violet-500 text-slate-950">Most popular</span>}
+            <div key={p.id} className={`card flex flex-col p-6 ${i === 1 ? "ring-1 ring-violet-400/50" : ""}`}>
+              {i === 1 && <span className="badge mb-2 w-fit bg-gradient-to-br from-indigo-400 to-violet-500 text-slate-950">Most popular</span>}
               <h3 className="text-lg font-semibold text-white">{p.name}</h3>
               <p className="mt-1 text-sm text-slate-400">{p.description}</p>
               <div className="mt-4 text-3xl font-bold text-white">
@@ -67,7 +67,7 @@ export default async function MailboxesPage() {
               </div>
               <ul className="mt-5 flex-1 space-y-2 text-sm text-slate-300">
                 {p.features.map((f) => (
-                  <li key={f} className="flex gap-2"><span className="text-fuchsia-300">✓</span>{f}</li>
+                  <li key={f} className="flex gap-2"><span className="text-violet-300">✓</span>{f}</li>
                 ))}
               </ul>
               <form action={subscribeMailbox} className="mt-6">
@@ -79,7 +79,7 @@ export default async function MailboxesPage() {
         </div>
       )}
 
-      <div className="card mt-14 flex flex-col items-center gap-4 border-fuchsia-400/20 p-10 text-center">
+      <div className="card mt-14 flex flex-col items-center gap-4 border-violet-400/20 p-10 text-center">
         <h2 className="text-2xl font-bold text-white">Questions about your mail setup?</h2>
         <p className="max-w-xl text-slate-300">Talk to a local team member — we&apos;ll help you pick the right plan and walk you through Form 1583.</p>
         <Link href="/contact" className="btn-primary px-6 py-3 text-base">Book a free consultation</Link>
