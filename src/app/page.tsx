@@ -79,8 +79,8 @@ const testimonials = [
   { quote: "Address, mailbox, and marketing in one place, and a real local team that picks up the phone. Couldn't be happier.", name: "Sample Client", role: "LLC owner, Houston" },
 ];
 
-const PHONE_DISPLAY = "(409) 555-0123"; // TODO: replace with your real business number
-const PHONE_HREF = "tel:+14095550123";
+const PHONE_DISPLAY = "(409) 402-7908";
+const PHONE_HREF = "tel:+14094027908";
 
 // Honest, factual trust signals (true for a new business — no fabricated social proof).
 const trustSignals = [

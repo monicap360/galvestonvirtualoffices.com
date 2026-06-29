@@ -48,9 +48,12 @@ export default async function SiteFooter() {
         </div>
         <div>
           <h4 className="text-sm font-semibold text-white">Visit / Mail</h4>
-          <p className="mt-3 text-sm text-slate-400">{tenant?.mailing_address ?? "Galveston, TX"}</p>
+          <p className="mt-3 text-sm text-slate-400">{tenant?.mailing_address ?? "3501 Winnie St, Galveston, TX 77550"}</p>
+          <a href="tel:+14094027908" className="mt-2 inline-block text-sm font-semibold text-white hover:text-violet-300">
+            (409) 402-7908
+          </a>
           {tenant?.support_email && (
-            <a href={`mailto:${tenant.support_email}`} className="mt-2 inline-block text-sm text-violet-300 hover:underline">
+            <a href={`mailto:${tenant.support_email}`} className="mt-1 block text-sm text-violet-300 hover:underline">
               {tenant.support_email}
             </a>
           )}

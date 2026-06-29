@@ -38,6 +38,7 @@ export default async function SiteNav() {
         </div>
 
         <div className="flex items-center gap-2">
+          <a href="tel:+14094027908" className="hidden text-sm font-semibold text-white hover:text-violet-300 xl:inline-flex">(409) 402-7908</a>
           <Link href="/contact" className="btn-outline hidden md:inline-flex">Book a call</Link>
           {profile ? (
             <>

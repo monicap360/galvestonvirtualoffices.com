@@ -59,7 +59,7 @@ const jsonLd = {
     "Virtual office address, virtual mailbox, managed virtual assistants, AI agents, offices, and marketing for businesses in Galveston and Houston, Texas.",
   url: SITE_URL,
   image: `${SITE_URL}/galveston-hero.jpg`,
-  telephone: "+1-409-555-0123",
+  telephone: "+1-409-402-7908",
   priceRange: "$$",
   foundingDate: "2019",
   address: {
