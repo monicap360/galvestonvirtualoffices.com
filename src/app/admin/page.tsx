@@ -28,13 +28,13 @@ export default async function AdminHome() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-slate-900">Back office</h1>
-      <p className="mt-1 text-slate-600">Run the day-to-day: log mail, record checks, and manage orders.</p>
+      <h1 className="text-2xl font-bold text-white">Back office</h1>
+      <p className="mt-1 text-slate-400">Run the day-to-day: log mail, record checks, and manage orders.</p>
       <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {cards.map((c) => (
           <Link key={c.label} href={c.href} className="card p-5 transition hover:shadow-md">
-            <div className="text-3xl font-bold text-slate-900">{c.value}</div>
-            <div className="mt-1 text-sm text-slate-600">{c.label}</div>
+            <div className="text-3xl font-bold text-white">{c.value}</div>
+            <div className="mt-1 text-sm text-slate-400">{c.label}</div>
           </Link>
         ))}
       </div>

@@ -28,11 +28,11 @@ export default async function MailPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-slate-900">Your mail</h1>
-      <p className="mt-1 text-slate-600">Everything we&apos;ve received for you. Come by during business hours to pick up.</p>
+      <h1 className="text-2xl font-bold text-white">Your mail</h1>
+      <p className="mt-1 text-slate-400">Everything we&apos;ve received for you. Come by during business hours to pick up.</p>
 
       {withPhotos.length === 0 ? (
-        <div className="card mt-6 p-8 text-center text-slate-500">
+        <div className="card mt-6 p-8 text-center text-slate-400">
           No mail yet. When something arrives, we&apos;ll photograph it and it&apos;ll show up right here.
         </div>
       ) : (
@@ -43,18 +43,18 @@ export default async function MailPage() {
                 // eslint-disable-next-line @next/next/no-img-element
                 <img src={m.photoUrl} alt="Mail item" className="h-40 w-full object-cover" />
               ) : (
-                <div className="grid h-40 w-full place-items-center bg-slate-100 text-4xl">
+                <div className="grid h-40 w-full place-items-center bg-white/5 text-4xl">
                   {m.type === "letter" ? "✉️" : "📦"}
                 </div>
               )}
               <div className="p-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-semibold text-slate-900">{titleCase(m.type)}</span>
+                  <span className="text-sm font-semibold text-white">{titleCase(m.type)}</span>
                   <StatusBadge status={m.status} />
                 </div>
-                {m.sender && <p className="mt-1 text-sm text-slate-600">From: {m.sender}</p>}
-                {m.description && <p className="mt-1 text-sm text-slate-500">{m.description}</p>}
-                <p className="mt-2 text-xs text-slate-400">Received {dateLabel(m.received_at)}</p>
+                {m.sender && <p className="mt-1 text-sm text-slate-400">From: {m.sender}</p>}
+                {m.description && <p className="mt-1 text-sm text-slate-400">{m.description}</p>}
+                <p className="mt-2 text-xs text-slate-500">Received {dateLabel(m.received_at)}</p>
               </div>
             </div>
           ))}

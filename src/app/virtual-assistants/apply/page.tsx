@@ -13,8 +13,8 @@ export default async function ApplyPage({
   if (sent) {
     return (
       <div className="mx-auto max-w-xl px-4 py-16 text-center">
-        <h1 className="text-2xl font-bold text-slate-900">Application received ✅</h1>
-        <p className="mt-3 text-slate-600">
+        <h1 className="text-2xl font-bold text-white">Application received ✅</h1>
+        <p className="mt-3 text-slate-400">
           Thanks for applying! Our team will review your background and reach out about next steps.
         </p>
         <Link href="/" className="btn-primary mt-6">Back to home</Link>
@@ -24,8 +24,8 @@ export default async function ApplyPage({
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-14">
-      <h1 className="text-3xl font-bold text-slate-900">Apply to be a virtual assistant</h1>
-      <p className="mt-3 text-slate-600">
+      <h1 className="text-3xl font-bold text-white">Apply to be a virtual assistant</h1>
+      <p className="mt-3 text-slate-400">
         Join our managed pool of vetted assistants. Tell us about your skills and availability.
       </p>
 
@@ -73,9 +73,9 @@ export default async function ApplyPage({
           <textarea id="bio" name="bio" rows={3} className="input" />
         </div>
         <button className="btn-primary w-full">Submit application</button>
-        <p className="text-center text-xs text-slate-500">
+        <p className="text-center text-xs text-slate-400">
           Looking to hire instead?{" "}
-          <Link href="/virtual-assistants/request" className="font-semibold text-cyan-700 hover:underline">Request an assistant</Link>
+          <Link href="/virtual-assistants/request" className="font-semibold text-cyan-300 hover:underline">Request an assistant</Link>
         </p>
       </form>
     </div>

@@ -18,16 +18,16 @@ export default async function AdminBookingsPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-slate-900">Bookings</h1>
-      <div className="card mt-6 divide-y divide-slate-100">
-        {(bookings ?? []).length === 0 && <p className="p-6 text-sm text-slate-500">No bookings yet.</p>}
+      <h1 className="text-2xl font-bold text-white">Bookings</h1>
+      <div className="card mt-6 divide-y divide-white/10">
+        {(bookings ?? []).length === 0 && <p className="p-6 text-sm text-slate-400">No bookings yet.</p>}
         {(bookings ?? []).map((b) => {
           const office = b.offices as unknown as { name: string } | null;
           return (
             <div key={b.id} className="flex flex-wrap items-center justify-between gap-3 p-4">
               <div>
-                <p className="font-medium text-slate-900">{office?.name ?? "Office"} — {nameById.get(b.user_id) ?? "—"}</p>
-                <p className="text-sm text-slate-500">{dateLabel(b.start_date)} – {dateLabel(b.end_date)} · {money(b.total_cents)}</p>
+                <p className="font-medium text-white">{office?.name ?? "Office"} — {nameById.get(b.user_id) ?? "—"}</p>
+                <p className="text-sm text-slate-400">{dateLabel(b.start_date)} – {dateLabel(b.end_date)} · {money(b.total_cents)}</p>
               </div>
               <div className="flex items-center gap-2">
                 <StatusBadge status={b.status} />

@@ -13,17 +13,17 @@ export default async function ContactPage({
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-14">
-      <h1 className="text-3xl font-bold text-slate-900">Get in touch</h1>
-      <p className="mt-3 text-slate-600">
+      <h1 className="text-3xl font-bold text-white">Get in touch</h1>
+      <p className="mt-3 text-slate-400">
         Questions about a mailbox, office, or a custom platform? Send us a note and we&apos;ll reply quickly.
       </p>
       {tenant?.mailing_address && (
-        <p className="mt-2 text-sm text-slate-500">{tenant.mailing_address}</p>
+        <p className="mt-2 text-sm text-slate-400">{tenant.mailing_address}</p>
       )}
 
       {sent ? (
         <div className="card mt-8 p-6">
-          <p className="text-emerald-700">Thanks! Your message has been received — we&apos;ll be in touch shortly.</p>
+          <p className="text-emerald-300">Thanks! Your message has been received — we&apos;ll be in touch shortly.</p>
         </div>
       ) : (
         <form action={submitContact} className="card mt-8 space-y-4 p-6">

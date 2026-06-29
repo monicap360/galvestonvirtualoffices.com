@@ -16,20 +16,20 @@ export default async function InvoicesPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-slate-900">Invoices</h1>
+      <h1 className="text-2xl font-bold text-white">Invoices</h1>
 
       {!invoices || invoices.length === 0 ? (
-        <div className="card mt-6 p-8 text-center text-slate-500">No invoices yet.</div>
+        <div className="card mt-6 p-8 text-center text-slate-400">No invoices yet.</div>
       ) : (
-        <div className="card mt-6 divide-y divide-slate-100">
+        <div className="card mt-6 divide-y divide-white/10">
           {invoices.map((inv) => (
-            <Link key={inv.id} href={`/dashboard/invoices/${inv.id}`} className="flex items-center justify-between gap-4 p-4 hover:bg-slate-50">
+            <Link key={inv.id} href={`/dashboard/invoices/${inv.id}`} className="flex items-center justify-between gap-4 p-4 hover:bg-white/5">
               <div>
-                <p className="font-medium text-slate-900">{inv.description}</p>
-                <p className="text-sm text-slate-500">{inv.reference} · {dateLabel(inv.created_at)}</p>
+                <p className="font-medium text-white">{inv.description}</p>
+                <p className="text-sm text-slate-400">{inv.reference} · {dateLabel(inv.created_at)}</p>
               </div>
               <div className="text-right">
-                <p className="font-semibold text-slate-900">{money(inv.amount_cents)}</p>
+                <p className="font-semibold text-white">{money(inv.amount_cents)}</p>
                 <StatusBadge status={inv.status} />
               </div>
             </Link>

@@ -25,37 +25,37 @@ export default async function DashboardHome() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-slate-900">Welcome, {profile.full_name?.split(" ")[0] || "there"}</h1>
-      <p className="mt-1 text-slate-600">Here&apos;s what&apos;s happening with your account.</p>
+      <h1 className="text-2xl font-bold text-white">Welcome, {profile.full_name?.split(" ")[0] || "there"}</h1>
+      <p className="mt-1 text-slate-400">Here&apos;s what&apos;s happening with your account.</p>
 
       <div className="mt-6 grid gap-4 sm:grid-cols-3">
         {stats.map((s) => (
           <Link key={s.label} href={s.href} className="card p-5 transition hover:shadow-md">
-            <div className="text-3xl font-bold text-slate-900">{s.value}</div>
-            <div className="mt-1 text-sm text-slate-600">{s.label}</div>
+            <div className="text-3xl font-bold text-white">{s.value}</div>
+            <div className="mt-1 text-sm text-slate-400">{s.label}</div>
           </Link>
         ))}
       </div>
 
       <div className="card mt-6 p-6">
         <div className="flex items-center justify-between">
-          <h2 className="font-semibold text-slate-900">Recent mail</h2>
-          <Link href="/dashboard/mail" className="text-sm font-semibold text-cyan-700 hover:underline">View all →</Link>
+          <h2 className="font-semibold text-white">Recent mail</h2>
+          <Link href="/dashboard/mail" className="text-sm font-semibold text-cyan-300 hover:underline">View all →</Link>
         </div>
         {recentMail.data && recentMail.data.length > 0 ? (
-          <ul className="mt-4 divide-y divide-slate-100">
+          <ul className="mt-4 divide-y divide-white/10">
             {recentMail.data.map((m) => (
               <li key={m.id} className="flex items-center justify-between py-3">
                 <div>
-                  <p className="text-sm font-medium text-slate-900">{titleCase(m.type)}{m.sender ? ` · ${m.sender}` : ""}</p>
-                  <p className="text-xs text-slate-500">{dateLabel(m.received_at)}</p>
+                  <p className="text-sm font-medium text-white">{titleCase(m.type)}{m.sender ? ` · ${m.sender}` : ""}</p>
+                  <p className="text-xs text-slate-400">{dateLabel(m.received_at)}</p>
                 </div>
                 <StatusBadge status={m.status} />
               </li>
             ))}
           </ul>
         ) : (
-          <p className="mt-4 text-sm text-slate-500">No mail yet. We&apos;ll notify you the moment something arrives.</p>
+          <p className="mt-4 text-sm text-slate-400">No mail yet. We&apos;ll notify you the moment something arrives.</p>
         )}
       </div>
     </div>

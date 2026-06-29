@@ -14,7 +14,7 @@ function LoginForm() {
   return (
     <form action={action} className="card mt-6 space-y-4 p-6">
       <input type="hidden" name="next" value={next} />
-      {state.error && <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{state.error}</p>}
+      {state.error && <p className="rounded-lg bg-red-400/10 px-3 py-2 text-sm text-red-300">{state.error}</p>}
       <div>
         <label className="label" htmlFor="email">Email</label>
         <input id="email" name="email" type="email" autoComplete="email" required className="input" />
@@ -33,16 +33,16 @@ function LoginForm() {
 export default function LoginPage() {
   return (
     <div className="mx-auto flex max-w-md flex-col px-4 py-16">
-      <h1 className="text-2xl font-bold text-slate-900">Welcome back</h1>
-      <p className="mt-1 text-sm text-slate-600">Log in to your dashboard.</p>
+      <h1 className="text-2xl font-bold text-white">Welcome back</h1>
+      <p className="mt-1 text-sm text-slate-400">Log in to your dashboard.</p>
 
       <Suspense fallback={<div className="card mt-6 p-6 text-sm text-slate-400">Loading…</div>}>
         <LoginForm />
       </Suspense>
 
-      <p className="mt-4 text-center text-sm text-slate-600">
+      <p className="mt-4 text-center text-sm text-slate-400">
         New here?{" "}
-        <Link href="/signup" className="font-semibold text-cyan-700 hover:underline">Create an account</Link>
+        <Link href="/signup" className="font-semibold text-cyan-300 hover:underline">Create an account</Link>
       </p>
     </div>
   );

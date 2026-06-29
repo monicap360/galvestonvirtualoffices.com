@@ -9,15 +9,15 @@ export default function SignupPage() {
 
   return (
     <div className="mx-auto flex max-w-md flex-col px-4 py-16">
-      <h1 className="text-2xl font-bold text-slate-900">Create your account</h1>
-      <p className="mt-1 text-sm text-slate-600">Set up your Galveston address, mailbox, and dashboard.</p>
+      <h1 className="text-2xl font-bold text-white">Create your account</h1>
+      <p className="mt-1 text-sm text-slate-400">Set up your Galveston address, mailbox, and dashboard.</p>
 
       <form action={action} className="card mt-6 space-y-4 p-6">
         {state.error && (
-          <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{state.error}</p>
+          <p className="rounded-lg bg-red-400/10 px-3 py-2 text-sm text-red-300">{state.error}</p>
         )}
         {state.message && (
-          <p className="rounded-lg bg-emerald-50 px-3 py-2 text-sm text-emerald-700">{state.message}</p>
+          <p className="rounded-lg bg-emerald-400/10 px-3 py-2 text-sm text-emerald-300">{state.message}</p>
         )}
         <div>
           <label className="label" htmlFor="full_name">Full name</label>
@@ -34,16 +34,16 @@ export default function SignupPage() {
         <div>
           <label className="label" htmlFor="password">Password</label>
           <input id="password" name="password" type="password" autoComplete="new-password" required minLength={8} className="input" />
-          <p className="mt-1 text-xs text-slate-500">At least 8 characters.</p>
+          <p className="mt-1 text-xs text-slate-400">At least 8 characters.</p>
         </div>
         <button type="submit" disabled={pending} className="btn-primary w-full disabled:opacity-60">
           {pending ? "Creating account…" : "Create account"}
         </button>
       </form>
 
-      <p className="mt-4 text-center text-sm text-slate-600">
+      <p className="mt-4 text-center text-sm text-slate-400">
         Already have an account?{" "}
-        <Link href="/login" className="font-semibold text-cyan-700 hover:underline">Log in</Link>
+        <Link href="/login" className="font-semibold text-cyan-300 hover:underline">Log in</Link>
       </p>
     </div>
   );

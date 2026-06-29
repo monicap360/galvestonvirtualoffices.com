@@ -24,43 +24,43 @@ export default async function InvoiceDetail({ params }: { params: Promise<{ id: 
 
   return (
     <div className="mx-auto max-w-xl">
-      <Link href="/dashboard/invoices" className="text-sm text-cyan-700 hover:underline">← All invoices</Link>
+      <Link href="/dashboard/invoices" className="text-sm text-cyan-300 hover:underline">← All invoices</Link>
 
       <div className="card mt-4 p-6">
         <div className="flex items-start justify-between">
           <div>
-            <h1 className="text-xl font-bold text-slate-900">{inv.description}</h1>
-            <p className="mt-1 text-sm text-slate-500">Invoice {inv.reference} · {dateLabel(inv.created_at)}</p>
+            <h1 className="text-xl font-bold text-white">{inv.description}</h1>
+            <p className="mt-1 text-sm text-slate-400">Invoice {inv.reference} · {dateLabel(inv.created_at)}</p>
           </div>
           <StatusBadge status={inv.status} />
         </div>
 
-        <div className="mt-6 rounded-xl bg-slate-50 p-4">
+        <div className="mt-6 rounded-xl bg-white/5 p-4">
           <div className="flex items-baseline justify-between">
-            <span className="text-slate-600">Amount due</span>
-            <span className="text-3xl font-bold text-slate-900">{money(inv.amount_cents)}</span>
+            <span className="text-slate-400">Amount due</span>
+            <span className="text-3xl font-bold text-white">{money(inv.amount_cents)}</span>
           </div>
         </div>
 
         {inv.status === "paid" ? (
-          <p className="mt-6 rounded-lg bg-emerald-50 px-4 py-3 text-emerald-700">
+          <p className="mt-6 rounded-lg bg-emerald-400/10 px-4 py-3 text-emerald-300">
             Paid{inv.paid_at ? ` on ${dateLabel(inv.paid_at)}` : ""}. Thank you!
           </p>
         ) : (
           <div className="mt-6">
-            <h2 className="font-semibold text-slate-900">Pay by business check</h2>
-            <p className="mt-1 text-sm text-slate-500">
+            <h2 className="font-semibold text-white">Pay by business check</h2>
+            <p className="mt-1 text-sm text-slate-400">
               We accept payment by <strong>business check</strong> only — it verifies your business and keeps every account legitimate.
             </p>
-            <ol className="mt-3 space-y-2 text-sm text-slate-700">
+            <ol className="mt-3 space-y-2 text-sm text-slate-300">
               <li>1. Write a <strong>business check</strong> payable to <strong>{tenant?.name ?? "Galveston Virtual Offices"}</strong> for <strong>{money(inv.amount_cents)}</strong>.</li>
               <li>2. Write reference <strong>{inv.reference}</strong> in the memo line.</li>
               <li>3. Mail it to:</li>
             </ol>
-            <div className="mt-3 rounded-lg border border-dashed border-slate-300 bg-white p-4 text-sm text-slate-800">
+            <div className="mt-3 rounded-lg border border-dashed border-white/15 bg-white/5 p-4 text-sm text-slate-100">
               {tenant?.mailing_address ?? "Galveston Virtual Offices, Galveston, TX"}
             </div>
-            <p className="mt-4 text-sm text-slate-500">
+            <p className="mt-4 text-sm text-slate-400">
               Your order activates as soon as we receive and record your business check. We&apos;ll email you a confirmation.
             </p>
           </div>

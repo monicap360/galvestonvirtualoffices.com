@@ -15,26 +15,26 @@ export default async function AdminCustomersPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-slate-900">Customers</h1>
+      <h1 className="text-2xl font-bold text-white">Customers</h1>
       <div className="card mt-6 overflow-x-auto">
         <table className="w-full text-sm">
-          <thead className="border-b border-slate-100 text-left text-slate-500">
+          <thead className="border-b border-white/10 text-left text-slate-400">
             <tr>
               <th className="p-3">Name</th><th className="p-3">Email</th>
               <th className="p-3">Phone</th><th className="p-3">Role</th><th className="p-3">Joined</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-100">
+          <tbody className="divide-y divide-white/10">
             {(customers ?? []).length === 0 && (
-              <tr><td colSpan={5} className="p-6 text-center text-slate-500">No customers yet.</td></tr>
+              <tr><td colSpan={5} className="p-6 text-center text-slate-400">No customers yet.</td></tr>
             )}
             {(customers ?? []).map((c) => (
               <tr key={c.id}>
-                <td className="p-3 font-medium text-slate-900">{c.full_name || "—"}</td>
-                <td className="p-3 text-slate-600">{c.email}</td>
-                <td className="p-3 text-slate-600">{c.phone || "—"}</td>
+                <td className="p-3 font-medium text-white">{c.full_name || "—"}</td>
+                <td className="p-3 text-slate-400">{c.email}</td>
+                <td className="p-3 text-slate-400">{c.phone || "—"}</td>
                 <td className="p-3">{titleCase(c.role)}</td>
-                <td className="p-3 text-slate-500">{dateLabel(c.created_at)}</td>
+                <td className="p-3 text-slate-400">{dateLabel(c.created_at)}</td>
               </tr>
             ))}
           </tbody>

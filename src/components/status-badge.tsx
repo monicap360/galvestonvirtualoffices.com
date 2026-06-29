@@ -2,36 +2,36 @@ import { titleCase } from "@/lib/format";
 
 const colors: Record<string, string> = {
   // mail
-  received: "bg-blue-100 text-blue-800",
-  ready_for_pickup: "bg-amber-100 text-amber-800",
-  picked_up: "bg-emerald-100 text-emerald-800",
-  forwarded: "bg-violet-100 text-violet-800",
-  shredded: "bg-slate-200 text-slate-700",
+  received: "bg-blue-400/15 text-blue-300",
+  ready_for_pickup: "bg-amber-400/15 text-amber-300",
+  picked_up: "bg-emerald-400/15 text-emerald-300",
+  forwarded: "bg-violet-400/15 text-violet-300",
+  shredded: "bg-white/10 text-slate-300",
   // generic order/booking/invoice
-  pending: "bg-amber-100 text-amber-800",
-  awaiting_payment: "bg-amber-100 text-amber-800",
-  confirmed: "bg-emerald-100 text-emerald-800",
-  active: "bg-emerald-100 text-emerald-800",
-  paid: "bg-emerald-100 text-emerald-800",
-  inquiry: "bg-blue-100 text-blue-800",
-  quoted: "bg-violet-100 text-violet-800",
-  in_progress: "bg-cyan-100 text-cyan-800",
-  completed: "bg-emerald-100 text-emerald-800",
-  cancelled: "bg-slate-200 text-slate-600",
-  past_due: "bg-red-100 text-red-700",
-  void: "bg-slate-200 text-slate-600",
-  draft: "bg-slate-200 text-slate-600",
+  pending: "bg-amber-400/15 text-amber-300",
+  awaiting_payment: "bg-amber-400/15 text-amber-300",
+  confirmed: "bg-emerald-400/15 text-emerald-300",
+  active: "bg-emerald-400/15 text-emerald-300",
+  paid: "bg-emerald-400/15 text-emerald-300",
+  inquiry: "bg-blue-400/15 text-blue-300",
+  quoted: "bg-violet-400/15 text-violet-300",
+  in_progress: "bg-cyan-400/15 text-cyan-300",
+  completed: "bg-emerald-400/15 text-emerald-300",
+  cancelled: "bg-white/10 text-slate-300",
+  past_due: "bg-red-400/15 text-red-300",
+  void: "bg-white/10 text-slate-300",
+  draft: "bg-white/10 text-slate-300",
   // VA applications + client requests
-  new: "bg-blue-100 text-blue-800",
-  matching: "bg-cyan-100 text-cyan-800",
-  matched: "bg-violet-100 text-violet-800",
-  closed: "bg-slate-200 text-slate-600",
-  applied: "bg-blue-100 text-blue-800",
-  screening: "bg-amber-100 text-amber-800",
-  approved: "bg-emerald-100 text-emerald-800",
-  rejected: "bg-red-100 text-red-700",
+  new: "bg-blue-400/15 text-blue-300",
+  matching: "bg-cyan-400/15 text-cyan-300",
+  matched: "bg-violet-400/15 text-violet-300",
+  closed: "bg-white/10 text-slate-300",
+  applied: "bg-blue-400/15 text-blue-300",
+  screening: "bg-amber-400/15 text-amber-300",
+  approved: "bg-emerald-400/15 text-emerald-300",
+  rejected: "bg-red-400/15 text-red-300",
 };
 
 export default function StatusBadge({ status }: { status: string }) {
-  return <span className={`badge ${colors[status] ?? "bg-slate-100 text-slate-700"}`}>{titleCase(status)}</span>;
+  return <span className={`badge ${colors[status] ?? "bg-white/10 text-slate-300"}`}>{titleCase(status)}</span>;
 }

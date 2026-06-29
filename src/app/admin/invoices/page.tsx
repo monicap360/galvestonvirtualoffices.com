@@ -18,21 +18,21 @@ export default async function AdminInvoicesPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-slate-900">Invoices & check payments</h1>
-      <p className="mt-1 text-slate-600">When a check arrives, mark its invoice paid — that activates the order automatically.</p>
+      <h1 className="text-2xl font-bold text-white">Invoices & check payments</h1>
+      <p className="mt-1 text-slate-400">When a check arrives, mark its invoice paid — that activates the order automatically.</p>
 
-      <div className="card mt-6 divide-y divide-slate-100">
-        {(invoices ?? []).length === 0 && <p className="p-6 text-sm text-slate-500">No invoices yet.</p>}
+      <div className="card mt-6 divide-y divide-white/10">
+        {(invoices ?? []).length === 0 && <p className="p-6 text-sm text-slate-400">No invoices yet.</p>}
         {(invoices ?? []).map((inv) => (
           <div key={inv.id} className="flex flex-wrap items-center justify-between gap-3 p-4">
             <div>
-              <p className="font-medium text-slate-900">{inv.description}</p>
-              <p className="text-sm text-slate-500">
+              <p className="font-medium text-white">{inv.description}</p>
+              <p className="text-sm text-slate-400">
                 {nameById.get(inv.user_id) ?? "—"} · {inv.reference} · {titleCase(inv.payment_method)} · {dateLabel(inv.created_at)}
               </p>
             </div>
             <div className="flex items-center gap-3">
-              <span className="font-semibold text-slate-900">{money(inv.amount_cents)}</span>
+              <span className="font-semibold text-white">{money(inv.amount_cents)}</span>
               <StatusBadge status={inv.status} />
               {inv.status === "awaiting_payment" && (
                 <form action={markInvoicePaid}>

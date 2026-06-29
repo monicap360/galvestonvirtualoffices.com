@@ -15,16 +15,16 @@ export default async function AdminMessagesPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-slate-900">Contact messages</h1>
+      <h1 className="text-2xl font-bold text-white">Contact messages</h1>
       <div className="mt-6 space-y-4">
-        {(messages ?? []).length === 0 && <p className="card p-6 text-sm text-slate-500">No messages yet.</p>}
+        {(messages ?? []).length === 0 && <p className="card p-6 text-sm text-slate-400">No messages yet.</p>}
         {(messages ?? []).map((m) => (
           <div key={m.id} className={`card p-5 ${m.handled ? "opacity-60" : ""}`}>
             <div className="flex flex-wrap items-center justify-between gap-2">
               <div>
-                <p className="font-medium text-slate-900">{m.name} {m.subject ? `· ${m.subject}` : ""}</p>
-                <p className="text-sm text-slate-500">
-                  <a href={`mailto:${m.email}`} className="text-cyan-700 hover:underline">{m.email}</a>
+                <p className="font-medium text-white">{m.name} {m.subject ? `· ${m.subject}` : ""}</p>
+                <p className="text-sm text-slate-400">
+                  <a href={`mailto:${m.email}`} className="text-cyan-300 hover:underline">{m.email}</a>
                   {m.phone ? ` · ${m.phone}` : ""} · {dateLabel(m.created_at)}
                 </p>
               </div>
@@ -35,7 +35,7 @@ export default async function AdminMessagesPage() {
                 </form>
               )}
             </div>
-            <p className="mt-3 whitespace-pre-wrap text-sm text-slate-700">{m.message}</p>
+            <p className="mt-3 whitespace-pre-wrap text-sm text-slate-300">{m.message}</p>
           </div>
         ))}
       </div>

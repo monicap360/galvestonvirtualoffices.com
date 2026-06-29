@@ -20,7 +20,7 @@ export default async function AdminMailPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-slate-900">Log incoming mail</h1>
+      <h1 className="text-2xl font-bold text-white">Log incoming mail</h1>
 
       {/* Log form */}
       <form action={logMail} className="card mt-6 grid gap-4 p-6 sm:grid-cols-2">
@@ -59,14 +59,14 @@ export default async function AdminMailPage() {
       </form>
 
       {/* Recent mail with quick status updates */}
-      <h2 className="mt-10 text-lg font-semibold text-slate-900">Recent mail</h2>
-      <div className="card mt-3 divide-y divide-slate-100">
-        {(mail ?? []).length === 0 && <p className="p-6 text-sm text-slate-500">No mail logged yet.</p>}
+      <h2 className="mt-10 text-lg font-semibold text-white">Recent mail</h2>
+      <div className="card mt-3 divide-y divide-white/10">
+        {(mail ?? []).length === 0 && <p className="p-6 text-sm text-slate-400">No mail logged yet.</p>}
         {(mail ?? []).map((m) => (
           <div key={m.id} className="flex flex-wrap items-center justify-between gap-3 p-4">
             <div>
-              <p className="font-medium text-slate-900">{nameById.get(m.user_id) ?? "Unknown"}</p>
-              <p className="text-sm text-slate-500">
+              <p className="font-medium text-white">{nameById.get(m.user_id) ?? "Unknown"}</p>
+              <p className="text-sm text-slate-400">
                 {titleCase(m.type)}{m.sender ? ` · ${m.sender}` : ""} · {dateLabel(m.received_at)}
               </p>
             </div>

@@ -20,11 +20,11 @@ export default async function AdminOrdersPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-slate-900">Service orders</h1>
-      <p className="mt-1 text-slate-600">Quote web/platform builds and track marketing engagements.</p>
+      <h1 className="text-2xl font-bold text-white">Service orders</h1>
+      <p className="mt-1 text-slate-400">Quote web/platform builds and track marketing engagements.</p>
 
       <div className="mt-6 space-y-4">
-        {(orders ?? []).length === 0 && <p className="card p-6 text-sm text-slate-500">No service orders yet.</p>}
+        {(orders ?? []).length === 0 && <p className="card p-6 text-sm text-slate-400">No service orders yet.</p>}
         {(orders ?? []).map((o) => {
           const svc = o.services as unknown as { name: string; category: string } | null;
           const config = (o.config ?? {}) as Record<string, string>;
@@ -32,16 +32,16 @@ export default async function AdminOrdersPage() {
             <div key={o.id} className="card p-5">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div>
-                  <p className="font-medium text-slate-900">{svc?.name ?? "Service"} — {nameById.get(o.user_id) ?? "—"}</p>
-                  <p className="text-sm text-slate-500">{dateLabel(o.created_at)}{o.quoted_price_cents != null ? ` · quoted ${money(o.quoted_price_cents)}` : ""}</p>
+                  <p className="font-medium text-white">{svc?.name ?? "Service"} — {nameById.get(o.user_id) ?? "—"}</p>
+                  <p className="text-sm text-slate-400">{dateLabel(o.created_at)}{o.quoted_price_cents != null ? ` · quoted ${money(o.quoted_price_cents)}` : ""}</p>
                 </div>
                 <StatusBadge status={o.status} />
               </div>
 
               {Object.keys(config).length > 0 && (
-                <dl className="mt-3 grid gap-1 rounded-lg bg-slate-50 p-3 text-sm sm:grid-cols-2">
+                <dl className="mt-3 grid gap-1 rounded-lg bg-white/5 p-3 text-sm sm:grid-cols-2">
                   {Object.entries(config).map(([k, v]) => (
-                    <div key={k}><dt className="inline text-slate-500">{k.replace(/_/g, " ")}: </dt><dd className="inline text-slate-800">{v}</dd></div>
+                    <div key={k}><dt className="inline text-slate-400">{k.replace(/_/g, " ")}: </dt><dd className="inline text-slate-100">{v}</dd></div>
                   ))}
                 </dl>
               )}

@@ -20,13 +20,13 @@ export default async function MailboxPage() {
   return (
     <div>
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-slate-900">Your mailbox</h1>
+        <h1 className="text-2xl font-bold text-white">Your mailbox</h1>
         <Link href="/mailboxes" className="btn-outline">Change plan</Link>
       </div>
 
       {!subs || subs.length === 0 ? (
         <div className="card mt-6 p-8 text-center">
-          <p className="text-slate-500">You don&apos;t have a mailbox yet.</p>
+          <p className="text-slate-400">You don&apos;t have a mailbox yet.</p>
           <Link href="/mailboxes" className="btn-primary mt-4">Get a virtual mailbox</Link>
         </div>
       ) : (
@@ -37,23 +37,23 @@ export default async function MailboxPage() {
               <div key={s.id} className="card p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-slate-500">Mailbox number</p>
-                    <p className="text-xl font-bold text-slate-900">{s.mailbox_number}</p>
+                    <p className="text-sm text-slate-400">Mailbox number</p>
+                    <p className="text-xl font-bold text-white">{s.mailbox_number}</p>
                   </div>
                   <StatusBadge status={s.status} />
                 </div>
                 {tenant?.mailing_address && (
-                  <div className="mt-4 rounded-lg bg-slate-50 p-3 text-sm text-slate-700">
-                    <p className="font-medium text-slate-900">Your mailing address</p>
+                  <div className="mt-4 rounded-lg bg-white/5 p-3 text-sm text-slate-300">
+                    <p className="font-medium text-white">Your mailing address</p>
                     <p>{tenant.mailing_address} — {s.mailbox_number}</p>
                   </div>
                 )}
-                <p className="mt-4 text-sm text-slate-600">
+                <p className="mt-4 text-sm text-slate-400">
                   Plan: <strong>{plan?.name}</strong> · {plan ? `${money(plan.price_cents)}/${plan.interval}` : ""}
                   {s.started_at ? ` · since ${dateLabel(s.started_at)}` : ""}
                 </p>
                 {s.status === "pending" && (
-                  <p className="mt-3 rounded-lg bg-amber-50 px-3 py-2 text-sm text-amber-800">
+                  <p className="mt-3 rounded-lg bg-amber-400/10 px-3 py-2 text-sm text-amber-300 border border-amber-400/20">
                     Pending payment & USPS Form 1583. Activates once your first payment is received.
                   </p>
                 )}
