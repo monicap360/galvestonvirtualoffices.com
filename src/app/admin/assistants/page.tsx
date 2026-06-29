@@ -31,7 +31,7 @@ export default async function AdminAssistantsPage() {
                 <div>
                   <p className="font-medium text-white">{a.name}</p>
                   <p className="text-sm text-slate-400">
-                    <a href={`mailto:${a.email}`} className="text-cyan-300 hover:underline">{a.email}</a>
+                    <a href={`mailto:${a.email}`} className="text-fuchsia-300 hover:underline">{a.email}</a>
                     {a.phone ? ` · ${a.phone}` : ""} · {dateLabel(a.created_at)}
                   </p>
                 </div>
@@ -75,11 +75,11 @@ export default async function AdminAssistantsPage() {
             <div key={a.id} className="card p-5">
               <div className="flex items-center justify-between">
                 <p className="font-semibold text-white">{a.name}</p>
-                <span className={`badge ${a.active ? "bg-emerald-400/15 text-emerald-300" : "bg-white/10 text-slate-300"}`}>
+                <span className={`badge ${a.active ? "bg-fuchsia-400/15 text-fuchsia-300" : "bg-white/10 text-slate-300"}`}>
                   {a.active ? "Active" : "Inactive"}
                 </span>
               </div>
-              <p className="text-sm text-cyan-300">{a.headline}</p>
+              <p className="text-sm text-fuchsia-300">{a.headline}</p>
               <p className="mt-1 text-xs text-slate-400">{money(a.hourly_rate_cents)}/hr · {a.availability ?? "—"}</p>
               <form action={setAssistantActive} className="mt-3">
                 <input type="hidden" name="id" value={a.id} />

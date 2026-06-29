@@ -28,7 +28,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
     <div>
       {/* Hero */}
       <section className="mx-auto max-w-5xl px-4 py-16 text-center">
-        <p className="text-sm font-semibold uppercase tracking-[0.25em] text-cyan-300/80">{industry.eyebrow}</p>
+        <p className="text-sm font-semibold uppercase tracking-[0.25em] text-fuchsia-300/80">{industry.eyebrow}</p>
         <h1 className="mx-auto mt-3 max-w-3xl text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
           {industry.headline}
         </h1>
@@ -54,12 +54,12 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
 
       {/* Outcomes */}
       <section className="mx-auto max-w-5xl px-4 py-14">
-        <div className="card border-cyan-400/20 p-8">
+        <div className="card border-fuchsia-400/20 p-8">
           <h2 className="text-2xl font-bold text-white">Here&apos;s what changes for {industry.name.toLowerCase()}</h2>
           <ul className="mt-6 grid gap-3 sm:grid-cols-2">
             {industry.outcomes.map((o) => (
               <li key={o} className="flex items-start gap-3 text-slate-200">
-                <span className="mt-0.5 text-cyan-300">✓</span>
+                <span className="mt-0.5 text-fuchsia-300">✓</span>
                 {o}
               </li>
             ))}
@@ -83,7 +83,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
                 <div className="mt-4 text-2xl font-bold text-white">{price(s.base_price_cents, s.interval)}</div>
                 <ul className="mt-4 flex-1 space-y-2 text-sm text-slate-300">
                   {s.features.map((f) => (
-                    <li key={f} className="flex gap-2"><span className="text-cyan-300">✓</span>{f}</li>
+                    <li key={f} className="flex gap-2"><span className="text-fuchsia-300">✓</span>{f}</li>
                   ))}
                 </ul>
                 <form action={orderService} className="mt-6 space-y-3 border-t border-white/10 pt-4">
@@ -103,7 +103,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
 
       {/* CTA */}
       <section className="mx-auto max-w-4xl px-4 pb-16">
-        <div className="card flex flex-col items-center gap-4 border-cyan-400/20 p-10 text-center">
+        <div className="card flex flex-col items-center gap-4 border-fuchsia-400/20 p-10 text-center">
           <h2 className="text-2xl font-bold text-white">See it work for your business</h2>
           <p className="max-w-xl text-slate-300">Book a free demo and we&apos;ll show your AI handling real calls and leads for {industry.name.toLowerCase()}.</p>
           <Link href="/contact" className="btn-primary px-6 py-3 text-base">Book a free demo</Link>

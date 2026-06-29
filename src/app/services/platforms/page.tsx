@@ -25,7 +25,7 @@ export default async function PlatformsPage() {
     <div>
       {/* Positioning hero */}
       <section className="mx-auto max-w-5xl px-4 py-16 text-center">
-        <p className="text-sm font-semibold uppercase tracking-[0.25em] text-cyan-300/80">Websites &amp; Business Platforms</p>
+        <p className="text-sm font-semibold uppercase tracking-[0.25em] text-fuchsia-300/80">Websites &amp; Business Platforms</p>
         <h1 className="mx-auto mt-3 max-w-3xl text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
           Not just a website — <span className="text-gradient">a platform that runs your business.</span>
         </h1>
@@ -47,7 +47,7 @@ export default async function PlatformsPage() {
           <div className="grid grid-cols-3 border-b border-white/10 bg-white/5 text-sm font-semibold">
             <div className="p-4 text-slate-400"></div>
             <div className="p-4 text-slate-300">Typical agency</div>
-            <div className="p-4 text-cyan-300">Galveston Platforms</div>
+            <div className="p-4 text-fuchsia-300">Galveston Platforms</div>
           </div>
           {compare.map((row) => (
             <div key={row.feature} className="grid grid-cols-3 border-b border-white/5 text-sm last:border-0">
@@ -75,7 +75,7 @@ export default async function PlatformsPage() {
               <div className="mt-4 text-sm text-slate-400">Starting at <span className="text-2xl font-bold text-white">{money(s.base_price_cents)}</span></div>
               <ul className="mt-4 flex-1 space-y-2 text-sm text-slate-300">
                 {s.features.map((f) => (
-                  <li key={f} className="flex gap-2"><span className="text-cyan-300">✓</span>{f}</li>
+                  <li key={f} className="flex gap-2"><span className="text-fuchsia-300">✓</span>{f}</li>
                 ))}
               </ul>
               <form action={orderService} className="mt-6 space-y-3 border-t border-white/10 pt-4">
@@ -101,7 +101,7 @@ export default async function PlatformsPage() {
         <div className="mt-8 grid gap-6 sm:grid-cols-3">
           {process.map((s, i) => (
             <div key={s.t} className="card p-6">
-              <div className="grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-cyan-400 to-indigo-500 font-bold text-slate-950">{i + 1}</div>
+              <div className="grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-fuchsia-400 to-violet-500 font-bold text-slate-950">{i + 1}</div>
               <h3 className="mt-4 font-semibold text-white">{s.t}</h3>
               <p className="mt-2 text-sm text-slate-400">{s.d}</p>
             </div>
@@ -111,7 +111,7 @@ export default async function PlatformsPage() {
 
       {/* CTA */}
       <section className="mx-auto max-w-4xl px-4 pb-16">
-        <div className="card flex flex-col items-center gap-4 border-cyan-400/20 p-10 text-center">
+        <div className="card flex flex-col items-center gap-4 border-fuchsia-400/20 p-10 text-center">
           <h2 className="text-2xl font-bold text-white">Have a project in mind?</h2>
           <p className="max-w-xl text-slate-300">Tell us what you&apos;re building and we&apos;ll send a tailored quote — or book a free consultation to talk it through.</p>
           <Link href="/contact" className="btn-primary px-6 py-3 text-base">Book a free consultation</Link>

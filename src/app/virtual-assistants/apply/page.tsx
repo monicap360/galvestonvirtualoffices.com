@@ -75,7 +75,7 @@ export default async function ApplyPage({
         <button className="btn-primary w-full">Submit application</button>
         <p className="text-center text-xs text-slate-400">
           Looking to hire instead?{" "}
-          <Link href="/virtual-assistants/request" className="font-semibold text-cyan-300 hover:underline">Request an assistant</Link>
+          <Link href="/virtual-assistants/request" className="font-semibold text-fuchsia-300 hover:underline">Request an assistant</Link>
         </p>
       </form>
     </div>

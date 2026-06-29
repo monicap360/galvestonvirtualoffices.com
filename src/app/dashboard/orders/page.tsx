@@ -28,7 +28,7 @@ export default async function OrdersPage({
       </div>
 
       {submitted && (
-        <p className="mt-4 rounded-lg bg-emerald-400/10 px-4 py-3 text-sm text-emerald-300">
+        <p className="mt-4 rounded-lg bg-fuchsia-400/10 px-4 py-3 text-sm text-fuchsia-300">
           Request received — we&apos;ll review and send your quote shortly.
         </p>
       )}

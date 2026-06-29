@@ -17,7 +17,7 @@ export default function SignupPage() {
           <p className="rounded-lg bg-red-400/10 px-3 py-2 text-sm text-red-300">{state.error}</p>
         )}
         {state.message && (
-          <p className="rounded-lg bg-emerald-400/10 px-3 py-2 text-sm text-emerald-300">{state.message}</p>
+          <p className="rounded-lg bg-fuchsia-400/10 px-3 py-2 text-sm text-fuchsia-300">{state.message}</p>
         )}
         <div>
           <label className="label" htmlFor="full_name">Full name</label>
@@ -43,7 +43,7 @@ export default function SignupPage() {
 
       <p className="mt-4 text-center text-sm text-slate-400">
         Already have an account?{" "}
-        <Link href="/login" className="font-semibold text-cyan-300 hover:underline">Log in</Link>
+        <Link href="/login" className="font-semibold text-fuchsia-300 hover:underline">Log in</Link>
       </p>
     </div>
   );

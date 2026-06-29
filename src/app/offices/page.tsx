@@ -27,7 +27,7 @@ export default async function OfficesPage() {
             <div key={o.id} className="card p-6">
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <span className="badge bg-cyan-400/10 text-cyan-200 border border-cyan-400/30">{o.type}</span>
+                  <span className="badge bg-fuchsia-400/10 text-fuchsia-200 border border-fuchsia-400/30">{o.type}</span>
                   <h2 className="mt-2 text-xl font-semibold text-white">{o.name}</h2>
                 </div>
                 <div className="text-right">

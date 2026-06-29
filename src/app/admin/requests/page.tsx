@@ -32,7 +32,7 @@ export default async function AdminRequestsPage() {
                   {r.business_name ? `${r.business_name} — ` : ""}{r.contact_name}
                 </p>
                 <p className="text-sm text-slate-400">
-                  <a href={`mailto:${r.email}`} className="text-cyan-300 hover:underline">{r.email}</a>
+                  <a href={`mailto:${r.email}`} className="text-fuchsia-300 hover:underline">{r.email}</a>
                   {r.phone ? ` · ${r.phone}` : ""} · {dateLabel(r.created_at)}
                 </p>
               </div>
