@@ -64,6 +64,16 @@ const steps = [
   { n: 3, t: "We handle the rest", d: "Get notified the moment mail arrives, manage bookings, and track every order." },
 ];
 
+// NOTE: replace these sample quotes with real client testimonials before launch.
+const testimonials = [
+  { quote: "My assistant handles my inbox and scheduling so I can actually run my business. Best decision I made this year.", name: "Sample Client", role: "Realtor, Galveston" },
+  { quote: "I travel constantly and never miss a check or package now — everything's photographed to my dashboard the day it arrives.", name: "Sample Client", role: "Cruise traveler & consultant" },
+  { quote: "Address, mailbox, and marketing in one place, and a real local team that picks up the phone. Couldn't be happier.", name: "Sample Client", role: "LLC owner, Houston" },
+];
+
+const PHONE_DISPLAY = "(409) 555-0123"; // TODO: replace with your real business number
+const PHONE_HREF = "tel:+14095550123";
+
 export default async function HomePage() {
   const tenant = await getTenant();
 
@@ -117,6 +127,27 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Galveston photo */}
+      <section className="mx-auto max-w-6xl px-4 py-12">
+        <div className="card relative overflow-hidden p-0">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/galveston-hero.jpg"
+            alt="Galveston Pleasure Pier at sunset over the Gulf of Mexico"
+            className="h-[300px] w-full object-cover sm:h-[420px]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent" />
+          <div className="absolute bottom-0 left-0 p-6 sm:p-10">
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-cyan-300">Headquartered on the Gulf Coast</p>
+            <h2 className="mt-2 text-3xl font-bold text-white sm:text-4xl">A real Galveston home for your business</h2>
+            <p className="mt-2 max-w-xl text-slate-300">
+              Your address, mailbox, and team — based right here on Galveston Island, Texas. Local people,
+              a real street address, and Gulf Coast hospitality.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Cruise / traveler niche */}
       <section className="mx-auto max-w-6xl px-4 py-10">
         <div className="card relative overflow-hidden bg-gradient-to-br from-cyan-500/15 to-indigo-500/15 p-12 text-center">
@@ -148,13 +179,37 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Testimonials */}
+      <section className="mx-auto max-w-6xl px-4 py-16">
+        <h2 className="text-center text-3xl font-bold text-white">What our clients say</h2>
+        <p className="mt-2 text-center text-sm text-slate-500">Real Gulf Coast businesses, real results.</p>
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          {testimonials.map((t) => (
+            <figure key={t.quote} className="card flex flex-col p-6">
+              <div className="text-cyan-300" aria-hidden>★★★★★</div>
+              <blockquote className="mt-3 flex-1 text-slate-300">&ldquo;{t.quote}&rdquo;</blockquote>
+              <figcaption className="mt-4 border-t border-white/10 pt-4">
+                <span className="block font-semibold text-white">{t.name}</span>
+                <span className="block text-sm text-slate-400">{t.role}</span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="mx-auto max-w-4xl px-4 pb-8">
         <div className="card relative flex flex-col items-center gap-4 overflow-hidden border-cyan-400/20 p-12 text-center">
           <div className="pointer-events-none absolute -bottom-24 left-1/2 h-48 w-96 -translate-x-1/2 rounded-full bg-indigo-500/20 blur-3xl" />
           <h2 className="relative text-2xl font-bold text-white">Ready to set up your Galveston presence?</h2>
-          <p className="relative max-w-xl text-slate-300">Create your account today and have your address and dashboard live in minutes.</p>
-          <Link href="/signup" className="btn-primary relative px-6 py-3 text-base">Create your account</Link>
+          <p className="relative max-w-xl text-slate-300">Create your account today, or talk it through with our local team first — your call.</p>
+          <div className="relative flex flex-wrap items-center justify-center gap-3">
+            <Link href="/signup" className="btn-primary px-6 py-3 text-base">Create your account</Link>
+            <Link href="/contact" className="btn-outline px-6 py-3 text-base">Book a free consultation</Link>
+          </div>
+          <a href={PHONE_HREF} className="relative mt-1 text-sm font-medium text-slate-300 hover:text-cyan-300">
+            Or call us: <span className="font-semibold text-white">{PHONE_DISPLAY}</span>
+          </a>
         </div>
       </section>
     </div>
