@@ -44,6 +44,8 @@ export default async function PricingPage() {
                     ? "/services/platforms"
                     : s.category === "virtual_assistant"
                     ? "/virtual-assistants"
+                    : s.category === "ai_assistant"
+                    ? "/ai-assistant"
                     : "/services/marketing"
                 }
                 className="mt-3 inline-block text-sm font-semibold text-cyan-300 hover:underline"

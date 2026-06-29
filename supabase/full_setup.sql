@@ -147,7 +147,7 @@ create table if not exists public.services (
 );
 alter table public.services drop constraint if exists services_category_check;
 alter table public.services add constraint services_category_check
-  check (category in ('marketing_assistant','web_platform','bundle','virtual_assistant'));
+  check (category in ('marketing_assistant','web_platform','bundle','virtual_assistant','ai_assistant'));
 create index if not exists services_tenant_idx on public.services(tenant_id);
 
 create table if not exists public.service_orders (
@@ -343,7 +343,9 @@ values
   ('00000000-0000-0000-0000-000000000001','Business-in-a-Box','business-in-a-box','bundle','Launch your business in one package.','Address + registered agent + mailbox + website + AI marketing assistant, bundled at one monthly price.',99900,'month','["Business address + registered agent","Pro virtual mailbox","Starter website","AI Marketing Assistant","Priority support"]'::jsonb),
   ('00000000-0000-0000-0000-000000000001','Managed VA — Part-Time','va-part-time','virtual_assistant','A dedicated assistant, ~20 hours a week.','We recruit, vet, and manage a virtual assistant matched to your business — admin, scheduling, inbox, customer follow-up, and more.',79900,'month','["~20 hours / week","Dedicated, vetted assistant","We handle matching & management","Admin, scheduling, inbox, follow-up","Backup coverage if your VA is out"]'::jsonb),
   ('00000000-0000-0000-0000-000000000001','Managed VA — Full-Time','va-full-time','virtual_assistant','A full-time assistant, fully managed.','A dedicated full-time virtual assistant, recruited and managed by us, embedded in your day-to-day operations.',149900,'month','["~40 hours / week","Dedicated, vetted assistant","Priority matching & management","Ongoing performance check-ins","Backup coverage included"]'::jsonb),
-  ('00000000-0000-0000-0000-000000000001','Business Support — Pay As You Go','va-payg','virtual_assistant','Hourly support when you need it.','On-demand virtual assistant hours billed monthly — perfect for overflow work and one-off projects.',3500,'month','["Billed for hours used","No minimum commitment","Same vetted assistant pool","Great for overflow & projects"]'::jsonb)
+  ('00000000-0000-0000-0000-000000000001','Business Support — Pay As You Go','va-payg','virtual_assistant','Hourly support when you need it.','On-demand virtual assistant hours billed monthly — perfect for overflow work and one-off projects.',3500,'month','["Billed for hours used","No minimum commitment","Same vetted assistant pool","Great for overflow & projects"]'::jsonb),
+  ('00000000-0000-0000-0000-000000000001','AI Assistant — Starter','ai-assistant-starter','ai_assistant','A 24/7 AI assistant for your website.','An always-on AI assistant trained on your business — answers customer questions, captures leads, and never sleeps.',14900,'month','["24/7 website chat assistant","Trained on your business & FAQs","Lead capture with instant email alerts","Monthly tuning & updates"]'::jsonb),
+  ('00000000-0000-0000-0000-000000000001','AI Assistant — Pro','ai-assistant-pro','ai_assistant','AI that books, qualifies, and follows up.','Everything in Starter plus appointment booking, SMS & email replies, lead qualification, and hand-off to your human team.',29900,'month','["Everything in Starter","Appointment booking","SMS + email auto-replies","Lead qualification & routing","Hand-off to your human VA","Conversation analytics"]'::jsonb)
 on conflict (tenant_id, slug) do nothing;
 
 insert into public.assistants (tenant_id, name, headline, bio, skills, hourly_rate_cents, availability, active)
