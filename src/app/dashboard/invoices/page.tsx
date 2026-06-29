@@ -23,16 +23,21 @@ export default async function InvoicesPage() {
       ) : (
         <div className="card mt-6 divide-y divide-white/10">
           {invoices.map((inv) => (
-            <Link key={inv.id} href={`/dashboard/invoices/${inv.id}`} className="flex items-center justify-between gap-4 p-4 hover:bg-white/5">
-              <div>
+            <div key={inv.id} className="flex items-center justify-between gap-4 p-4 hover:bg-white/5">
+              <Link href={`/dashboard/invoices/${inv.id}`} className="min-w-0 flex-1">
                 <p className="font-medium text-white">{inv.description}</p>
                 <p className="text-sm text-slate-400">{inv.reference} · {dateLabel(inv.created_at)}</p>
+              </Link>
+              <div className="flex items-center gap-4">
+                <div className="text-right">
+                  <p className="font-semibold text-white">{money(inv.amount_cents)}</p>
+                  <StatusBadge status={inv.status} />
+                </div>
+                <Link href={`/dashboard/invoices/${inv.id}?print=1`} className="whitespace-nowrap text-sm font-semibold text-violet-300 hover:underline">
+                  🖨️ Print slip
+                </Link>
               </div>
-              <div className="text-right">
-                <p className="font-semibold text-white">{money(inv.amount_cents)}</p>
-                <StatusBadge status={inv.status} />
-              </div>
-            </Link>
+            </div>
           ))}
         </div>
       )}

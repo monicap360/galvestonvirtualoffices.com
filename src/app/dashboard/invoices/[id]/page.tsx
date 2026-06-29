@@ -5,13 +5,20 @@ import { requireProfile } from "@/lib/session";
 import StatusBadge from "@/components/status-badge";
 import { money, dateLabel } from "@/lib/format";
 import { getTenant } from "@/lib/tenant";
-import PrintButton from "./print-button";
+import PrintButton, { AutoPrint } from "./print-button";
 
 export const metadata = { title: "Invoice" };
 
-export default async function InvoiceDetail({ params }: { params: Promise<{ id: string }> }) {
+export default async function InvoiceDetail({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ id: string }>;
+  searchParams: Promise<{ print?: string }>;
+}) {
   const profile = await requireProfile();
   const { id } = await params;
+  const { print } = await searchParams;
   const supabase = await createClient();
   const tenant = await getTenant();
 
@@ -28,6 +35,7 @@ export default async function InvoiceDetail({ params }: { params: Promise<{ id: 
 
   return (
     <div className="mx-auto max-w-xl">
+      {print ? <AutoPrint /> : null}
       <div className="flex items-center justify-between gap-3 no-print">
         <Link href="/dashboard/invoices" className="text-sm text-violet-300 hover:underline">← All invoices</Link>
         <PrintButton />
