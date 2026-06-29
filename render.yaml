@@ -10,11 +10,13 @@ services:
     startCommand: npm start
     autoDeploy: true
     envVars:
+      # Public values (publishable/anon key ships in the browser — safe to commit)
       - key: NEXT_PUBLIC_SUPABASE_URL
-        sync: false            # set in Render dashboard
+        value: https://pljqnaxowvhkzyeybqal.supabase.co
       - key: NEXT_PUBLIC_SUPABASE_ANON_KEY
-        sync: false            # set in Render dashboard (publishable key)
-      - key: SUPABASE_SERVICE_ROLE_KEY
-        sync: false            # set in Render dashboard (secret — server only)
+        value: sb_publishable_IxytxErVh-M73nUld5sQgA_LNRfdKQ0
       - key: NEXT_PUBLIC_DEFAULT_TENANT
         value: galveston
+      # Secret — set this one in the Render dashboard, never commit it
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
