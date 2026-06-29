@@ -36,5 +36,15 @@ values
     'A private AI trained on your business.',
     'Upload your docs, SOPs, and policies — your team gets instant, accurate answers from a private AI that knows your business.',
     14900,'month',
-    '["Private AI trained on your docs","Instant answers for your team","Always up to date","Secure & access-controlled","Slack / web access"]'::jsonb)
+    '["Private AI trained on your docs","Instant answers for your team","Always up to date","Secure & access-controlled","Slack / web access"]'::jsonb),
+  ('00000000-0000-0000-0000-000000000001','AI Dental Front Desk','ai-dental-front-desk','ai_product',
+    'A 24/7 front desk built for dental practices.',
+    'A dental-trained AI that runs your front-office admin — books and confirms appointments, verifies insurance, fills the schedule from recalls, and handles new-patient intake so your team can focus on patients.',
+    29900,'month',
+    '["Appointment scheduling & confirmations","Insurance verification & eligibility","Recall & reactivation to fill the schedule","New-patient intake & forms","No-show reduction with reminders","Answers common patient questions 24/7"]'::jsonb),
+  ('00000000-0000-0000-0000-000000000001','Full AI Employee','ai-full-employee','ai_product',
+    'Receptionist + lead follow-up + reviews in one.',
+    'Your complete AI front-office hire — answers calls, instantly follows up with every lead, books appointments, and grows your reviews. The best value for busy local businesses.',
+    49900,'month',
+    '["Everything in AI Receptionist","Everything in AI Speed-to-Lead","Everything in AI Review Manager","One AI trained across all of it","Priority setup & support"]'::jsonb)
 on conflict (tenant_id, slug) do nothing;
