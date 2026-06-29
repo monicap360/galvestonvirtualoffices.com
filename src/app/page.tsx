@@ -112,16 +112,16 @@ export default async function HomePage() {
             ◇ Galveston · Texas Gulf Coast
           </span>
           <p className="mt-5 text-sm font-semibold uppercase tracking-[0.25em] text-fuchsia-300/80">
-            Managed Virtual Assistants &amp; Business Support
+            Built for Women Entrepreneurs · Galveston, TX
           </p>
           <h1 className="mx-auto mt-3 max-w-4xl text-4xl font-extrabold tracking-tight text-white sm:text-6xl">
-            A dedicated virtual assistant —{" "}
-            <span className="text-gradient">plus everything</span> your business needs
+            The AI-powered business hub{" "}
+            <span className="text-gradient">built for women</span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-slate-300">
-            {tenant?.name ?? "Galveston Virtual Offices"} recruits, vets, and manages a virtual assistant matched
-            to your business — backed by a real Texas address, AI-powered mailbox, offices, marketing, and custom
-            platforms. Sign up online — pay by business check so every account is verified and legitimate.
+            {tenant?.name ?? "Galveston Virtual Offices"} gives women entrepreneurs everything to launch, run, and
+            grow — a dedicated assistant, a real Texas address, AI-powered mailbox, offices, AI agents, and marketing.
+            Sign up online; pay by business check so every account is verified and legitimate.
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-3">
             <Link href="/virtual-assistants/request" className="btn-primary px-6 py-3 text-base">Request an assistant</Link>

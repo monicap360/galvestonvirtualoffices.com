@@ -11,9 +11,9 @@ export default async function SiteFooter() {
             <span className="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-fuchsia-400 to-violet-500 text-slate-950 shadow-[0_0_18px_-4px_rgba(232,121,249,0.7)]">GV</span>
             {tenant?.name ?? "Galveston Virtual Offices"}
           </div>
-          <p className="mt-2 text-sm font-semibold text-fuchsia-300/90">Managed Virtual Assistants &amp; Business Support</p>
+          <p className="mt-2 text-sm font-semibold text-fuchsia-300/90">Business Support Built for Women</p>
           <p className="mt-2 text-sm text-slate-400">
-            Dedicated virtual assistants, business address, mailbox, offices, and AI marketing — all on the Gulf Coast.
+            The AI-powered business hub for women entrepreneurs — assistants, address, mailbox, offices, and AI agents on the Gulf Coast.
           </p>
         </div>
         <div>

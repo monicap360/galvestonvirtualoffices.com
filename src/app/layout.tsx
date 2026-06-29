@@ -9,11 +9,11 @@ const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"]
 
 export const metadata: Metadata = {
   title: {
-    default: "Galveston Virtual Offices — Managed Virtual Assistants & Business Support",
+    default: "Galveston Virtual Offices — Business Support Built for Women",
     template: "%s · Galveston Virtual Offices",
   },
   description:
-    "Managed virtual assistants and complete business support on the Texas Gulf Coast: dedicated VAs, a real Galveston address, AI-powered virtual mailbox, offices, AI marketing, and websites. Sign up online; pay by business check to keep every account verified.",
+    "The AI-powered business hub built for women entrepreneurs on the Texas Gulf Coast: dedicated virtual assistants, AI agents, a real Galveston address, virtual mailbox, offices, and marketing. Sign up online; pay by business check to keep every account verified.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

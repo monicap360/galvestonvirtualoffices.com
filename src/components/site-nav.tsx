@@ -25,7 +25,7 @@ export default async function SiteNav() {
           </span>
           <span className="hidden leading-tight sm:block">
             <span className="block font-bold">Galveston Virtual Offices</span>
-            <span className="block text-[11px] font-medium text-fuchsia-300/90">Managed Virtual Assistants &amp; Business Support</span>
+            <span className="block text-[11px] font-medium text-fuchsia-300/90">Business Support Built for Women</span>
           </span>
         </Link>
 
