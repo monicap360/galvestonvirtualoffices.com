@@ -1,0 +1,20 @@
+# Render deployment config for Galveston Virtual Offices (Next.js 16)
+# Render → New → Blueprint (or Web Service) → connect this repo.
+services:
+  - type: web
+    name: galvestonvirtualoffices
+    runtime: node
+    plan: starter
+    branch: main
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    autoDeploy: true
+    envVars:
+      - key: NEXT_PUBLIC_SUPABASE_URL
+        sync: false            # set in Render dashboard
+      - key: NEXT_PUBLIC_SUPABASE_ANON_KEY
+        sync: false            # set in Render dashboard (publishable key)
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false            # set in Render dashboard (secret — server only)
+      - key: NEXT_PUBLIC_DEFAULT_TENANT
+        value: galveston
