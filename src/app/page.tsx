@@ -74,6 +74,15 @@ const testimonials = [
 const PHONE_DISPLAY = "(409) 555-0123"; // TODO: replace with your real business number
 const PHONE_HREF = "tel:+14095550123";
 
+// Honest, factual trust signals (true for a new business — no fabricated social proof).
+const trustSignals = [
+  "Real Galveston street address",
+  "USPS Form 1583 compliant",
+  "Business-check verified accounts",
+  "No long-term contracts",
+  "Local Gulf Coast team",
+];
+
 export default async function HomePage() {
   const tenant = await getTenant();
 
@@ -102,6 +111,20 @@ export default async function HomePage() {
             <Link href="/pricing" className="btn-outline px-6 py-3 text-base">See pricing</Link>
           </div>
           <p className="mt-5 text-sm text-slate-400">No long-term contracts · Cancel anytime · Real local team</p>
+        </div>
+      </section>
+
+      {/* Trust bar */}
+      <section className="mx-auto max-w-6xl px-4">
+        <div className="card flex flex-wrap items-center justify-center gap-x-8 gap-y-3 px-6 py-4 text-sm text-slate-300">
+          {trustSignals.map((t) => (
+            <span key={t} className="inline-flex items-center gap-2">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 text-cyan-400">
+                <path d="m4.5 12.75 6 6 9-13.5" />
+              </svg>
+              {t}
+            </span>
+          ))}
         </div>
       </section>
 
