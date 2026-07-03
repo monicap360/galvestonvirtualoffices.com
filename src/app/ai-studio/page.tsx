@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getServices } from "@/lib/catalog";
 import { orderService } from "@/app/orders/actions";
 import { price } from "@/lib/format";
+import AgentTry from "./agent-try";
 
 export const metadata = { title: "AI Studio" };
 
@@ -17,8 +18,9 @@ export default async function AiStudioPage() {
           Subscribe to <span className="text-gradient">AI agents</span> that run parts of your business
         </h1>
         <p className="mx-auto mt-5 max-w-2xl text-lg text-slate-300">
-          Pick the AI agents you need — receptionist, lead follow-up, reviews, social, content, knowledge — and
-          we set them up, trained on your business. Add or cancel any time. No long-term contracts.
+          Pick the AI agents you need — phone answering, client intake, reservations, order-taking, scheduling,
+          and marketing. <span className="font-semibold text-white">Try any one live before you subscribe.</span>{" "}
+          We set them up trained on your business. Add or cancel any time.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <Link href="#agents" className="btn-primary px-6 py-3 text-base">Browse AI agents</Link>
@@ -49,7 +51,10 @@ export default async function AiStudioPage() {
                   <li key={f} className="flex gap-2"><span className="text-violet-300">✓</span>{f}</li>
                 ))}
               </ul>
-              <form action={orderService} className="mt-6 space-y-3 border-t border-white/10 pt-4">
+              <div className="mt-6 border-t border-white/10 pt-4">
+                <AgentTry name={s.name} tagline={s.tagline} description={s.description} />
+              </div>
+              <form action={orderService} className="mt-3 space-y-3">
                 <input type="hidden" name="service_id" value={s.id} />
                 <div>
                   <label className="label" htmlFor={`biz-${s.id}`}>Your business name</label>

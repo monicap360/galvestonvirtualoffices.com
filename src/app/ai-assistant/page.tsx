@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getServices } from "@/lib/catalog";
 import { orderService } from "@/app/orders/actions";
 import { price } from "@/lib/format";
+import AiDemo from "./ai-demo";
 
 export const metadata = { title: "AI Assistant" };
 
@@ -9,14 +10,6 @@ const does = [
   { t: "Answers instantly, 24/7", d: "Trained on your business, it replies to customer questions day or night — no missed leads after hours." },
   { t: "Captures & qualifies leads", d: "Collects contact details, asks the right questions, and alerts you the moment a hot lead comes in." },
   { t: "Books & follows up", d: "Schedules appointments, sends reminders, and hands off to your human team when a person is needed." },
-];
-
-// AI Assistant (software) vs Managed VA (human) — they're complementary, not competing.
-const compare = [
-  { feature: "Best for", ai: "Instant, 24/7, high-volume questions", va: "Judgment, calls, relationships, real work" },
-  { feature: "Availability", ai: "Always on, every second", va: "Dedicated hours each week" },
-  { feature: "Handles", ai: "FAQs, lead capture, booking", va: "Inbox, admin, bookkeeping, follow-up" },
-  { feature: "Together", ai: "Catches & qualifies every lead…", va: "…then your VA closes the loop" },
 ];
 
 export default async function AiAssistantPage() {
@@ -36,9 +29,18 @@ export default async function AiAssistantPage() {
           working while you sleep.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <Link href="#plans" className="btn-primary px-6 py-3 text-base">See plans</Link>
-          <Link href="/contact" className="btn-outline px-6 py-3 text-base">Book a free demo</Link>
+          <Link href="#demo" className="btn-primary px-6 py-3 text-base">Try the demo</Link>
+          <Link href="#plans" className="btn-outline px-6 py-3 text-base">See plans</Link>
         </div>
+      </section>
+
+      {/* Interactive demo */}
+      <section id="demo" className="mx-auto max-w-2xl px-4 pb-6 scroll-mt-24">
+        <div className="mb-5 text-center">
+          <h2 className="text-2xl font-bold text-white">Build your own AI agent — free</h2>
+          <p className="mt-2 text-slate-400">Tell us your business, get a live assistant trained on it in seconds, and try it yourself. Like it? Grab a plan below.</p>
+        </div>
+        <AiDemo />
       </section>
 
       {/* What it does */}
@@ -48,30 +50,6 @@ export default async function AiAssistantPage() {
             <div key={s.t} className="card p-6">
               <h3 className="font-semibold text-white">{s.t}</h3>
               <p className="mt-2 text-sm text-slate-400">{s.d}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* AI Assistant vs Managed VA */}
-      <section className="mx-auto max-w-5xl px-4 py-12">
-        <h2 className="text-center text-2xl font-bold text-white">AI Assistant or a human VA? Get both.</h2>
-        <p className="mx-auto mt-2 max-w-2xl text-center text-slate-400">
-          The AI catches and qualifies every lead instantly; your{" "}
-          <Link href="/virtual-assistants" className="text-violet-300 hover:underline">Managed VA</Link>{" "}
-          does the work that needs a human. They&apos;re built to run together.
-        </p>
-        <div className="card mt-8 overflow-hidden p-0">
-          <div className="grid grid-cols-3 border-b border-white/10 bg-white/5 text-sm font-semibold">
-            <div className="p-4"></div>
-            <div className="p-4 text-violet-300">AI Assistant</div>
-            <div className="p-4 text-slate-300">Managed VA (human)</div>
-          </div>
-          {compare.map((row) => (
-            <div key={row.feature} className="grid grid-cols-3 border-b border-white/5 text-sm last:border-0">
-              <div className="p-4 font-medium text-white">{row.feature}</div>
-              <div className="p-4 text-slate-200">{row.ai}</div>
-              <div className="p-4 text-slate-300">{row.va}</div>
             </div>
           ))}
         </div>

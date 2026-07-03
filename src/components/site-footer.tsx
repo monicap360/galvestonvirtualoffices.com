@@ -20,7 +20,7 @@ export default async function SiteFooter() {
         <div>
           <h4 className="text-sm font-semibold text-white">Services</h4>
           <ul className="mt-3 space-y-2 text-sm text-slate-400">
-            <li><Link href="/virtual-assistants" className="hover:text-violet-300">Managed Virtual Assistants</Link></li>
+            <li><Link href="/ai-assistant" className="hover:text-violet-300">AI Assistant</Link></li>
             <li><Link href="/ai-studio" className="hover:text-violet-300">AI Studio</Link></li>
             <li><Link href="/mailboxes" className="hover:text-violet-300">Virtual Mailboxes</Link></li>
             <li><Link href="/offices" className="hover:text-violet-300">Office Space</Link></li>
@@ -40,8 +40,10 @@ export default async function SiteFooter() {
         <div>
           <h4 className="text-sm font-semibold text-white">Company</h4>
           <ul className="mt-3 space-y-2 text-sm text-slate-400">
+            <li><Link href="/why-us" className="hover:text-violet-300">Why Us</Link></li>
             <li><Link href="/blog" className="hover:text-violet-300">Blog</Link></li>
             <li><Link href="/pricing" className="hover:text-violet-300">Pricing</Link></li>
+            <li><Link href="/faq" className="hover:text-violet-300">How it works &amp; FAQ</Link></li>
             <li><Link href="/contact" className="hover:text-violet-300">Contact</Link></li>
             <li><Link href="/login" className="hover:text-violet-300">Customer Login</Link></li>
           </ul>

@@ -7,9 +7,8 @@ const SITE_URL = "https://galvestonvirtualoffices.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPaths = [
-    "", "/virtual-assistants", "/ai-assistant", "/ai-studio", "/mailboxes", "/offices",
-    "/services/marketing", "/services/platforms", "/industries", "/pricing", "/contact", "/blog",
-    "/virtual-assistants/request", "/virtual-assistants/apply",
+    "", "/ai-assistant", "/ai-studio", "/mailboxes", "/offices",
+    "/services/marketing", "/services/platforms", "/why-us", "/industries", "/pricing", "/faq", "/contact", "/blog",
   ];
 
   const entries: MetadataRoute.Sitemap = staticPaths.map((p) => ({

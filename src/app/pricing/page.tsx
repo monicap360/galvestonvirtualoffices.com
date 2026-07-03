@@ -31,7 +31,7 @@ export default async function PricingPage() {
       </section>
 
       <section className="mt-12">
-        <h2 className="text-xl font-semibold text-white">Assistants, marketing, websites & bundles</h2>
+        <h2 className="text-xl font-semibold text-white">AI agents, marketing, websites & bundles</h2>
         <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s) => (
             <div key={s.id} className="card p-5">
@@ -42,8 +42,6 @@ export default async function PricingPage() {
                 href={
                   s.category === "web_platform"
                     ? "/services/platforms"
-                    : s.category === "virtual_assistant"
-                    ? "/virtual-assistants"
                     : s.category === "ai_assistant"
                     ? "/ai-assistant"
                     : s.category === "ai_product"

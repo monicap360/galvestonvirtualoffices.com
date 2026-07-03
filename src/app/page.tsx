@@ -9,6 +9,7 @@ const ICONS: Record<string, string> = {
   marketing: "M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z",
   platform: "m6.75 7.5 3 2.25-3 2.25m4.5 0h3m-9.75 6h13.5A2.25 2.25 0 0 0 21 18.75V6A2.25 2.25 0 0 0 18.75 3.75H5.25A2.25 2.25 0 0 0 3 6v12.75c0 .621.504 1.125 1.125 1.125Z",
   ai: "M8.25 12h.008v.008H8.25V12Zm3.75 0h.008v.008H12V12Zm3.75 0h.008v.008h-.008V12ZM21 12c0 4.556-4.03 8.25-9 8.25a9.76 9.76 0 0 1-2.555-.337A5.97 5.97 0 0 1 5.41 20.97a5.97 5.97 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z",
+  phone: "M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z",
 };
 
 function Icon({ name }: { name: string }) {
@@ -23,17 +24,17 @@ function Icon({ name }: { name: string }) {
 
 const offerings = [
   {
-    href: "/virtual-assistants",
-    title: "Managed Virtual Assistants",
+    href: "/ai-studio",
+    title: "AI Phone Line & Auto-Attendant",
     blurb:
-      "Get a dedicated, vetted virtual assistant — recruited, matched, and managed by us. Admin, scheduling, inbox, bookkeeping, customer follow-up, and more.",
-    icon: "assistant",
+      "Your own 24/7 AI phone line — it answers every call in your business's voice, routes callers, books appointments, takes orders and messages, and texts you summaries. Never miss a call again.",
+    icon: "phone",
   },
   {
     href: "/ai-assistant",
     title: "AI Assistant",
     blurb:
-      "A 24/7 AI assistant trained on your business — answers customer questions, captures and qualifies leads, books appointments, and hands off to your human team.",
+      "A 24/7 AI assistant trained on your business — answers customer questions, captures and qualifies leads, books appointments, and hands off to your team.",
     icon: "ai",
   },
   {
@@ -72,11 +73,14 @@ const steps = [
   { n: 3, t: "We handle the rest", d: "Get notified the moment mail arrives, manage bookings, and track every order." },
 ];
 
-// NOTE: replace these sample quotes with real client testimonials before launch.
-const testimonials = [
-  { quote: "My assistant handles my inbox and scheduling so I can actually run my business. Best decision I made this year.", name: "Sample Client", role: "Realtor, Galveston" },
-  { quote: "I travel constantly and never miss a check or package now — everything's photographed to my dashboard the day it arrives.", name: "Sample Client", role: "Cruise traveler & consultant" },
-  { quote: "Address, mailbox, and marketing in one place, and a real local team that picks up the phone. Couldn't be happier.", name: "Sample Client", role: "LLC owner, Houston" },
+// Honest, factual reasons to choose us — no fabricated testimonials.
+const reasons = [
+  { t: "A real Galveston street address", d: "Not a PO box — use it on your website, Google listing, LLC filings, and mail." },
+  { t: "Two blocks from the cruise terminal", d: "Drop off or grab your mail and packages on your way to the Carnival Breeze." },
+  { t: "No long-term contracts", d: "Everything is month-to-month. Cancel anytime, no penalties." },
+  { t: "A real local team", d: "Talk to actual people in Galveston — never an overseas call center." },
+  { t: "Packages received & photographed", d: "Amazon, UPS, FedEx — accepted, photographed to your dashboard the same day, held for pickup." },
+  { t: "Try any AI agent free", d: "Test-drive your AI receptionist or assistant live before you pay a cent." },
 ];
 
 const PHONE_DISPLAY = "(409) 402-7908";
@@ -120,11 +124,11 @@ export default async function HomePage() {
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-slate-300">
             {tenant?.name ?? "Galveston Virtual Offices"}{" "}gives Gulf Coast businesses everything to launch, run, and
-            grow — a dedicated assistant, a real Texas address, AI-powered mailbox &amp; package handling, offices,
-            AI agents, and marketing. Sign up online; pay by business check so every account is verified.
+            grow — a 24/7 AI phone line &amp; assistants, a real Texas address, AI-powered mailbox &amp; package handling,
+            offices, AI agents, and marketing. Sign up online; pay by business check so every account is verified.
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-3">
-            <Link href="/virtual-assistants/request" className="btn-primary px-6 py-3 text-base">Request an assistant</Link>
+            <Link href="/ai-studio" className="btn-primary px-6 py-3 text-base">Explore AI agents</Link>
             <Link href="/pricing" className="btn-outline px-6 py-3 text-base">See pricing</Link>
           </div>
           <p className="mt-5 text-sm text-slate-400">No long-term contracts · Cancel anytime · Real local team</p>
@@ -197,22 +201,25 @@ export default async function HomePage() {
             </div>
           ))}
         </div>
+        <p className="mt-8 text-center text-sm text-slate-400">
+          Questions about the address, mail, or Form 1583?{" "}
+          <Link href="/faq" className="font-semibold text-violet-300 hover:underline">See how it works &amp; FAQ →</Link>
+        </p>
       </section>
 
-      {/* Testimonials */}
+      {/* Why choose us */}
       <section className="mx-auto max-w-6xl px-4 py-16">
-        <h2 className="text-center text-3xl font-bold text-white">What our clients say</h2>
-        <p className="mt-2 text-center text-sm text-slate-500">Real Gulf Coast businesses, real results.</p>
+        <h2 className="text-center text-3xl font-bold text-white">Why businesses choose us</h2>
+        <p className="mt-2 text-center text-sm text-slate-500">Local, honest, and built to make you look bigger.</p>
         <div className="mt-10 grid gap-6 md:grid-cols-3">
-          {testimonials.map((t) => (
-            <figure key={t.quote} className="card flex flex-col p-6">
-              <div className="text-violet-300" aria-hidden>★★★★★</div>
-              <blockquote className="mt-3 flex-1 text-slate-300">&ldquo;{t.quote}&rdquo;</blockquote>
-              <figcaption className="mt-4 border-t border-white/10 pt-4">
-                <span className="block font-semibold text-white">{t.name}</span>
-                <span className="block text-sm text-slate-400">{t.role}</span>
-              </figcaption>
-            </figure>
+          {reasons.map((r) => (
+            <div key={r.t} className="card flex flex-col p-6">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 text-violet-400">
+                <path d="m4.5 12.75 6 6 9-13.5" />
+              </svg>
+              <h3 className="mt-3 font-semibold text-white">{r.t}</h3>
+              <p className="mt-2 text-sm text-slate-400">{r.d}</p>
+            </div>
           ))}
         </div>
       </section>
