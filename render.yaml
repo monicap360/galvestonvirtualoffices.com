@@ -17,6 +17,12 @@ services:
         value: sb_publishable_IxytxErVh-M73nUld5sQgA_LNRfdKQ0
       - key: NEXT_PUBLIC_DEFAULT_TENANT
         value: galveston
-      # Secret — set this one in the Render dashboard, never commit it
+      - key: GMAIL_USER
+        value: cruisesfromgalveston.texas@gmail.com
+      - key: RESERVATION_NOTIFY_EMAIL
+        value: cruisesfromgalveston.texas@gmail.com
+      # Secrets — set these in the Render dashboard, never commit them
       - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: GMAIL_APP_PASSWORD
         sync: false
