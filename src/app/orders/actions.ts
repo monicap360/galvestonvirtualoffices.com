@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import { requireProfile } from "@/lib/session";
 import { makeReference } from "@/lib/format";
+import { sendReservationNotification } from "@/lib/reservation-mail";
 
 type SupabaseClient = Awaited<ReturnType<typeof createClient>>;
 
@@ -72,6 +73,18 @@ export async function createBooking(formData: FormData) {
     tenantId: profile.tenant_id, userId: profile.id, amountCents: total,
     description: `Office booking — ${office.name}`, relatedType: "booking", relatedId: booking.id,
   });
+
+  await sendReservationNotification({
+    bookingId: booking.id,
+    customerName: profile.full_name,
+    customerEmail: profile.email,
+    customerPhone: profile.phone,
+    officeName: office.name,
+    startDate: start,
+    endDate: end,
+    totalCents: total,
+  });
+
   redirect(invoiceId ? `/dashboard/invoices/${invoiceId}` : "/dashboard/bookings");
 }
 
