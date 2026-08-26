@@ -3,11 +3,13 @@
 import { useMemo, useState } from "react";
 import { createAiAgentOrder, updateAiAgentConfig } from "@/app/ai-studio/actions";
 import { buildPreviewSummary, computeAgentReadiness, normalizeAgentConfig, type AgentConfigV1, type AgentConfigValue } from "@/lib/ai-studio/config";
+import { getAgentDefaults } from "@/lib/ai-studio/defaults";
 import type { AgentField, AgentTemplate } from "@/lib/ai-studio/types";
 import FieldRenderer from "./field-renderer";
 import ReadinessMeter from "./readiness-meter";
 import ConnectionTile from "./connection-tile";
 import PreviewPanel from "./preview-panel";
+import WorkflowPanel from "./workflow-panel";
 
 type ServiceSummary = {
   id: string;
@@ -68,6 +70,7 @@ export default function AgentStudio({ service, template, initialConfig, mode = "
 
   const readiness = useMemo(() => computeAgentReadiness(service.slug, config), [service.slug, config]);
   const previewSummary = useMemo(() => buildPreviewSummary(service.slug, config), [service.slug, config]);
+  const workflowSteps = useMemo(() => getAgentDefaults(service.slug)?.workflowSteps ?? [], [service.slug]);
   const currentSection = template.sections.find((section) => section.id === activeSection) ?? template.sections[0];
   const action = mode === "edit" ? updateAiAgentConfig : createAiAgentOrder;
 
@@ -123,8 +126,8 @@ export default function AgentStudio({ service, template, initialConfig, mode = "
                     </button>
                   );
                 })}
-                <span className="whitespace-nowrap rounded-xl px-4 py-2.5 text-sm font-semibold text-slate-500">Connections</span>
-                <span className="whitespace-nowrap rounded-xl px-4 py-2.5 text-sm font-semibold text-slate-500">Preview</span>
+                <a href="#connections" className="whitespace-nowrap rounded-xl px-4 py-2.5 text-sm font-semibold text-slate-500 hover:bg-white/[0.03] hover:text-white">Connections</a>
+                <a href="#preview" className="whitespace-nowrap rounded-xl px-4 py-2.5 text-sm font-semibold text-slate-500 hover:bg-white/[0.03] hover:text-white">Preview</a>
               </nav>
 
               <div className="p-5 sm:p-7">
@@ -176,9 +179,11 @@ export default function AgentStudio({ service, template, initialConfig, mode = "
               </p>
             </div>
 
+            {workflowSteps.length > 0 && <WorkflowPanel steps={workflowSteps} />}
+
             <ReadinessMeter readiness={readiness} />
 
-            <div className="rounded-3xl border border-white/10 bg-white/[0.025] p-5">
+            <div id="connections" className="scroll-mt-6 rounded-3xl border border-white/10 bg-white/[0.025] p-5">
               <div className="flex items-center justify-between gap-3">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">Connections</p>
@@ -199,13 +204,15 @@ export default function AgentStudio({ service, template, initialConfig, mode = "
               </div>
             </div>
 
-            <PreviewPanel
-              name={config.identity.display_name || template.defaultDisplayName}
-              tagline={service.tagline}
-              description={service.description}
-              configurationSummary={previewSummary}
-              samplePrompts={template.samplePrompts}
-            />
+            <div id="preview" className="scroll-mt-6">
+              <PreviewPanel
+                name={config.identity.display_name || template.defaultDisplayName}
+                tagline={service.tagline}
+                description={service.description}
+                configurationSummary={previewSummary}
+                samplePrompts={template.samplePrompts}
+              />
+            </div>
           </aside>
         </div>
       </div>
