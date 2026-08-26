@@ -25,8 +25,10 @@ assert.ok(defaults.includes("follow_up_cadence"), "appointment setter should shi
 assert.ok(defaults.includes("after_hours"), "phone attendant should ship with after-hours defaults");
 assert.ok(defaults.includes("large_party_threshold"), "restaurant host should ship with large-party defaults");
 assert.ok(defaults.includes("reminder_timing"), "event promoter should ship with reminder defaults");
-assert.ok(defaults.includes("stop_unsubscribe"), "schedule filler should ship with opt-out defaults");
+assert.ok(defaults.includes("unsubscribe_handling"), "schedule filler should ship with opt-out defaults");
 assert.ok(defaults.includes("reminder_cadence"), "dental front desk should ship with reminder defaults");
-assert.ok(config.includes("getAgentWorkflowDefaults"), "config normalization must apply prebuilt workflow defaults");
+assert.ok(defaults.includes("workflowSteps"), "each agent should ship with a visible workflow blueprint");
+assert.ok(config.includes("getAgentWorkflowDefaults"), "new-agent config must apply prebuilt workflow defaults");
+assert.ok(config.includes("createDefaultAgentConfig"), "new-agent setup must have a dedicated default seeding path");
 
 console.log("ai-agent-defaults: ok");
