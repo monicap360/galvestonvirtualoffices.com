@@ -2,6 +2,19 @@ name: AI Studio checks
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - feature/ai-agent-customization-studio
+    paths:
+      - "src/app/ai-studio/**"
+      - "src/app/dashboard/agents/**"
+      - "src/app/dashboard/layout.tsx"
+      - "src/lib/ai-studio/**"
+      - "scripts/tests/ai-*.test.mjs"
+      - "scripts/tests/my-ai-agents-dashboard.test.mjs"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/ai-studio-checks.yml"
   pull_request:
     paths:
       - "src/app/ai-studio/**"
