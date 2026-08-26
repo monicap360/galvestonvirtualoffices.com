@@ -20,7 +20,7 @@ insert into public.offices (tenant_id, name, slug, description, type, capacity, 
 values
   ('00000000-0000-0000-0000-000000000001','Private Office','private-office','A quiet private office with natural light, fiber internet, and 24/7 access.','Private Office',2,120,7500,89000),
   ('00000000-0000-0000-0000-000000000001','Day Office','day-office','Rent by the day — a private office for client meetings or a focused work session.','Day Office',2,90,4500,null),
-  ('00000000-0000-0000-0000-000000000001','Coworking Desk','coworking-desk','Hot desk in the shared lounge with all amenities included.','Desk',1,40,2500,29900)
+  ('00000000-0000-0000-0000-000000000001','Coworking Desk','coworking-desk','Hot desk in the shared lounge with all amenities included.','Desk',1,40,1500,19900)
 on conflict (tenant_id, slug) do nothing;
 
 -- ---- Virtual mailbox plans ----
