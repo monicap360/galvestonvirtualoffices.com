@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { getTenant } from "@/lib/tenant";
 import { getAgentTemplate } from "@/lib/ai-studio/templates";
-import { normalizeAgentConfig } from "@/lib/ai-studio/config";
+import { createDefaultAgentConfig } from "@/lib/ai-studio/config";
 import AgentStudio from "@/app/ai-studio/studio/agent-studio";
 
 export const metadata = { title: "Customize AI Agent" };
@@ -31,10 +31,7 @@ export default async function CustomizeAiAgentPage({
 
   if (!service) notFound();
 
-  const initialConfig = normalizeAgentConfig(slug, {
-    business: { industry: template.vertical, timezone: "America/Chicago" },
-    identity: { display_name: template.defaultDisplayName, tone: "warm-professional", languages: ["en"] },
-  });
+  const initialConfig = createDefaultAgentConfig(slug);
 
   return (
     <AgentStudio
