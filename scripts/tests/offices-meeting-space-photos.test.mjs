@@ -12,7 +12,7 @@ assert.ok(
   "second emailed meeting-space photo must be shown",
 );
 assert.ok(
-  page.includes("Meeting & Collaboration Space"),
+  page.includes("Meeting &amp; Collaboration Space"),
   "meeting-space gallery needs a clear heading",
 );
 
