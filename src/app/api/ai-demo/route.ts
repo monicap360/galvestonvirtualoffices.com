@@ -13,14 +13,15 @@ import {
 
 export const runtime = "nodejs";
 
+const MAX_CONFIGURATION_SUMMARY_CHARS = 3000;
+
 type Body = {
-  // "Build your agent" demo (/ai-assistant):
   company?: string;
   whatTheyDo?: string;
-  // Specific AI Studio agent demo (/ai-studio):
   agent?: { name?: string; tagline?: string; description?: string };
   history?: ChatTurn[];
   mode?: "intro" | "chat";
+  configurationSummary?: string;
 };
 
 function bad(message: string, status = 400) {
@@ -44,9 +45,6 @@ export async function POST(request: Request) {
 
   const history = Array.isArray(body.history) ? body.history : [];
   const isIntro = body.mode === "intro";
-
-  // Two flavors of demo: a specific AI Studio agent (role-play), or the
-  // "build your own assistant" flow keyed to the visitor's business.
   const clip = (v: unknown, n: number) => String(v || "").trim().slice(0, n);
   let system: string;
   let introInstruction: string;
@@ -67,13 +65,21 @@ export async function POST(request: Request) {
       "A visitor just opened the chat on your website. In 2 short sentences, greet them warmly as the assistant, show you understand what the business does, and invite them to ask a question.";
   }
 
-  // Enforce the free-trial cap (count the customer's own messages).
+  const configurationSummary = clip(body.configurationSummary, MAX_CONFIGURATION_SUMMARY_CHARS);
+  if (configurationSummary) {
+    system += [
+      "",
+      "Configured preview context:",
+      configurationSummary,
+      "Unconnected external systems are not live. Never claim to have checked, changed, booked, sent, charged, verified, published, or routed anything through a system unless the configured context explicitly says that system is connected.",
+    ].join("\n");
+  }
+
   const customerTurns = history.filter((m) => m.role === "user").length;
   if (!isIntro && customerTurns > TRIAL_MESSAGE_LIMIT) {
     return Response.json({ limitReached: true });
   }
 
-  // Build the conversation for Claude, clamping length/size for cost + safety.
   const turns = history
     .filter((m) => m && (m.role === "user" || m.role === "assistant") && typeof m.text === "string")
     .slice(-2 * TRIAL_MESSAGE_LIMIT)
@@ -82,7 +88,6 @@ export async function POST(request: Request) {
       content: m.text.slice(0, MAX_MESSAGE_CHARS),
     }));
 
-  // On intro, seed a single instruction so the agent opens the conversation.
   const messages =
     isIntro && turns.length === 0
       ? [{ role: "user" as const, content: introInstruction }]
@@ -97,7 +102,6 @@ export async function POST(request: Request) {
     const response = await client.messages.create({
       model: DEMO_MODEL,
       max_tokens: 600,
-      // Snappy, low-cost replies for a customer-facing FAQ bot.
       output_config: { effort: "low" },
       system,
       messages,
