@@ -10,6 +10,8 @@ export type AgentFieldType =
 
 export type ConnectionState = "not_connected" | "needs_setup" | "connected";
 
+export type AgentConfigValue = string | number | boolean | string[];
+
 export type AgentFieldOption = {
   label: string;
   value: string;
