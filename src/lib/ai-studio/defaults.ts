@@ -1,5 +1,5 @@
 import type { AiAgentSlug } from "./templates";
-import type { AgentConfigValue } from "./config";
+import type { AgentConfigValue } from "./types";
 
 export type AgentDefaults = {
   capabilities: Record<string, AgentConfigValue>;
@@ -159,4 +159,8 @@ export const AGENT_DEFAULTS: Record<AiAgentSlug, AgentDefaults> = {
 
 export function getAgentDefaults(slug: string): AgentDefaults | null {
   return (AGENT_DEFAULTS as Record<string, AgentDefaults>)[slug] ?? null;
+}
+
+export function getAgentWorkflowDefaults(slug: string): Record<string, AgentConfigValue> {
+  return { ...(getAgentDefaults(slug)?.capabilities ?? {}) };
 }
