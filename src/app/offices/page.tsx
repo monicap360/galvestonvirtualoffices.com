@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { getOffices } from "@/lib/catalog";
 import { createBooking } from "@/app/orders/actions";
 import { money } from "@/lib/format";
@@ -21,6 +22,40 @@ export default async function OfficesPage() {
           (Our virtual mailbox, assistants, AI agents, and marketing services are open to everyone.)
         </p>
       </header>
+
+      <section className="mt-10" aria-labelledby="meeting-space-heading">
+        <div className="max-w-2xl">
+          <span className="badge border border-violet-400/30 bg-violet-400/10 text-violet-200">Real Galveston workspace</span>
+          <h2 id="meeting-space-heading" className="mt-3 text-2xl font-semibold text-white">
+            Meeting &amp; Collaboration Space
+          </h2>
+          <p className="mt-2 text-sm text-slate-400">
+            A look inside our actual Galveston workspace for meetings, planning sessions, and collaborative work.
+          </p>
+        </div>
+
+        <div className="mt-5 grid gap-4 md:grid-cols-2">
+          <figure className="overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+            <Image
+              src="/images/meeting-space/IMG_3201.jpeg"
+              alt="Galveston Virtual Offices meeting and collaboration space"
+              width={800}
+              height={508}
+              className="h-full w-full object-cover"
+              priority
+            />
+          </figure>
+          <figure className="overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+            <Image
+              src="/images/meeting-space/IMG_3202.jpeg"
+              alt="Galveston Virtual Offices workspace seating and meeting area"
+              width={800}
+              height={588}
+              className="h-full w-full object-cover"
+            />
+          </figure>
+        </div>
+      </section>
 
       {offices.length === 0 ? (
         <p className="mt-10 rounded-lg bg-amber-400/10 text-amber-300 border border-amber-400/20 px-4 py-3">
