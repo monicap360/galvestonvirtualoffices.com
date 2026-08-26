@@ -1,5 +1,5 @@
 import "server-only";
-import tls from "node:tls";
+import * as tls from "node:tls";
 
 const GMAIL_USER = process.env.GMAIL_USER || "cruisesfromgalveston.texas@gmail.com";
 const NOTIFY_EMAIL = process.env.RESERVATION_NOTIFY_EMAIL || "cruisesfromgalveston.texas@gmail.com";
@@ -53,9 +53,7 @@ async function command(socket: tls.TLSSocket, value: string, expected: number | 
   const expectedCodes = Array.isArray(expected) ? expected : [expected];
   socket.write(`${value}\r\n`);
   const reply = await readReply(socket);
-  if (!expectedCodes.includes(reply.code)) {
-    throw new Error(`SMTP ${reply.code}: ${reply.text}`);
-  }
+  if (!expectedCodes.includes(reply.code)) throw new Error(`SMTP ${reply.code}: ${reply.text}`);
   return reply;
 }
 
