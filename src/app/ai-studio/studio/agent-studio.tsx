@@ -2,11 +2,12 @@
 
 import { useMemo, useState } from "react";
 import { createAiAgentOrder, updateAiAgentConfig } from "@/app/ai-studio/actions";
-import { computeAgentReadiness, normalizeAgentConfig, type AgentConfigV1, type AgentConfigValue } from "@/lib/ai-studio/config";
+import { buildPreviewSummary, computeAgentReadiness, normalizeAgentConfig, type AgentConfigV1, type AgentConfigValue } from "@/lib/ai-studio/config";
 import type { AgentField, AgentTemplate } from "@/lib/ai-studio/types";
 import FieldRenderer from "./field-renderer";
 import ReadinessMeter from "./readiness-meter";
 import ConnectionTile from "./connection-tile";
+import PreviewPanel from "./preview-panel";
 
 type ServiceSummary = {
   id: string;
@@ -66,6 +67,7 @@ export default function AgentStudio({ service, template, initialConfig, mode = "
   const [activeSection, setActiveSection] = useState(template.sections[0]?.id ?? "identity");
 
   const readiness = useMemo(() => computeAgentReadiness(service.slug, config), [service.slug, config]);
+  const previewSummary = useMemo(() => buildPreviewSummary(service.slug, config), [service.slug, config]);
   const currentSection = template.sections.find((section) => section.id === activeSection) ?? template.sections[0];
   const action = mode === "edit" ? updateAiAgentConfig : createAiAgentOrder;
 
@@ -197,16 +199,13 @@ export default function AgentStudio({ service, template, initialConfig, mode = "
               </div>
             </div>
 
-            <div className="rounded-3xl border border-white/10 bg-white/[0.025] p-5">
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">Preview</p>
-              <h2 className="mt-1 text-lg font-semibold text-white">See your agent in action</h2>
-              <p className="mt-2 text-sm leading-6 text-slate-400">Your configured preview will appear here. It will use your business details without pretending unconnected systems are live.</p>
-              <div className="mt-4 grid gap-2">
-                {template.samplePrompts.map((prompt) => (
-                  <div key={prompt} className="rounded-xl border border-white/10 bg-white/[0.025] px-3 py-2.5 text-xs text-slate-400">“{prompt}”</div>
-                ))}
-              </div>
-            </div>
+            <PreviewPanel
+              name={config.identity.display_name || template.defaultDisplayName}
+              tagline={service.tagline}
+              description={service.description}
+              configurationSummary={previewSummary}
+              samplePrompts={template.samplePrompts}
+            />
           </aside>
         </div>
       </div>
