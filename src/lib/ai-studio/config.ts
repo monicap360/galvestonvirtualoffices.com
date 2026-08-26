@@ -1,8 +1,9 @@
 import { z } from "zod";
+import { getAgentWorkflowDefaults } from "./defaults";
 import { getAgentTemplate } from "./templates";
-import type { AgentField, ConnectionState } from "./types";
+import type { AgentConfigValue, AgentField, ConnectionState } from "./types";
 
-export type AgentConfigValue = string | number | boolean | string[];
+export type { AgentConfigValue } from "./types";
 
 export type AgentConfigV1 = {
   schema_version: 1;
@@ -237,6 +238,25 @@ export function normalizeAgentConfig(slug: string, raw: unknown, options: Normal
   };
 
   return provisional;
+}
+
+export function createDefaultAgentConfig(slug: string): AgentConfigV1 {
+  const template = getAgentTemplate(slug);
+  if (!template) throw new Error(`Unknown AI agent slug: ${slug}`);
+
+  const capabilities = getAgentWorkflowDefaults(slug);
+  return normalizeAgentConfig(slug, {
+    business: {
+      industry: template.vertical,
+      timezone: "America/Chicago",
+    },
+    identity: {
+      display_name: template.defaultDisplayName,
+      tone: "warm-professional",
+      languages: ["en"],
+    },
+    capabilities,
+  });
 }
 
 export function buildPreviewSummary(slug: string, config: AgentConfigV1): string {
