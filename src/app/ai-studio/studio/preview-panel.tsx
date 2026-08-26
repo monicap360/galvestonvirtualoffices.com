@@ -57,7 +57,7 @@ export default function PreviewPanel({ name, tagline, description, configuration
   }
 
   return (
-    <div className="rounded-3xl border border-white/10 bg-white/[0.025] p-5">
+    <div id="preview" className="scroll-mt-6 rounded-3xl border border-white/10 bg-white/[0.025] p-5">
       <div className="flex items-center justify-between gap-3">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-violet-300">Preview</p>
