@@ -22,11 +22,15 @@ export default function Checklist({ sections }: { sections: Section[] }) {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    try {
-      const stored = JSON.parse(localStorage.getItem(KEY) || "{}");
-      setChecked((prev) => ({ ...prev, ...stored }));
-    } catch {}
-    setLoaded(true);
+    const frame = requestAnimationFrame(() => {
+      try {
+        const stored = JSON.parse(localStorage.getItem(KEY) || "{}");
+        setChecked((prev) => ({ ...prev, ...stored }));
+      } catch {}
+      setLoaded(true);
+    });
+
+    return () => cancelAnimationFrame(frame);
   }, []);
 
   const toggle = (id: string) => {

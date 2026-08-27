@@ -78,7 +78,6 @@ export default async function FaqPage() {
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-14">
-      {/* eslint-disable-next-line react/no-danger */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <header className="text-center">
