@@ -8,6 +8,7 @@ import {
   MAX_AGENT_FIELD_CHARS,
   buildSystemPrompt,
   buildAgentDemoPrompt,
+  normalizeDemoHistory,
   type ChatTurn,
 } from "@/lib/ai/agent";
 import { buildDemoFallbackResponse } from "@/lib/ai/demo-fallback";
@@ -43,7 +44,7 @@ export async function POST(request: Request) {
     return bad("Invalid request.");
   }
 
-  const history = Array.isArray(body.history) ? body.history : [];
+  const history = normalizeDemoHistory(Array.isArray(body.history) ? body.history : []);
   const isIntro = body.mode === "intro";
 
   // Two flavors of demo: a specific AI Studio agent (role-play), or the

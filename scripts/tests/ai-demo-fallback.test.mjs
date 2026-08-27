@@ -5,6 +5,20 @@ import {
   buildDemoFallbackReply,
   buildDemoFallbackResponse,
 } from "../../src/lib/ai/demo-fallback.ts";
+import { normalizeDemoHistory } from "../../src/lib/ai/agent.ts";
+
+assert.deepEqual(
+  normalizeDemoHistory([
+    { role: "assistant", text: "Welcome!" },
+    { role: "user", text: "I need an appointment." },
+    { role: "assistant", text: "What day works?" },
+  ]),
+  [
+    { role: "user", text: "I need an appointment." },
+    { role: "assistant", text: "What day works?" },
+  ],
+  "chat history must discard the modal greeting so Anthropic receives a user-first conversation",
+);
 
 const phoneIntro = buildDemoFallbackReply({
   agentName: "AI Phone Line & Auto-Attendant",
