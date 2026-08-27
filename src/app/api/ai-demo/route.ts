@@ -8,6 +8,7 @@ import {
   MAX_AGENT_FIELD_CHARS,
   buildSystemPrompt,
   buildAgentDemoPrompt,
+  normalizeDemoHistory,
   type ChatTurn,
 } from "@/lib/ai/agent";
 import { buildDemoFallbackResponse } from "@/lib/ai/demo-fallback";
@@ -44,7 +45,7 @@ export async function POST(request: Request) {
     return bad("Invalid request.");
   }
 
-  const history = Array.isArray(body.history) ? body.history : [];
+  const history = normalizeDemoHistory(Array.isArray(body.history) ? body.history : []);
   const isIntro = body.mode === "intro";
   const clip = (v: unknown, n: number) => String(v || "").trim().slice(0, n);
   let system: string;

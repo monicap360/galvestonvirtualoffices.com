@@ -12,6 +12,20 @@ export const MAX_WHAT_CHARS = 300;
 
 export type ChatTurn = { role: "user" | "assistant"; text: string };
 
+export function normalizeDemoHistory(history: unknown[]): ChatTurn[] {
+  const turns = history.filter(
+    (turn): turn is ChatTurn =>
+      typeof turn === "object" &&
+      turn !== null &&
+      "role" in turn &&
+      (turn.role === "user" || turn.role === "assistant") &&
+      "text" in turn &&
+      typeof turn.text === "string",
+  );
+  const firstCustomerTurn = turns.findIndex((turn) => turn.role === "user");
+  return firstCustomerTurn === -1 ? [] : turns.slice(firstCustomerTurn);
+}
+
 export const MAX_AGENT_FIELD_CHARS = 600;
 
 // Role-play persona for a specific AI Studio agent, so a prospective customer
