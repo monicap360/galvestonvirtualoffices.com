@@ -10,6 +10,7 @@ import {
   buildAgentDemoPrompt,
   type ChatTurn,
 } from "@/lib/ai/agent";
+import { buildDemoFallbackResponse } from "@/lib/ai/demo-fallback";
 
 export const runtime = "nodejs";
 
@@ -121,7 +122,12 @@ export async function POST(request: Request) {
     if (err instanceof Anthropic.AuthenticationError) {
       return bad("The AI demo key looks invalid. Please check your ANTHROPIC_API_KEY.", 503);
     }
-    console.error("[ai-demo]", err);
-    return bad("The assistant hit a snag. Please try again.", 502);
+    console.error("[ai-demo] provider request failed; serving fallback", err);
+    return buildDemoFallbackResponse({
+      agentName: clip(body.agent?.name || body.company || "AI Assistant", MAX_COMPANY_CHARS),
+      tagline: clip(body.agent?.tagline || body.whatTheyDo || "", MAX_AGENT_FIELD_CHARS),
+      history,
+      mode: isIntro ? "intro" : "chat",
+    });
   }
 }

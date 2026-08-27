@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test:ai-studio": "node scripts/tests/ai-agent-template-coverage.test.mjs && node scripts/tests/ai-agent-defaults.test.mjs && node scripts/tests/ai-agent-config.test.mjs && node scripts/tests/ai-agent-actions.test.mjs && node scripts/tests/ai-studio-marketplace.test.mjs && node scripts/tests/ai-agent-studio-ui.test.mjs && node scripts/tests/ai-agent-preview.test.mjs && node scripts/tests/my-ai-agents-dashboard.test.mjs && node scripts/tests/ai-agent-slug-integrity.test.mjs"
+    "test:ai-studio": "node scripts/tests/ai-agent-template-coverage.test.mjs && node scripts/tests/ai-agent-defaults.test.mjs && node scripts/tests/ai-agent-config.test.mjs && node scripts/tests/ai-agent-actions.test.mjs && node scripts/tests/ai-studio-marketplace.test.mjs && node scripts/tests/ai-agent-studio-ui.test.mjs && node scripts/tests/ai-agent-preview.test.mjs && node scripts/tests/ai-demo-fallback.test.mjs && node scripts/tests/my-ai-agents-dashboard.test.mjs && node scripts/tests/ai-agent-slug-integrity.test.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.110.0",
