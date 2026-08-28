@@ -1,0 +1,76 @@
+name: Repository security policy
+
+on:
+  pull_request:
+    paths:
+      - ".github/**"
+      - "SECURITY.md"
+      - ".env"
+      - ".env.*"
+      - "**/.env"
+      - "**/.env.*"
+  push:
+    branches: ["main"]
+    paths:
+      - ".github/**"
+      - "SECURITY.md"
+      - ".env"
+      - ".env.*"
+      - "**/.env"
+      - "**/.env.*"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: repository-security-policy-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  repository-policy:
+    name: Repository policy
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository without persisted credentials
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Verify governance files
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f .github/CODEOWNERS
+          test -f SECURITY.md
+
+      - name: Reject tracked runtime environment files
+        shell: bash
+        run: |
+          set -euo pipefail
+          tracked_env_files="$(
+            git ls-files \
+              | grep -E '(^|/)\.env($|\.)' \
+              | grep -vE '(\.example|\.sample|\.template)$' \
+              || true
+          )"
+
+          if [[ -n "${tracked_env_files}" ]]; then
+            echo "::error::Tracked runtime environment files are prohibited."
+            printf '%s\n' "${tracked_env_files}"
+            exit 1
+          fi
+
+      - name: Reject unrestricted workflow token permissions
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -R \
+            --include='*.yml' \
+            --include='*.yaml' \
+            -nE 'permissions:[[:space:]]*write-all' \
+            .github/workflows; then
+            echo "::error::GitHub Actions workflows may not use permissions: write-all."
+            exit 1
+          fi
