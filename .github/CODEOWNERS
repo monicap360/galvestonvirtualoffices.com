@@ -1,0 +1,20 @@
+# Default owner for all changes.
+* @monicap360
+
+# Security-sensitive control planes.
+/.github/ @monicap360
+/src/app/api/ @monicap360
+/src/lib/ @monicap360
+/supabase/ @monicap360
+/migrations/ @monicap360
+/middleware.* @monicap360
+/next.config.* @monicap360
+/package.json @monicap360
+/package-lock.json @monicap360
+
+# Authentication, agents, billing, customer projects, and administration.
+/src/**/auth/** @monicap360
+/src/**/admin/** @monicap360
+/src/**/billing/** @monicap360
+/src/**/agents/** @monicap360
+/src/**/projects/** @monicap360
