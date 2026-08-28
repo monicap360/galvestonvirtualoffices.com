@@ -69,8 +69,8 @@ jobs:
           if grep -R \
             --include='*.yml' \
             --include='*.yaml' \
-            -nE 'permissions:[[:space:]]*write-all' \
+            -nE "^[[:space:]]*permissions:[[:space:]]*['\"]?write-all['\"]?[[:space:]]*(#.*)?$" \
             .github/workflows; then
-            echo "::error::GitHub Actions workflows may not use permissions: write-all."
+            echo "::error::A workflow grants the unrestricted write-all token permission."
             exit 1
           fi
