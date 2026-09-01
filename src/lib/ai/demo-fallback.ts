@@ -85,6 +85,18 @@ export function buildDemoFallbackReply({ agentName, tagline, history, mode }: De
       : "I can answer questions, capture requests, help with scheduling, and connect you with the right person. What would you like help with first?";
   }
 
+  if (includesAny(role, ["website support", "web care"]) && includesAny(lastMessageLower, ["site is down", "website is down", "completely down", "outage", "offline"])) {
+    return "I’m treating this as an urgent website outage. What is the website address or domain so the support team can begin triage?";
+  }
+
+  if (includesAny(role, ["website sales", "web studio"]) && includesAny(lastMessageLower, ["need a website", "new website", "website for my", "build a website"])) {
+    return "I can help recommend the right website package. What is the business, and what is the main result the website needs to produce—calls, bookings, sales, or leads?";
+  }
+
+  if (includesAny(role, ["hotel"]) && includesAny(lastMessageLower, ["room", "availability", "accessible", "stay", "night"])) {
+    return "I can check the right room type without guessing at live inventory. What are your exact arrival and departure dates, and which accessible features do you need?";
+  }
+
   if (includesAny(lastMessageLower, ["po box", "p.o. box"])) {
     return "A professional street address gives your business a more credible local presence than a PO box and can also include mail alerts and package receiving. Would you like the mailbox plan or the full business-address plan?";
   }
