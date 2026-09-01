@@ -9,19 +9,19 @@ export default async function SiteNav() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-white/10 bg-slate-950/70 backdrop-blur-xl">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
-        <Link href="/" className="group flex items-center gap-2.5 text-white">
+      <nav className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-3 py-2.5 sm:gap-4 sm:px-4 sm:py-3">
+        <Link href="/" className="group flex min-w-0 items-center gap-2 text-white sm:gap-2.5">
           <Image
             src="/gvo-logo-mark.png"
             alt="GalvestonVirtualOffices.com desk and chair logo"
             width={44}
             height={44}
             priority
-            className="h-11 w-11 shrink-0 rounded-xl object-cover ring-1 ring-inset ring-white/20 shadow-[0_0_22px_-4px_rgba(16,185,129,0.6)] transition-transform group-hover:scale-105"
+            className="h-9 w-9 shrink-0 rounded-lg object-cover ring-1 ring-inset ring-white/20 shadow-[0_0_22px_-4px_rgba(16,185,129,0.6)] transition-transform group-hover:scale-105 sm:h-11 sm:w-11 sm:rounded-xl"
           />
-          <span className="hidden leading-tight sm:block">
-            <span className="block text-[15px] font-bold tracking-tight">GalvestonVirtualOffices.com</span>
-            <span className="block text-[10px] font-semibold uppercase tracking-[0.16em] text-emerald-300/80">Virtual Offices · Mailboxes · AI Support</span>
+          <span className="min-w-0 leading-[1.05] sm:leading-tight">
+            <span className="block text-[12px] font-bold tracking-tight sm:text-[15px]">GalvestonVirtual<br className="sm:hidden" />Offices.com</span>
+            <span className="hidden text-[10px] font-semibold uppercase tracking-[0.16em] text-emerald-300/80 sm:block">Virtual Offices · Mailboxes · AI Support</span>
           </span>
         </Link>
 
@@ -74,8 +74,8 @@ export default async function SiteNav() {
           )}
         </div>
 
-        <details className="group relative lg:hidden">
-          <summary className="btn-outline flex cursor-pointer list-none items-center gap-2 [&::-webkit-details-marker]:hidden" aria-label="Open navigation menu">
+        <details className="group relative shrink-0 lg:hidden">
+          <summary className="btn-outline flex cursor-pointer list-none items-center gap-1.5 px-3 py-2 [&::-webkit-details-marker]:hidden" aria-label="Open navigation menu">
             Menu
             <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-4 w-4 transition-transform group-open:rotate-180" aria-hidden="true">
               <path d="m6 8 4 4 4-4" strokeLinecap="round" strokeLinejoin="round" />
