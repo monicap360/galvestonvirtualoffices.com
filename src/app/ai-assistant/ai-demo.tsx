@@ -135,11 +135,14 @@ export default function AiDemo() {
               onChange={(e) => setWhatTheyDo(e.target.value)}
               maxLength={MAX_WHAT_CHARS}
               required
-              rows={3}
-              placeholder="e.g. A family dental practice in Galveston offering cleanings, whitening, and emergency visits."
+              rows={5}
+              placeholder="Include your services, hours, pricing, booking process, policies, and common customer questions."
               className="input resize-none"
             />
-            <p className="mt-1 text-right text-xs text-slate-500">{whatTheyDo.length}/{MAX_WHAT_CHARS}</p>
+            <div className="mt-1 flex items-start justify-between gap-3 text-xs text-slate-500">
+              <span>The more business details you provide, the more knowledgeable Ava becomes.</span>
+              <span className="shrink-0">{whatTheyDo.length}/{MAX_WHAT_CHARS}</span>
+            </div>
           </div>
           <button type="submit" disabled={!company.trim() || !whatTheyDo.trim()} className="btn-primary w-full py-3 disabled:opacity-50">
             Build my AI agent →

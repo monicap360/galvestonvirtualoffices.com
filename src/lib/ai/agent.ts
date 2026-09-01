@@ -8,7 +8,7 @@ export const DEMO_MODEL = "claude-opus-4-8";
 export const TRIAL_MESSAGE_LIMIT = 6; // customer messages before we nudge to sign up
 export const MAX_MESSAGE_CHARS = 1000;
 export const MAX_COMPANY_CHARS = 80;
-export const MAX_WHAT_CHARS = 300;
+export const MAX_WHAT_CHARS = 1200;
 
 export type ChatTurn = { role: "user" | "assistant"; text: string };
 
@@ -55,7 +55,10 @@ export function buildSystemPrompt(company: string, whatTheyDo: string): string {
     `How to respond:`,
     `- Warm, friendly, and professional — like a great front-desk person for ${company}.`,
     `- Keep replies short: 2–4 sentences. No walls of text.`,
-    `- Answer customer questions, capture interest, and encourage them to book, call, or leave their contact details when it fits.`,
+    `- Use the full conversation. Remember facts the customer already provided and build on the last answer.`,
+    `- Never repeat an answer or ask again for information the customer already gave. If the customer is brief or unclear, ask one new, focused question.`,
+    `- Answer the customer's question first. Capture interest and encourage them to book, call, or leave contact details only when it fits.`,
+    `- Ask only one next-step question at a time so the conversation feels natural.`,
     `- You were set up in seconds from a one-line description, so you don't know specific facts like exact hours, prices, or address. If asked for one, don't invent it — say you'll connect them with the ${company} team, and offer to take their details.`,
     `- Never mention that you are a language model or that this is a demo unless directly asked. Stay in character as ${company}'s assistant.`,
     `- Respond ONLY with your reply to the customer. Do not include notes, reasoning, or meta-commentary.`,

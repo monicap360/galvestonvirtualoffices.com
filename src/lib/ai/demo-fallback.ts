@@ -50,6 +50,33 @@ export function buildDemoFallbackReply({ agentName, tagline, history, mode }: De
         typeof turn.text === "string",
     )
     ?.text.trim();
+  const lastMessageLower = lastMessage?.toLowerCase() || "";
+  const previousAssistantMessage = [...history]
+    .reverse()
+    .find(
+      (turn): turn is { role: "assistant"; text: string } =>
+        typeof turn === "object" &&
+        turn !== null &&
+        "role" in turn &&
+        turn.role === "assistant" &&
+        "text" in turn &&
+        typeof turn.text === "string",
+    )
+    ?.text.trim();
+
+  if (includesAny(lastMessageLower, ["what services", "services do", "what do you offer", "how can you help"])) {
+    return tagline.trim()
+      ? `We can help with ${tagline.trim()}. Which service would you like details about?`
+      : "I can answer questions, capture requests, help with scheduling, and connect you with the right person. What would you like help with first?";
+  }
+
+  if (includesAny(lastMessageLower, ["schedule", "appointment", "book", "reservation"])) {
+    return "Of course. What service or appointment would you like to schedule?";
+  }
+
+  if (includesAny(lastMessageLower, ["price", "pricing", "cost", "how much"])) {
+    return "I can help with pricing, but I need to know which service you’re considering first. Which service would you like a price for?";
+  }
 
   if (includesAny(role, ["restaurant", "to-go"])) {
     return "Absolutely—I can help arrange that. What name and phone number should I use for the reservation or order?";
@@ -70,9 +97,15 @@ export function buildDemoFallbackReply({ agentName, tagline, history, mode }: De
     return "Yes—I can build the promotion around your audience, date, offer, and booking link. What is the event date and the main action you want guests to take?";
   }
 
-  return lastMessage
-    ? "I can take care of that. What name, contact information, and timing should I use to complete the request?"
+  const genericReply = lastMessage
+    ? "I can help with that. What would you like me to handle first?"
     : `I'm ready to demonstrate ${agentName}. What would you like me to handle?`;
+
+  if (previousAssistantMessage === genericReply || includesAny(lastMessageLower, ["yes", "sure", "i'd", "i would"])) {
+    return "Let’s take it one step at a time. What specific service or task do you need help with?";
+  }
+
+  return genericReply;
 }
 
 export function buildDemoFallbackResponse(input: DemoFallbackInput): Response {
