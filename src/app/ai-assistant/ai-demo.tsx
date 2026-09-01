@@ -9,6 +9,7 @@ import {
   MAX_WHAT_CHARS,
   type ChatTurn,
 } from "@/lib/ai/agent";
+import { SHOWCASE_PROFILES, type ShowcaseProfile } from "@/lib/ai/showcase-profiles";
 
 type Phase = "setup" | "chat";
 
@@ -41,6 +42,7 @@ export default function AiDemo() {
   const [typing, setTyping] = useState(false);
   const [limitReached, setLimitReached] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showcaseId, setShowcaseId] = useState<string | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -50,30 +52,41 @@ export default function AiDemo() {
   const customerTurns = messages.filter((m) => m.role === "user").length;
   const remaining = Math.max(0, TRIAL_MESSAGE_LIMIT - customerTurns);
 
-  async function build(e: React.FormEvent) {
-    e.preventDefault();
-    if (!company.trim() || !whatTheyDo.trim() || typing) return;
+  async function startDemo(nextCompany: string, nextKnowledge: string, nextShowcaseId: string | null = null) {
+    if (!nextCompany.trim() || !nextKnowledge.trim() || typing) return;
+    setCompany(nextCompany);
+    setWhatTheyDo(nextKnowledge);
+    setShowcaseId(nextShowcaseId);
     setError(null);
     setPhase("chat");
     setTyping(true);
-    const res = await callAgent({ company, whatTheyDo, history: [], mode: "intro" });
+    const res = await callAgent({ company: nextCompany, whatTheyDo: nextKnowledge, history: [], mode: "intro" });
     setTyping(false);
     if (res.error) {
       setError(res.error);
       setMessages([
         {
           role: "assistant",
-          text: `Hi! I'm ${company}'s AI assistant. Ask me anything a customer might.`,
+          text: `Hi! I'm ${nextCompany}'s AI assistant. Ask me anything a customer might.`,
         },
       ]);
       return;
     }
-    setMessages([{ role: "assistant", text: res.reply || `Hi! I'm ${company}'s assistant.` }]);
+    setMessages([{ role: "assistant", text: res.reply || `Hi! I'm ${nextCompany}'s assistant.` }]);
+  }
+
+  async function build(e: React.FormEvent) {
+    e.preventDefault();
+    await startDemo(company, whatTheyDo);
   }
 
   async function send(e: React.FormEvent) {
     e.preventDefault();
     const text = input.trim();
+    await sendMessage(text);
+  }
+
+  async function sendMessage(text: string) {
     if (!text || typing || limitReached) return;
     setError(null);
     setInput("");
@@ -114,7 +127,26 @@ export default function AiDemo() {
         <p className="mt-1 text-sm text-slate-400">
           We&apos;ll build a live AI assistant trained on your business in seconds — then you can try it yourself.
         </p>
-        <form onSubmit={build} className="mt-5 space-y-4">
+        <div className="mt-5 rounded-2xl border border-emerald-400/20 bg-emerald-400/[0.06] p-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-300">Try a showcase business</p>
+          <div className="mt-3 grid gap-2 sm:grid-cols-2">
+            {SHOWCASE_PROFILES.map((profile) => (
+              <button
+                key={profile.id}
+                type="button"
+                onClick={() => startDemo(profile.company, profile.knowledge, profile.id)}
+                className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.05] px-3 py-2.5 text-left text-sm font-semibold text-slate-100 transition hover:border-emerald-400/40 hover:bg-emerald-400/10"
+              >
+                <span aria-hidden="true">{profile.icon}</span>
+                {profile.label}
+              </button>
+            ))}
+          </div>
+        </div>
+        <div className="my-5 flex items-center gap-3 text-xs uppercase tracking-[0.16em] text-slate-500">
+          <span className="h-px flex-1 bg-white/10" />or build yours<span className="h-px flex-1 bg-white/10" />
+        </div>
+        <form onSubmit={build} className="space-y-4">
           <div>
             <label className="label" htmlFor="demo-company">Company name</label>
             <input
@@ -173,6 +205,7 @@ export default function AiDemo() {
             setMessages([]);
             setLimitReached(false);
             setError(null);
+            setShowcaseId(null);
           }}
           className="ml-auto text-xs text-slate-400 hover:text-violet-300"
         >
@@ -220,6 +253,18 @@ export default function AiDemo() {
         </div>
       ) : (
         <>
+          {customerTurns === 0 && showcaseId && (
+            <div className="border-t border-white/10 px-4 pt-3">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Try asking Ava</p>
+              <div className="flex flex-wrap gap-2">
+                {SHOWCASE_PROFILES.find((profile: ShowcaseProfile) => profile.id === showcaseId)?.questions.map((question) => (
+                  <button key={question} type="button" onClick={() => sendMessage(question)} className="rounded-full border border-emerald-400/25 bg-emerald-400/[0.07] px-3 py-1.5 text-left text-xs font-medium text-emerald-100 hover:bg-emerald-400/15">
+                    {question}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
           <form onSubmit={send} className="flex items-center gap-2 border-t border-white/10 px-4 py-3">
             <input
               value={input}

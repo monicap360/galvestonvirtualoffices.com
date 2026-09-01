@@ -9,6 +9,18 @@ function includesAny(value: string, terms: string[]) {
   return terms.some((term) => value.includes(term));
 }
 
+function readKnowledgeSection(knowledge: string, heading: string): string {
+  const escaped = heading.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return knowledge.match(new RegExp(`${escaped}:\\s*(.*?)(?=\\s+[A-Z][A-Za-z ]+:|$)`, "i"))?.[1]?.trim() || "";
+}
+
+function relevantPricing(knowledge: string, message: string): string {
+  const pricing = readKnowledgeSection(knowledge, "Sample pricing");
+  if (!pricing) return "";
+  const words = message.toLowerCase().split(/\W+/).filter((word) => word.length > 3);
+  return pricing.split(";").find((item) => words.some((word) => item.toLowerCase().includes(word)))?.trim() || pricing;
+}
+
 /**
  * Keeps the public demo useful when the model provider is temporarily unable
  * to answer. These are intentionally short, in-character workflow replies.
@@ -65,9 +77,16 @@ export function buildDemoFallbackReply({ agentName, tagline, history, mode }: De
     ?.text.trim();
 
   if (includesAny(lastMessageLower, ["what services", "services do", "what do you offer", "how can you help"])) {
-    return tagline.trim()
+    const services = readKnowledgeSection(tagline, "Services");
+    return services
+      ? `We can help with ${services}. Which service would you like details about?`
+      : tagline.trim()
       ? `We can help with ${tagline.trim()}. Which service would you like details about?`
       : "I can answer questions, capture requests, help with scheduling, and connect you with the right person. What would you like help with first?";
+  }
+
+  if (includesAny(lastMessageLower, ["po box", "p.o. box"])) {
+    return "A professional street address gives your business a more credible local presence than a PO box and can also include mail alerts and package receiving. Would you like the mailbox plan or the full business-address plan?";
   }
 
   if (includesAny(lastMessageLower, ["schedule", "appointment", "book", "reservation"])) {
@@ -75,7 +94,10 @@ export function buildDemoFallbackReply({ agentName, tagline, history, mode }: De
   }
 
   if (includesAny(lastMessageLower, ["price", "pricing", "cost", "how much"])) {
-    return "I can help with pricing, but I need to know which service you’re considering first. Which service would you like a price for?";
+    const pricing = relevantPricing(tagline, lastMessageLower);
+    return pricing
+      ? `For this showcase, ${pricing}. The team will confirm the final quote—would you like to compare options or start a request?`
+      : "I can help with pricing, but I need to know which service you’re considering first. Which service would you like a price for?";
   }
 
   if (includesAny(role, ["restaurant", "to-go"])) {
