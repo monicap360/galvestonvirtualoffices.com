@@ -1,0 +1,14 @@
+# Default ownership
+* @monicap360
+
+# Security, deployment, authentication, and data boundaries
+/.github/ @monicap360
+/SECURITY.md @monicap360
+/.env* @monicap360
+/next.config.* @monicap360
+/middleware.* @monicap360
+/src/app/api/ @monicap360
+/src/lib/ @monicap360
+/supabase/ @monicap360
+/migrations/ @monicap360
+/scripts/ @monicap360
