@@ -1,17 +1,6 @@
 import Link from "next/link";
 import { getProfile } from "@/lib/session";
-
-const links = [
-  { href: "/ai-assistant", label: "AI Assistant" },
-  { href: "/ai-studio", label: "AI Studio" },
-  { href: "/mailboxes", label: "Mailboxes" },
-  { href: "/offices", label: "Offices" },
-  { href: "/services/marketing", label: "AI Marketing" },
-  { href: "/services/platforms", label: "Platforms" },
-  { href: "/why-us", label: "Why Us" },
-  { href: "/pricing", label: "Pricing" },
-  { href: "/contact", label: "Contact" },
-];
+import { getMobileNavigation, publicNavigation } from "@/lib/site-navigation";
 
 export default async function SiteNav() {
   const { profile } = await getProfile();
@@ -30,17 +19,32 @@ export default async function SiteNav() {
           </span>
         </Link>
 
-        <div className="hidden items-center gap-5 lg:flex">
-          {links.map((l) => (
-            <Link key={l.href} href={l.href} className="text-sm font-medium text-slate-300 transition-colors hover:text-violet-300">
-              {l.label}
+        <div className="hidden items-center gap-1 lg:flex">
+          <details className="group relative">
+            <summary className="flex cursor-pointer list-none items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-slate-300 transition-colors hover:bg-white/5 hover:text-violet-300 [&::-webkit-details-marker]:hidden">
+              Services
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-4 w-4 transition-transform group-open:rotate-180" aria-hidden="true">
+                <path d="m6 8 4 4 4-4" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </summary>
+            <div className="absolute left-1/2 top-full mt-3 w-64 -translate-x-1/2 rounded-2xl border border-white/10 bg-slate-950/95 p-2 shadow-2xl shadow-black/40 backdrop-blur-xl">
+              <p className="px-3 pb-2 pt-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-violet-300/70">Services</p>
+              {publicNavigation.services.map((link) => (
+                <Link key={link.href} href={link.href} className="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-200 transition-colors hover:bg-violet-400/10 hover:text-violet-200">
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          </details>
+
+          {publicNavigation.primary.map((link) => (
+            <Link key={link.href} href={link.href} className="rounded-lg px-3 py-2 text-sm font-medium text-slate-300 transition-colors hover:bg-white/5 hover:text-violet-300">
+              {link.label}
             </Link>
           ))}
         </div>
 
-        <div className="flex items-center gap-2">
-          <a href="tel:+14094027908" className="hidden text-sm font-semibold text-white hover:text-violet-300 xl:inline-flex">(409) 402-7908</a>
-          <Link href="/contact" className="btn-outline hidden md:inline-flex">Book a call</Link>
+        <div className="hidden items-center gap-2 lg:flex">
           {profile ? (
             <>
               {isStaff && (
@@ -63,6 +67,41 @@ export default async function SiteNav() {
             </>
           )}
         </div>
+
+        <details className="group relative lg:hidden">
+          <summary className="btn-outline flex cursor-pointer list-none items-center gap-2 [&::-webkit-details-marker]:hidden" aria-label="Open navigation menu">
+            Menu
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-4 w-4 transition-transform group-open:rotate-180" aria-hidden="true">
+              <path d="m6 8 4 4 4-4" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </summary>
+          <div className="absolute right-0 top-full mt-3 w-[min(22rem,calc(100vw-2rem))] rounded-2xl border border-white/10 bg-slate-950/95 p-3 shadow-2xl shadow-black/50 backdrop-blur-xl">
+            <p className="px-3 pb-2 pt-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-violet-300/70">Explore</p>
+            <div className="grid gap-1 sm:grid-cols-2">
+              {getMobileNavigation().map((link) => (
+                <Link key={link.href} href={link.href} className="rounded-xl px-3 py-2.5 text-sm font-medium text-slate-200 transition-colors hover:bg-violet-400/10 hover:text-violet-200">
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+
+            <div className="mt-3 grid gap-2 border-t border-white/10 pt-3 sm:grid-cols-2">
+              <a href="tel:+14094027908" className="btn-outline justify-center">(409) 402-7908</a>
+              <Link href="/contact" className="btn-outline justify-center">Book a call</Link>
+              {profile ? (
+                <>
+                  {isStaff && <Link href="/admin" className="btn-ghost justify-center">Admin</Link>}
+                  <Link href="/dashboard" className="btn-primary justify-center">Dashboard</Link>
+                </>
+              ) : (
+                <>
+                  <Link href="/login" className="btn-ghost justify-center">Log in</Link>
+                  <Link href="/signup" className="btn-primary justify-center">Sign up</Link>
+                </>
+              )}
+            </div>
+          </div>
+        </details>
       </nav>
     </header>
   );
