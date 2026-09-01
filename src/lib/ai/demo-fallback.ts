@@ -97,6 +97,17 @@ export function buildDemoFallbackReply({ agentName, tagline, history, mode }: De
     return "I can check the right room type without guessing at live inventory. What are your exact arrival and departure dates, and which accessible features do you need?";
   }
 
+  if (includesAny(lastMessageLower, ["recommend the best-fit", "recommend best", "best-fit option"])) {
+    const services = readKnowledgeSection(tagline, "Services");
+    return services
+      ? `My best fit recommendation depends on the result you want. Based on this business, I’d narrow it from ${services}; what is your top priority?`
+      : "I can recommend the best fit once I know your top priority. What result matters most to you?";
+  }
+
+  if (includesAny(lastMessageLower, ["start the", "workflow", "information is still missing"])) {
+    return "I can start the next step. First, what name should I place on the request?";
+  }
+
   if (includesAny(lastMessageLower, ["po box", "p.o. box"])) {
     return "A professional street address gives your business a more credible local presence than a PO box and can also include mail alerts and package receiving. Would you like the mailbox plan or the full business-address plan?";
   }

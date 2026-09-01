@@ -17,7 +17,27 @@ test("showcase includes nine complete business demonstrations", () => {
     assert.match(profile.knowledge, /Sample pricing:/);
     assert.match(profile.knowledge, /Policies:/);
     assert.ok(profile.questions.length >= 3);
+    assert.deepEqual(profile.actions.map((action) => action.kind), ["answer", "recommend", "complete"]);
   }
+});
+
+test("action prompts produce useful showcase outcomes", () => {
+  const profile = SHOWCASE_PROFILES[0];
+  const recommendation = buildDemoFallbackReply({
+    agentName: profile.company,
+    tagline: profile.knowledge,
+    mode: "chat",
+    history: [{ role: "user", text: profile.actions[1].prompt }],
+  });
+  const completion = buildDemoFallbackReply({
+    agentName: profile.company,
+    tagline: profile.knowledge,
+    mode: "chat",
+    history: [{ role: "user", text: profile.actions[2].prompt }],
+  });
+  assert.match(recommendation, /recommend|best fit/i);
+  assert.match(completion, /start|next step|need/i);
+  assert.doesNotMatch(completion, /submitted|confirmed|completed/i);
 });
 
 test("hotel fallback handles room availability without inventing inventory", () => {

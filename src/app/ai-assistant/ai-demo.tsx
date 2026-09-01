@@ -265,6 +265,18 @@ export default function AiDemo() {
               </div>
             </div>
           )}
+          {customerTurns > 0 && showcaseId && (
+            <div className="border-t border-white/10 px-4 pt-3">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Let Ava take action</p>
+              <div className="grid gap-2 sm:grid-cols-3">
+                {SHOWCASE_PROFILES.find((profile: ShowcaseProfile) => profile.id === showcaseId)?.actions.map((action) => (
+                  <button key={action.kind} type="button" onClick={() => sendMessage(action.prompt)} disabled={typing} className="rounded-xl border border-white/10 bg-white/[0.05] px-3 py-2 text-left text-xs font-semibold text-slate-200 transition hover:border-emerald-400/30 hover:bg-emerald-400/10 disabled:opacity-50">
+                    {action.kind === "answer" ? "💬" : action.kind === "recommend" ? "✨" : "✓"} {action.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
           <form onSubmit={send} className="flex items-center gap-2 border-t border-white/10 px-4 py-3">
             <input
               value={input}
