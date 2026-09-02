@@ -1,14 +1,18 @@
 import Link from "next/link";
 import Image from "next/image";
 import { getProfile } from "@/lib/session";
-import { getMobileNavigation, publicNavigation } from "@/lib/site-navigation";
+import {
+  getMobileNavigation,
+  getSiteHeaderClassName,
+  publicNavigation,
+} from "@/lib/site-navigation";
 
 export default async function SiteNav() {
   const { profile } = await getProfile();
   const isStaff = profile?.role === "admin" || profile?.role === "owner";
 
   return (
-    <header className="sticky top-0 z-40 border-b border-white/10 bg-slate-950/70 backdrop-blur-xl">
+    <header className={getSiteHeaderClassName()}>
       <nav className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-3 py-2.5 sm:gap-4 sm:px-4 sm:py-3">
         <Link href="/" className="group flex min-w-0 items-center gap-2 text-white sm:gap-2.5">
           <Image
