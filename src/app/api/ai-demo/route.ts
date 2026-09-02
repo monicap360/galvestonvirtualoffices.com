@@ -11,7 +11,10 @@ import {
   normalizeDemoHistory,
   type ChatTurn,
 } from "@/lib/ai/agent";
-import { buildDemoFallbackResponse } from "@/lib/ai/demo-fallback";
+import {
+  buildDemoFallbackResponse,
+  buildKnownContactContext,
+} from "@/lib/ai/demo-fallback";
 
 export const runtime = "nodejs";
 
@@ -68,6 +71,9 @@ export async function POST(request: Request) {
     introInstruction =
       "A visitor just opened the chat on your website. In 2 short sentences, greet them warmly as the assistant, show you understand what the business does, and invite them to ask a question.";
   }
+
+  const knownContactContext = buildKnownContactContext(history);
+  if (knownContactContext) system = `${system}\n\n${knownContactContext}`;
 
   // Enforce the free-trial cap (count the customer's own messages).
   const customerTurns = history.filter((m) => m.role === "user").length;

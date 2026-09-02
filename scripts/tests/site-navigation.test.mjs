@@ -8,7 +8,21 @@ assert.ok(
   "the public header must use a compact navigation model shared by desktop and mobile menus",
 );
 
-const { publicNavigation, getMobileNavigation } = await import(navigationModule);
+const { publicNavigation, getMobileNavigation, getSiteHeaderClassName } = await import(navigationModule);
+
+assert.equal(
+  typeof getSiteHeaderClassName,
+  "function",
+  "the public header must expose its scroll behavior for regression coverage",
+);
+
+const siteHeaderClassName = getSiteHeaderClassName();
+
+assert.doesNotMatch(
+  siteHeaderClassName,
+  /(?:^|\s)(?:sticky|fixed)(?:\s|$)/,
+  "the public header must remain in normal document flow instead of covering scrolled content",
+);
 
 assert.deepEqual(
   publicNavigation.primary.map(({ label }) => label),

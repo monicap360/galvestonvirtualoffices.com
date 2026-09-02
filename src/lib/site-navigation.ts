@@ -17,3 +17,7 @@ export const publicNavigation = {
 export function getMobileNavigation() {
   return [...publicNavigation.services, ...publicNavigation.primary];
 }
+
+export function getSiteHeaderClassName() {
+  return "z-40 border-b border-white/10 bg-slate-950/70 backdrop-blur-xl";
+}

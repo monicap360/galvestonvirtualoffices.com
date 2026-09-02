@@ -5,6 +5,51 @@ type DemoFallbackInput = {
   mode: "intro" | "chat";
 };
 
+type ConversationTurn = {
+  role?: unknown;
+  text?: unknown;
+};
+
+const PHONE_CANDIDATE = /(?:\+?1[\s.()-]*)?(?:\(\s*\d{3}\s*\)|\d{3})[\s.-]*\d{3}[\s.-]*\d{4}/g;
+
+export function extractPhoneNumber(value: string): string | null {
+  for (const match of value.matchAll(PHONE_CANDIDATE)) {
+    const start = match.index;
+    const end = start + match[0].length;
+    if (/\d/.test(value[start - 1] || "") || /\d/.test(value[end] || "")) continue;
+
+    let digits = match[0].replace(/\D/g, "");
+    if (digits.length === 11 && digits.startsWith("1")) digits = digits.slice(1);
+    if (digits.length !== 10) continue;
+
+    return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+  }
+
+  return null;
+}
+
+export function extractKnownPhone(history: unknown[]): string | null {
+  for (const turn of [...history].reverse()) {
+    const candidate = turn as ConversationTurn;
+    if (candidate?.role !== "user" || typeof candidate.text !== "string") continue;
+    const phone = extractPhoneNumber(candidate.text);
+    if (phone) return phone;
+  }
+
+  return null;
+}
+
+export function buildKnownContactContext(history: unknown[]): string {
+  const phone = extractKnownPhone(history);
+  if (!phone) return "";
+
+  return [
+    "Known customer details from this conversation:",
+    `- Phone: ${phone}`,
+    "Treat this phone number as already collected. Do not ask the customer to provide or repeat it.",
+  ].join("\n");
+}
+
 function includesAny(value: string, terms: string[]) {
   return terms.some((term) => value.includes(term));
 }
@@ -63,6 +108,8 @@ export function buildDemoFallbackReply({ agentName, tagline, history, mode }: De
     )
     ?.text.trim();
   const lastMessageLower = lastMessage?.toLowerCase() || "";
+  const phoneInLastMessage = lastMessage ? extractPhoneNumber(lastMessage) : null;
+  const knownPhone = extractKnownPhone(history);
   const previousAssistantMessage = [...history]
     .reverse()
     .find(
@@ -75,6 +122,10 @@ export function buildDemoFallbackReply({ agentName, tagline, history, mode }: De
         typeof turn.text === "string",
     )
     ?.text.trim();
+
+  if (phoneInLastMessage) {
+    return `Thank you—I have ${phoneInLastMessage}. What name should I place on the request?`;
+  }
 
   if (includesAny(lastMessageLower, ["what services", "services do", "what do you offer", "how can you help"])) {
     const services = readKnowledgeSection(tagline, "Services");
@@ -124,19 +175,27 @@ export function buildDemoFallbackReply({ agentName, tagline, history, mode }: De
   }
 
   if (includesAny(role, ["restaurant", "to-go"])) {
-    return "Absolutely—I can help arrange that. What name and phone number should I use for the reservation or order?";
+    return knownPhone
+      ? "Absolutely—I have your contact number. What name should I use for the reservation or order?"
+      : "Absolutely—I can help arrange that. What name and phone number should I use for the reservation or order?";
   }
   if (includesAny(role, ["phone", "auto-attendant"])) {
-    return "I’d be happy to help. May I have your name, phone number, and the best details to pass along or use for your booking?";
+    return knownPhone
+      ? "I’d be happy to help, and I have your contact number. May I have your name and the best details to pass along or use for your booking?"
+      : "I’d be happy to help. May I have your name, phone number, and the best details to pass along or use for your booking?";
   }
   if (includesAny(role, ["tour", "excursion"])) {
     return "Great choice. What date, group size, and preferred time should I check for you?";
   }
   if (includesAny(role, ["airbnb", "reservation manager", "guest"])) {
-    return "I can help with that. What are your check-in and checkout dates, number of guests, and best contact number?";
+    return knownPhone
+      ? "I can help with that, and I have your contact number. What are your check-in and checkout dates and number of guests?"
+      : "I can help with that. What are your check-in and checkout dates, number of guests, and best contact number?";
   }
   if (includesAny(role, ["appointment", "schedule"])) {
-    return "Let’s get that scheduled. What day and time range work best, and what name and phone number should I place on the appointment?";
+    return knownPhone
+      ? "Let’s get that scheduled, and I have your contact number. What day and time range work best, and what name should I place on the appointment?"
+      : "Let’s get that scheduled. What day and time range work best, and what name and phone number should I place on the appointment?";
   }
   if (includesAny(role, ["event", "promoter", "marketing"])) {
     return "Yes—I can build the promotion around your audience, date, offer, and booking link. What is the event date and the main action you want guests to take?";
