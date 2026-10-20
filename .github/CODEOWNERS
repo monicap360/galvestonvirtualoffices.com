@@ -1,0 +1,12 @@
+# Monica is the default reviewer and owner for every repository change.
+* @monicap360
+
+# Repository governance and automation
+/.github/ @monicap360
+/SECURITY.md @monicap360
+
+# Identity, API, AI-provider, database, and deployment boundaries
+/src/app/api/ @monicap360
+/src/lib/ @monicap360
+/next.config.ts @monicap360
+/render.yaml @monicap360
