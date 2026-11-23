@@ -90,16 +90,17 @@ export async function createBooking(formData: FormData) {
 
 // ---- Virtual mailbox subscription ----
 export async function subscribeMailbox(formData: FormData) {
-  const profile = await requireProfile();
-  const supabase = await createClient();
-
   const planId = String(formData.get("plan_id") || "");
-  if (!planId) redirect("/mailboxes?error=missing");
+  if (!/^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/i.test(planId)) redirect("/mailboxes?error=missing");
+  const profile = await requireProfile(`/mailboxes?plan=${planId}#plan-${planId}`);
+  const supabase = await createClient();
 
   const { data: plan } = await supabase
     .from("mailbox_plans")
     .select("id, name, price_cents")
     .eq("id", planId)
+    .eq("tenant_id", profile.tenant_id)
+    .eq("active", true)
     .single();
   if (!plan) redirect("/mailboxes?error=notfound");
 

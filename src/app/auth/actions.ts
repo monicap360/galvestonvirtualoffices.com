@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { getTenant } from "@/lib/tenant";
 import { sendWelcomeEmail } from "@/lib/email";
+import { safeAuthReturn } from "@/lib/auth-return";
 
 export type AuthState = { error?: string; message?: string };
 
@@ -16,19 +17,22 @@ export async function signUpAction(_prev: AuthState, formData: FormData): Promis
   const password = String(formData.get("password") || "");
   const fullName = String(formData.get("full_name") || "").trim();
   const phone = String(formData.get("phone") || "").trim();
+  const next = safeAuthReturn(formData.get("next"));
 
   if (!email || !password || !fullName) return { error: "Name, email, and password are required." };
   if (password.length < 8) return { error: "Password must be at least 8 characters." };
 
   const h = await headers();
   const origin = `${h.get("x-forwarded-proto") || "http"}://${h.get("host")}`;
+  const confirmation = new URL("/auth/confirm", origin);
+  if (next !== "/dashboard") confirmation.searchParams.set("next", next);
 
   const supabase = await createClient();
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
     options: {
-      emailRedirectTo: `${origin}/auth/confirm`,
+      emailRedirectTo: confirmation.href,
       data: { tenant_id: tenant.id, full_name: fullName, phone: phone || null },
     },
   });
@@ -40,19 +44,19 @@ export async function signUpAction(_prev: AuthState, formData: FormData): Promis
 
   if (!data.session) return { message: "Almost there — check your email to confirm your account, then look for your welcome email." };
 
-  redirect("/dashboard");
+  redirect(next);
 }
 
 export async function signInAction(_prev: AuthState, formData: FormData): Promise<AuthState> {
   const email = String(formData.get("email") || "").trim();
   const password = String(formData.get("password") || "");
-  const next = String(formData.get("next") || "/dashboard");
+  const next = safeAuthReturn(formData.get("next"));
 
   const supabase = await createClient();
   const { error } = await supabase.auth.signInWithPassword({ email, password });
   if (error) return { error: error.message };
 
-  redirect(next.startsWith("/") ? next : "/dashboard");
+  redirect(next);
 }
 
 export async function signOutAction() {
