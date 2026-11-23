@@ -72,9 +72,12 @@ export default async function MailboxesPage({ searchParams }: PageProps<"/mailbo
                   <li key={f} className="flex gap-2"><span className="text-violet-300">✓</span>{f}</li>
                 ))}
               </ul>
-              <form action={subscribeMailbox} className="mt-6">
+              <Link href={{ pathname: "/mailboxes/signup", query: { plan: p.id } }} className="btn-primary mt-6 w-full text-center">
+                Sign up as a guest
+              </Link>
+              <form action={subscribeMailbox} className="mt-2">
                 <input type="hidden" name="plan_id" value={p.id} />
-                <button className={i === 1 || p.id === plan ? "btn-primary w-full" : "btn-outline w-full"}>{p.id === plan ? "Continue with this plan" : "Get this plan"}</button>
+                <button className="btn-outline w-full">Continue with an account</button>
               </form>
             </div>
           ))}
