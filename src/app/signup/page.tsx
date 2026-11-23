@@ -1,10 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { useActionState } from "react";
+import { Suspense, useActionState } from "react";
+import { useSearchParams } from "next/navigation";
 import { signUpAction, type AuthState } from "@/app/auth/actions";
+import { safeAuthReturn } from "@/lib/auth-return";
 
-export default function SignupPage() {
+function SignupForm() {
+  const next = safeAuthReturn(useSearchParams().get("next"));
   const [state, action, pending] = useActionState<AuthState, FormData>(signUpAction, {});
 
   return (
@@ -13,6 +16,7 @@ export default function SignupPage() {
       <p className="mt-1 text-sm text-slate-400">Set up your Galveston address, mailbox, and dashboard.</p>
 
       <form action={action} className="card mt-6 space-y-4 p-6">
+        <input type="hidden" name="next" value={next} />
         {state.error && (
           <p className="rounded-lg bg-red-400/10 px-3 py-2 text-sm text-red-300">{state.error}</p>
         )}
@@ -43,8 +47,12 @@ export default function SignupPage() {
 
       <p className="mt-4 text-center text-sm text-slate-400">
         Already have an account?{" "}
-        <Link href="/login" className="font-semibold text-violet-300 hover:underline">Log in</Link>
+        <Link href={next === "/dashboard" ? "/login" : { pathname: "/login", query: { next } }} className="font-semibold text-violet-300 hover:underline">Log in</Link>
       </p>
     </div>
   );
+}
+
+export default function SignupPage() {
+  return <Suspense fallback={<p className="mx-auto max-w-md px-4 py-16 text-slate-400">Loading…</p>}><SignupForm /></Suspense>;
 }

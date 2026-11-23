@@ -14,8 +14,8 @@ const compare = [
   { feature: "Beyond the mailbox", them: "Mailbox only", us: "Assistant, office, address & marketing too" },
 ];
 
-export default async function MailboxesPage() {
-  const plans = await getMailboxPlans();
+export default async function MailboxesPage({ searchParams }: PageProps<"/mailboxes">) {
+  const [plans, { plan, error }] = await Promise.all([getMailboxPlans(), searchParams]);
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-14">
@@ -51,6 +51,8 @@ export default async function MailboxesPage() {
       </section>
 
       <h2 className="mt-14 text-2xl font-bold text-white">Choose your plan</h2>
+      <p className="mt-2 text-sm text-slate-400">After you submit, we’ll provide a first-month invoice with business-check payment instructions.</p>
+      {typeof error === "string" && <p role="alert" className="mt-3 text-sm text-amber-300">{error === "failed" ? "We couldn’t save your subscription. Please try again or contact us." : "That plan couldn’t be selected. Please choose an available plan below."}</p>}
       {plans.length === 0 ? (
         <p className="mt-6 rounded-lg bg-amber-400/10 text-amber-300 border border-amber-400/20 px-4 py-3">
           No plans listed yet. (Run the seed file, then refresh.)
@@ -58,7 +60,7 @@ export default async function MailboxesPage() {
       ) : (
         <div className="mt-6 grid gap-6 lg:grid-cols-3">
           {plans.map((p, i) => (
-            <div key={p.id} className={`card flex flex-col p-6 ${i === 1 ? "ring-1 ring-violet-400/50" : ""}`}>
+            <div id={`plan-${p.id}`} key={p.id} className={`card flex scroll-mt-6 flex-col p-6 ${p.id === plan || i === 1 ? "ring-1 ring-violet-400/50" : ""}`}>
               {i === 1 && <span className="badge mb-2 w-fit bg-gradient-to-br from-indigo-400 to-violet-500 text-slate-950">Most popular</span>}
               <h3 className="text-lg font-semibold text-white">{p.name}</h3>
               <p className="mt-1 text-sm text-slate-400">{p.description}</p>
@@ -72,7 +74,7 @@ export default async function MailboxesPage() {
               </ul>
               <form action={subscribeMailbox} className="mt-6">
                 <input type="hidden" name="plan_id" value={p.id} />
-                <button className={i === 1 ? "btn-primary w-full" : "btn-outline w-full"}>Get this plan</button>
+                <button className={i === 1 || p.id === plan ? "btn-primary w-full" : "btn-outline w-full"}>{p.id === plan ? "Continue with this plan" : "Get this plan"}</button>
               </form>
             </div>
           ))}
