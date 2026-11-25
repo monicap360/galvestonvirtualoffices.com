@@ -1,9 +1,14 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getMailboxPlans } from "@/lib/catalog";
 import { subscribeMailbox } from "@/app/orders/actions";
 import { money } from "@/lib/format";
 
-export const metadata = { title: "Virtual Mailboxes" };
+export const metadata: Metadata = {
+  title: "Virtual Mailboxes",
+  description: "Compare virtual mailbox plans with a Galveston street address, package pickup, and options for scanning and forwarding.",
+  alternates: { canonical: "/mailboxes" },
+};
 
 const compare = [
   { feature: "Real street address", them: "Shared national network", us: "A real Galveston address" },
