@@ -1,5 +1,8 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getTenant } from "@/lib/tenant";
+
+export const metadata: Metadata = { alternates: { canonical: "/" } };
 
 // Minimalist line icons (Heroicons outline) — no clip art.
 const ICONS: Record<string, string> = {
