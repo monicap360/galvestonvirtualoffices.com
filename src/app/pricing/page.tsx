@@ -1,8 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getMailboxPlans, getServices } from "@/lib/catalog";
 import { price, money } from "@/lib/format";
 
-export const metadata = { title: "Pricing" };
+export const metadata: Metadata = {
+  title: "Pricing",
+  description: "Compare Galveston Virtual Offices pricing for virtual mailboxes, virtual assistants, office space, and business support.",
+  alternates: { canonical: "/pricing" },
+};
 
 export default async function PricingPage() {
   const [plans, services] = await Promise.all([getMailboxPlans(), getServices()]);

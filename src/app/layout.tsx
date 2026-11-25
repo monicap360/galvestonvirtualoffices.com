@@ -30,7 +30,6 @@ export const metadata: Metadata = {
     "women business support Galveston",
     "AI assistant for small business Texas",
   ],
-  alternates: { canonical: "/" },
   robots: { index: true, follow: true },
   openGraph: {
     type: "website",

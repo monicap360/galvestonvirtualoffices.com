@@ -1,9 +1,14 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { getOffices } from "@/lib/catalog";
 import { createBooking } from "@/app/orders/actions";
 import { money } from "@/lib/format";
 
-export const metadata = { title: "Office Space & Meeting Rooms" };
+export const metadata: Metadata = {
+  title: "Office Space & Meeting Rooms",
+  description: "Explore private offices, coworking desks, and meeting space for women entrepreneurs and professionals in Galveston, Texas.",
+  alternates: { canonical: "/offices" },
+};
 
 export default async function OfficesPage() {
   const offices = await getOffices();
